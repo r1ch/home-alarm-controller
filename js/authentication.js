@@ -54,6 +54,16 @@ function AWSSTSSignIn(idToken) {
     });
 }
 
+function handleSTSResponse(data) {
+    // Setting AWS config credentials globally
+    AWS.config.credentials = new AWS.Credentials(
+        data.Credentials.AccessKeyId,
+        data.Credentials.SecretAccessKey,
+        data.Credentials.SessionToken);
+    AWS.config.region = window.config.region;
+    return CredentialsReady.resolve(data.Credentials);
+}
+
 function signHttpRequest(signInParameters) {
     var signInUrl = "https://";
     signInUrl += window.config.apiGatewayUrl
@@ -71,16 +81,6 @@ function signHttpRequest(signInParameters) {
     return new Promise(function (resolve) {
         resolve(signer.request);
     });
-}
-
-function handleSTSResponse(data) {
-    // Setting AWS config credentials globally
-    AWS.config.credentials = new AWS.Credentials(
-        data.Credentials.AccessKeyId,
-        data.Credentials.SecretAccessKey,
-        data.Credentials.SessionToken);
-    AWS.config.region = window.config.region;
-    return CredentialsReady.resolve(data.Credentials);
 }
 
 function handleError(error) {
