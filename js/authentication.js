@@ -61,18 +61,23 @@ function handleSTSResponse(data) {
         data.Credentials.SecretAccessKey,
         data.Credentials.SessionToken);
     AWS.config.region = window.config.region;
-    return CredentialsReady.resolve(data.Credentials);
+    // Sending sign-in parameters to lambda function
+    var signInParameters = {
+        "sessionId": data.Credentials.AccessKeyId,
+        "sessionKey": data.Credentials.SecretAccessKey,
+        "sessionToken": data.Credentials.SessionToken
+    };
+    return new Promise(function (resolve) {
+        resolve(signInParameters);
+    })
 }
 
-function signHttpRequest(signInParameters) {
-    var signInUrl = "https://";
-    signInUrl += window.config.apiGatewayUrl
-    signInUrl += window.config.apiGatewayPath;
+function signHttpRequest(method,path) {
     // Setting AWS Signed header
     var request = new AWS.HttpRequest(window.config.apiGatewayUrl, window.config.region);
-    request.method = 'POST';
+    request.method = method;
     request.path = window.config.apiGatewayPath;
-    request.body = JSON.stringify(signInParameters);
+    request.path += path
     // Needed for proper signature generation
     request.headers['Host'] = request.endpoint.host;
     // Signing
