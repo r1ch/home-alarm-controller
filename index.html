@@ -8,24 +8,17 @@
     <meta name="google-signin-client_id"
         content="997641939483-l1c092jvameppl6vrj22efr2okreos21.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.488.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/awsconfig.js"></script>
     <script src="js/authentication.js"></script>
-    <title>Bradii monitor</title>
+    <title>Home monitor</title>
 </head>
 
 <body>
     <div id="app">
         <google-login></google-login>
-    </div>
-    <div id="container">
-        <div class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
-    </div>
-    <div id="videos">
-        <video id="localVideo" autoplay muted playsinline></video>
-        <video id="remoteVideo" autoplay playsinline></video>
     </div>
     <script src="js/main.js"></script>
     <script>
