@@ -1,9 +1,8 @@
 var profile;
 
 function defer() {
-	var res, rej
-	
-	var promise = new Promise((resolve, reject) => {
+	let res, rej
+	let promise = new Promise((resolve, reject) => {
 		res = resolve;
 		rej = reject;
 	});
@@ -52,6 +51,25 @@ function AWSSTSSignIn(idToken) {
                 resolve(data);
             }
         });
+    });
+}
+
+function signHttpRequest(signInParameters) {
+    var signInUrl = "https://";
+    signInUrl += window.config.apiGatewayUrl
+    signInUrl += window.config.apiGatewayPath;
+    // Setting AWS Signed header
+    var request = new AWS.HttpRequest(window.config.apiGatewayUrl, window.config.region);
+    request.method = 'POST';
+    request.path = window.config.apiGatewayPath;
+    request.body = JSON.stringify(signInParameters);
+    // Needed for proper signature generation
+    request.headers['Host'] = request.endpoint.host;
+    // Signing
+    var signer = new AWS.Signers.V4(request, 'execute-api');
+    signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
+    return new Promise(function (resolve) {
+        resolve(signer.request);
     });
 }
 
