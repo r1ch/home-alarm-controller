@@ -12,7 +12,7 @@ Vue.component('time-line', {
         <div id = "lineCont">
             <div id = "line">
                 <div v-for="movement in processedMovements" class="circle" :id="'circle'+movement.index" :style="'left:'+movement.offset+'%;'">
-                    <div class="popupSpan">{{movement.date}}<p class="desc">{{movement.location}}</p></div>
+                    <i :class="'fas fa-'+movement.icon"></i>
                 </div>
             </div>    
     </div>`,
@@ -27,7 +27,8 @@ Vue.component('time-line', {
                     location : movement.detail,
                     date : new Date(movement.timestamp),
                     offset : offset(movement.timestamp),
-                    index: index
+                    index: index,
+                    icon : movement.location == "Entry" ? "door-open" : "couch"
                 }))
             } else {
                 console.log("Evaluated too early")
