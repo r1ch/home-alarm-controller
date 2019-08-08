@@ -6,7 +6,7 @@ function defer() {
 		res = resolve;
 		rej = reject;
 	});
-	promise.resolve = ()=>{console.log("Credentials Ready");res());
+	promise.resolve = ()=>{console.log("Credentials Ready");res()};
 	promise.reject = rej;
 	return promise;
 }
