@@ -9,8 +9,9 @@
 Vue.component('time-line', {
     props:['movements','states'],
     template: `
+{{states}}
         <div class="progress">
-            <div v-for="state in states" :class="'progress-bar bg-'+state.color" :style="'width:'+state.offset+'%'"></div>
+            <div v-for="state in states" :class="'progress-bar bg-'+state.class" :style="'width:'+state.offset+'%'"></div>
         </div>
     `,
     computed : {
@@ -43,7 +44,7 @@ Vue.component('time-line', {
                     let output = {
                         date : new Date(state.timestamp),
                         offset : slice,
-                        color : state.detail == "armed" ? "success" : "warning"
+                        class : state.detail == "quiet" ? "success" : "warning"
                     }
                     progress += slice
                     return output
