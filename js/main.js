@@ -7,6 +7,7 @@ Vue.component('google-login', {
 })
 
 Vue.component('time-line', {
+    props:['metrics'],
     template: `<div>
         <div v-for="event in metrics">
             {{event}}
