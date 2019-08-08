@@ -9,7 +9,8 @@ Vue.component('google-login', {
 Vue.component('time-line', {
     props:['movements'],
     template: `
-        <div>
+        <div id = "lineCont">
+            <div id = "line"></div>
             <div v-for="movement in processedMovements" class="circle" :id="'circle'+movement.index" :style="'left:'+movement.offset+'%;'">
             </div>
         </div>`,
