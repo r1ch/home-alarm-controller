@@ -72,7 +72,6 @@ var app = new Vue({
             this.movements = movements
             this.states = states
         })*/
-        {
     this.shadow = {
         "armed": false,
         "strategy": "blind",
