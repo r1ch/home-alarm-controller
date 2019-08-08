@@ -10,7 +10,7 @@ Vue.component('time-line', {
     props:['movements'],
     template: `
         <div>
-            <div v-for="movement in processedMovements" class="circle" id="circle{{movement.index}}" style="left:{{movement.offset}}%;">
+            <div v-for="movement in processedMovements" class="circle" id="circle${movement.index}" style="left:${movement.offset}%;">
             </div>
         </div>`,
     computed : {
