@@ -5,7 +5,10 @@ Vue.component('google-login', {
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    authenticated : false;
+  },
+  mounted : function(){
+    Credentials.then(()=>{authenticated = true})
   }
 })
 
