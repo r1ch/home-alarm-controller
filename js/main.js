@@ -49,7 +49,7 @@ Vue.component('time-line', {
                     }
                     progress += slice
                     return output
-                }))
+                })
             } else {
                 console.log("No states yet")
             }
