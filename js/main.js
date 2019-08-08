@@ -25,11 +25,15 @@ AND:
                 let latest = new Date(m[0])
                 let span = latest-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)/span
-                return m.map((M)=>({
+                let output = m.map((M)=>({
                     location : M.detail,
                     date : new Date(M.timestamp),
                     offset : offset(M.timestamp)          
                 }))
+                console.log("Out",output)
+                return output
+            } else {
+                console.log("Nothing")
             }
         }
     }
