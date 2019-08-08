@@ -8,11 +8,11 @@ Vue.component('google-login', {
 
 Vue.component('time-line', {
     props:['movements'],
-    template: `<div>
-        <div v-for="movement in processedMovements">
-            {{movement}}
-        </div>
-    </div>`,
+    template: `
+        <div>
+            <div v-for="movement in processedMovements" class="circle" id="circle{{movement.index}}" style="left:{{movement.offset}}%;">
+            </div>
+        </div>`,
     computed : {
         processedMovements(){
             if(this.movements){
@@ -20,10 +20,11 @@ Vue.component('time-line', {
                 let latest = new Date(this.movements[0].timestamp)
                 let span = latest-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)/span
-                return this.movements.map((movement)=>({
+                return this.movements.map((movement,index)=>({
                     location : movement.detail,
                     date : new Date(movement.timestamp),
-                    offset : offset(movement.timestamp)          
+                    offset : offset(movement.timestamp),
+                    index: index
                 }))
             } else {
                 console.log("Evaluated too early")
