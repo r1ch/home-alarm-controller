@@ -24,21 +24,22 @@ var app = new Vue({
     el: '#app',
     data : {
         shadow : {},
-        metrics : {}
+        movements : [],
+        strategies : [],
+        states: [],
     },
     mounted : function(){
         signHttpRequest("GET","/alarm/monitor")
         .then(axios)
-        .then(({data:{shadow,metrics}})=>{
+        .then(({data:{shadow,metrics : {stragtegyStates: strategies,alarmStates:states,movement:movements}}})=>{
             this.shadow = shadow
-            this.metrics = metrics
+            [this.strategies, this.states, this.movements] = [strategies,states,movements]
         })
     },
     computed : {
         movements(){
-            console.log(this.metrics)
-            let earliest = new Date(this.metrics.movement[this.metrics.movement.length-1])
-            let latest = new Date(this.metrics.movement[0])
+            let earliest = new Date(this.movements[this.movements.length-1])
+            let latest = new Date(this.movements[0])
             let span = latest-earliest
             let offset  =  (time)=>(new Date(time)-earliest)/span
             return this.metrics.movement.map((movement)=>({
