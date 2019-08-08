@@ -44,17 +44,17 @@ var app = new Vue({
     el: '#app',
     data : {
         shadow : {},
-        movements : [],
+        movements : [ { "detail": "Entry", "timestamp": "2019-08-08T07:15:00.000Z" }, { "detail": "Entry", "timestamp": "2019-08-08T07:14:00.000Z" }, { "detail": "Entry", "timestamp": "2019-08-08T07:13:00.000Z" }, { "detail": "Entry", "timestamp": "2019-08-08T07:12:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-08T07:12:00.000Z" }, { "detail": "Entry", "timestamp": "2019-08-08T07:11:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-08T07:11:00.000Z" }, { "detail": "Entry", "timestamp": "2019-08-08T07:10:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-08T07:10:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-08T07:01:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-08T06:59:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-07T23:21:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-07T23:20:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-07T22:58:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-07T22:53:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-07T22:51:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-07T22:08:00.000Z" }, { "detail": "Lounge", "timestamp": "2019-08-07T22:07:00.000Z" } ],
         strategies : [],
         states: [],
     },
     mounted : function(){
-        signHttpRequest("GET","/alarm/monitor")
+        /*signHttpRequest("GET","/alarm/monitor")
         .then(axios)
         .then(({data:{shadow,metrics : {strategyState:strategies,alarmState:states,movement:movements}}})=>{
             this.shadow = shadow
             this.movements = movements
-        })
+        })*/
     }
 })  
 
