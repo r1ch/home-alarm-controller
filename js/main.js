@@ -1,4 +1,4 @@
-Vue.component('google-login', {
+    Vue.component('google-login', {
     template: '<div v-if = "!authenticated" class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>',
     data : ()=>({authenticated : false}),
     mounted : function(){
@@ -9,10 +9,10 @@ Vue.component('google-login', {
 Vue.component('time-line', {
     props:['movements','states'],
     template: `
-        <div class="progress">
-        <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-        <div v-for="state in state" :class="'progress-bar bg-'{{state.color}}" role="progressbar" :style="'width: '{{state.offset}}%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-        <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class = "row">
+            <div class="progress">
+                <div v-for="state in states" :class="'progress-bar bg-'{{state.color}}" role="progressbar" :style="'width: '{{state.offset}}%"></div>
+            </div>
         </div>
     `,
     computed : {
