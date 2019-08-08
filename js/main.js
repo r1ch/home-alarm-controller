@@ -8,7 +8,9 @@ Vue.component('google-login', {
 
 Vue.component('time-line', {
     template: `<div>
-        <div v-for"event in class = ""
+        <div v-for="event in metrics">
+            {{event}}
+        </div>
     </div>`,
     data : ()=>({authenticated : false}),
     mounted : function(){
