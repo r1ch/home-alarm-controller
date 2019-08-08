@@ -12,6 +12,10 @@ Vue.component('time-line', {
         <div v-for="movement in processedMovements">
             {{movement}}
         </div>
+        AND: 
+{{processedMovements}}
+AND:
+{{movements}}
     </div>`,
     computed : {
         processedMovements(){
