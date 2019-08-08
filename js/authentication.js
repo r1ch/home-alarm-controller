@@ -56,7 +56,7 @@ function handleSTSResponse(data) {
 }
 
 function signHttpRequest(method,path) {
-    return CredentialsReady.then((method,path)=>{
+    return CredentialsReady.then(()=>{
 	    let request = new AWS.HttpRequest(window.config.apiGatewayUrl, window.config.region);
 	    request.method = method;
 	    request.path = window.config.apiGatewayPath;
