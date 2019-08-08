@@ -31,13 +31,16 @@ var app = new Vue({
     mounted : function(){
         signHttpRequest("GET","/alarm/monitor")
         .then(axios)
-        .then(({data:{shadow,metrics : {stragtegyState:strategies,alarmState:states,movement:movements}}})=>{
+        .then(({data:{shadow,metrics : {strategyState:strategies,alarmState:states,movement:movements}}})=>{
             this.shadow = shadow
             [this.strategies, this.states, this.movements] = [strategies,states,movements]
+            console.log(movements)
+            console.log(this.movements)
         })
     },
     computed : {
         processedMovements(){
+            console.log("Processing",this.movements)
             let earliest = new Date(this.movements[this.movements.length-1])
             let latest = new Date(this.movements[0])
             let span = latest-earliest
