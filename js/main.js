@@ -19,7 +19,7 @@ Vue.component('time-line', {
                 let earliest = new Date(this.movements[this.movements.length-1].timestamp)
                 let latest = new Date(this.movements[0].timestamp)
                 let span = latest-earliest
-                let offset  =  (time)=>(new Date(time)-earliest)/span
+                let offset  =  (time)=>(new Date(time)-earliest)*100/span
                 return this.movements.map((movement,index)=>({
                     location : movement.detail,
                     date : new Date(movement.timestamp),
