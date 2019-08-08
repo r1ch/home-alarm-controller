@@ -12,7 +12,7 @@ Vue.component('time-line', {
         <div id = "lineCont">
             <div id = "line">
                 <div v-for="movement in processedMovements" class="circle" :id="'circle'+movement.index" :style="'left:'+movement.offset+'%;'">
-                    <div class="popupSpan"><p class="desc">{{movement}}</p></div>
+                    <div class="popupSpan"><p class="desc">{{movement.location}}</p></div>
                 </div>
             </div>    
     </div>`,
