@@ -1,4 +1,4 @@
-    Vue.component('google-login', {
+Vue.component('google-login', {
     template: '<div v-if = "!authenticated" class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>',
     data : ()=>({authenticated : false}),
     mounted : function(){
@@ -38,7 +38,7 @@ Vue.component('time-line', {
                 let span = latest-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)*100/span
                 let progress = 0;
-                return this.states.map((state)=>{
+                return this.states.reverse().map((state)=>{
                     let slice = offset(state.timestamp)-progress
                     let output = {
                         date : new Date(state.timestamp),
