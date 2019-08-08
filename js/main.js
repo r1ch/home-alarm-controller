@@ -15,16 +15,18 @@ Vue.component('time-line', {
     </div>`,
     computed : {
         processedMovements(){
-            console.log("Processing",this.movements)
-            let earliest = new Date(this.movements[this.movements.length-1])
-            let latest = new Date(this.movements[0])
-            let span = latest-earliest
-            let offset  =  (time)=>(new Date(time)-earliest)/span
-            return this.metrics.movement.map((movement)=>({
-                location : movement.detail,
-                date : new Date(movement.timestamp),
-                offset : offset(movement.timestamp)          
-            }))
+            let m = this.movements
+            if(m){
+                let earliest = new Date(m[m.length-1])
+                let latest = new Date(m[0])
+                let span = latest-earliest
+                let offset  =  (time)=>(new Date(time)-earliest)/span
+                return m.map((M)=>({
+                    location : M.detail,
+                    date : new Date(M.timestamp),
+                    offset : offset(M.timestamp)          
+                }))
+            }
         }
     }
 })
