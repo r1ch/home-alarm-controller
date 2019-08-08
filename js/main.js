@@ -16,7 +16,7 @@ Vue.component('time-line', {
     </div>`,
     computed : {
         processedMovements(){
-            if(this.movements){
+            if(this.movements.length >0){
                 let earliest = new Date(this.movements[this.movements.length-1].timestamp)
                 let latest = new Date()
                 let span = latest-earliest
