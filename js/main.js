@@ -9,7 +9,7 @@ Vue.component('google-login', {
 Vue.component('time-line', {
     props:['processedMovements'],
     template: `<div>
-        <div v-for="movement in movements">
+        <div v-for="movement in processedMovements">
             {{movement}}
         </div>
     </div>`,
