@@ -44,8 +44,6 @@ var app = new Vue({
         .then(({data:{shadow,metrics : {strategyState:strategies,alarmState:states,movement:movements}}})=>{
             this.shadow = shadow
             this.movements = movements
-            console.log(movements)
-            console.log(this.movements)
         })
     }
 })  
