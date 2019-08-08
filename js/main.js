@@ -18,7 +18,7 @@ Vue.component('time-line', {
         processedMovements(){
             if(this.movements){
                 let earliest = new Date(this.movements[this.movements.length-1].timestamp)
-                let latest = new Date(this.movements[0].timestamp)
+                let latest = new Date()
                 let span = latest-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)*100/span
                 return this.movements.map((movement,index)=>({
