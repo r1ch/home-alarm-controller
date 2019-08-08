@@ -7,7 +7,7 @@ Vue.component('google-login', {
 })
 
 Vue.component('time-line', {
-    props:['movements'],
+    props:['processedMovements'],
     template: `<div>
         <div v-for="movement in movements">
             {{movement}}
@@ -37,7 +37,7 @@ var app = new Vue({
         })
     },
     computed : {
-        movements(){
+        processedMovements(){
             let earliest = new Date(this.movements[this.movements.length-1])
             let latest = new Date(this.movements[0])
             let span = latest-earliest
