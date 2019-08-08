@@ -67,13 +67,88 @@ var app = new Vue({
         states: [],
     },
     mounted : function(){
-        signHttpRequest("GET","/alarm/monitor")
+        /*signHttpRequest("GET","/alarm/monitor")
         .then(axios)
         .then(({data:{shadow,metrics : {strategyState:strategies,alarmState:states,movement:movements}}})=>{
             this.shadow = shadow
             this.movements = movements
             this.states = states
-        })
+        })*/
+    this.shadow = {
+        "armed": true,
+        "strategy": "standard",
+        "state": "guarding"
+    }
+    this.strategies = [
+            {
+                "detail": "standard",
+                "timestamp": "2019-08-08T07:27:00.000Z"
+            },
+            {
+                "detail": "blind",
+                "timestamp": "2019-08-08T06:59:00.000Z"
+            }
+        ]
+     this.states = [
+            {
+                "detail": "arming",
+                "timestamp": "2019-08-08T07:27:00.000Z"
+            },
+            {
+                "detail": "guarding",
+                "timestamp": "2019-08-08T07:27:00.000Z"
+            },
+            {
+                "detail": "quiet",
+                "timestamp": "2019-08-08T06:59:00.000Z"
+            }
+        ],
+     this.movements = [
+            {
+                "detail": "Entry",
+                "timestamp": "2019-08-08T07:15:00.000Z"
+            },
+            {
+                "detail": "Entry",
+                "timestamp": "2019-08-08T07:14:00.000Z"
+            },
+            {
+                "detail": "Entry",
+                "timestamp": "2019-08-08T07:13:00.000Z"
+            },
+            {
+                "detail": "Entry",
+                "timestamp": "2019-08-08T07:12:00.000Z"
+            },
+            {
+                "detail": "Lounge",
+                "timestamp": "2019-08-08T07:12:00.000Z"
+            },
+            {
+                "detail": "Entry",
+                "timestamp": "2019-08-08T07:11:00.000Z"
+            },
+            {
+                "detail": "Lounge",
+                "timestamp": "2019-08-08T07:11:00.000Z"
+            },
+            {
+                "detail": "Entry",
+                "timestamp": "2019-08-08T07:10:00.000Z"
+            },
+            {
+                "detail": "Lounge",
+                "timestamp": "2019-08-08T07:10:00.000Z"
+            },
+            {
+                "detail": "Lounge",
+                "timestamp": "2019-08-08T07:01:00.000Z"
+            },
+            {
+                "detail": "Lounge",
+                "timestamp": "2019-08-08T06:59:00.000Z"
+            }
+        ]
     }
 })  
 
