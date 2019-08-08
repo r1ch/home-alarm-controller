@@ -3,7 +3,7 @@ Vue.component('google-login', {
     data : {
         authenticated : false;
     },
-    mounted : ()=>{
+    mounted : function(){
         Credentials.then(()=>{authenticated = true})
     }
 })
