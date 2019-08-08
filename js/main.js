@@ -16,8 +16,8 @@ var app = new Vue({
         signHttpRequest("GET","/alarm/monitor")
         .then(axios)
         .then(({data:{shadow,metrics}})=>{
-            this.shadow = data.shadow
-            this.metrics = data.metrics
+            this.shadow = shadow
+            this.metrics = metrics
         })
     }
 })  
