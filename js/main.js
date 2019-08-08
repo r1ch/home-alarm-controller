@@ -11,7 +11,7 @@ Vue.component('time-line', {
     template: `
         <div class = "row">
             <div class="progress">
-                <div v-for="state in states" :class="progress-bar" :style="width:5%"></div>
+                <div v-for="state in states" :class="'progress-bar'" :style="'width:5%'"></div>
             </div>
         </div>
     `,
