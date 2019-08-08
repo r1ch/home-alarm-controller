@@ -33,6 +33,19 @@ var app = new Vue({
             this.shadow = shadow
             this.metrics = metrics
         })
+    },
+    computed : {
+        movements(){
+            let earliest = new Date(this.metrics.movement[this.metrics.movement.length-1])
+            let latest = new Date(this.metrics.movement[0])
+            let span = latest-earliest
+            let offset  =  (time)=>(new Date(time)-earliest)/span
+            return this.metrics.movement.map((movement)=>({
+                location : movement.detail,
+                date : new Date(movement.timestamp),
+                offset : offset(movement.timestamp)          
+            }))
+        }
     }
 })  
 
