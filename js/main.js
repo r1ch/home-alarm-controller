@@ -33,7 +33,7 @@ var app = new Vue({
         .then(axios)
         .then(({data:{shadow,metrics : {strategyState:strategies,alarmState:states,movement:movements}}})=>{
             this.shadow = shadow
-            [this.strategies, this.states, this.movements] = [strategies,states,movements]
+            this.movements = movements
             console.log(movements)
             console.log(this.movements)
         })
