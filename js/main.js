@@ -7,15 +7,25 @@ Vue.component('google-login', {
 })
 
 Vue.component('time-line', {
-    props:['processedMovements'],
+    props:['movements'],
     template: `<div>
         <div v-for="movement in processedMovements">
             {{movement}}
         </div>
     </div>`,
-    data : ()=>({authenticated : false}),
-    mounted : function(){
-        Credentials.then(()=>{this.authenticated = true})
+    computed : {
+        processedMovements(){
+            console.log("Processing",this.movements)
+            let earliest = new Date(this.movements[this.movements.length-1])
+            let latest = new Date(this.movements[0])
+            let span = latest-earliest
+            let offset  =  (time)=>(new Date(time)-earliest)/span
+            return this.metrics.movement.map((movement)=>({
+                location : movement.detail,
+                date : new Date(movement.timestamp),
+                offset : offset(movement.timestamp)          
+            }))
+        }
     }
 })
 
@@ -37,20 +47,6 @@ var app = new Vue({
             console.log(movements)
             console.log(this.movements)
         })
-    },
-    computed : {
-        processedMovements(){
-            console.log("Processing",this.movements)
-            let earliest = new Date(this.movements[this.movements.length-1])
-            let latest = new Date(this.movements[0])
-            let span = latest-earliest
-            let offset  =  (time)=>(new Date(time)-earliest)/span
-            return this.metrics.movement.map((movement)=>({
-                location : movement.detail,
-                date : new Date(movement.timestamp),
-                offset : offset(movement.timestamp)          
-            }))
-        }
     }
 })  
 
