@@ -28,7 +28,7 @@ Vue.component('time-line', {
                     date : new Date(movement.timestamp),
                     offset : offset(movement.timestamp),
                     index: index,
-                    icon : movement.location == "Entry" ? "door-open" : "couch"
+                    icon : movement.detail == "Entry" ? "door-open" : "couch"
                 }))
             } else {
                 console.log("Evaluated too early")
