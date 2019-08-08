@@ -32,6 +32,7 @@ Vue.component('time-line', {
             }
         },
         processedStates(){
+            let colourMap = {quiet:"success",guarding:"warning",sounding:"danger"}
             if(this.states.length >0){
                 let earliest = new Date(this.states[this.states.length-1].timestamp)
                 let latest = new Date()
@@ -43,7 +44,7 @@ Vue.component('time-line', {
                     let output = {
                         date : new Date(state.timestamp),
                         offset : slice,
-                        class : state.detail == "quiet" ? "success" : "warning"
+                        class : colourMap[state.detail]  ? colourMap[state.detail] : "info"
                     }
                     progress += slice
                     return output
