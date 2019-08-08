@@ -12,10 +12,6 @@ Vue.component('time-line', {
         <div v-for="movement in processedMovements">
             {{movement}}
         </div>
-        AND: 
-{{processedMovements}}
-AND:
-{{movements}}
     </div>`,
     computed : {
         processedMovements(){
@@ -25,6 +21,7 @@ AND:
                 let latest = new Date(m[0])
                 let span = latest-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)/span
+                console.log(earliest,latest,span)
                 let output = m.map((M)=>({
                     location : M.detail,
                     date : new Date(M.timestamp),
