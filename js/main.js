@@ -6,6 +6,17 @@ Vue.component('google-login', {
     }
 })
 
+Vue.component('time-line', {
+    template: `<div>
+        <div v-for"event in class = ""
+    </div>`,
+    data : ()=>({authenticated : false}),
+    mounted : function(){
+        Credentials.then(()=>{this.authenticated = true})
+    }
+})
+
+
 var app = new Vue({
     el: '#app',
     data : {
