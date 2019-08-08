@@ -28,18 +28,10 @@ body {
   position: relative;
 }
 
-#span {
-  display: none;
-  width: 70%;
-  margin: auto;
-  margin-top: 25%;
-  text-align: center;
-  color: white;
-}
 
 .circle {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   background: #e97162;
   border-radius: 15px;
   position: absolute;
@@ -56,33 +48,6 @@ body {
     top: 2px;
     left: 2px;
     display: none;
-  }
-  .popupSpan {
-    width: auto;
-    height: auto;
-    padding: 10px;
-    white-space: nowrap;
-    display: inline-block;
-    color: white;
-    position: absolute;
-    top: 20px;
-    left: -75px;
-    display: none;
-    transition: all 0.1s ease-out;
-  }
-  // &:nth-child(odd) .popupSpan {
-  //   top: 20px;
-  // }
-  &.hover:before,
-  &.active:before {
-    display: block;
-  }
-  &.hover .popupSpan,
-  &.active .popupSpan {
-    display: block;
-  }
-  &.active .popupSpan {
-    top: -40px;
   }
 }
 
@@ -111,9 +76,4 @@ body {
       left: -100%;
     }
   }
-}
-
-.desc {
-  font-size: 10px;
-  text-align: center;
 }
