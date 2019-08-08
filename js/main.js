@@ -10,10 +10,10 @@ Vue.component('time-line', {
     props:['movements'],
     template: `
         <div id = "lineCont">
-            <div id = "line"></div>
-            <div v-for="movement in processedMovements" class="circle" :id="'circle'+movement.index" :style="'left:'+movement.offset+'%;'">
-            </div>
-        </div>`,
+            <div id = "line">
+                <div v-for="movement in processedMovements" class="circle" :id="'circle'+movement.index" :style="'left:'+movement.offset+'%;'"></div>
+            </div>    
+    </div>`,
     computed : {
         processedMovements(){
             if(this.movements){
