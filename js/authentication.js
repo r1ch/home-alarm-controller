@@ -74,6 +74,7 @@ function signHttpRequest(method,path) {
 		baseURL : r.endpoint.href,
 		headers : r.headers
 	    }
+    });
 }
 
 function handleError(error) {
