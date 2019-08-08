@@ -11,8 +11,9 @@ Vue.component('time-line', {
     template: `
         <div id = "lineCont">
             <div id = "line">
-                <div v-for="movement in processedMovements" class="circle" :id="'circle'+movement.index" :style="'left:'+movement.offset+'%;'"></div>
-                <div class="popupSpan"><p class="desc">{{movement}}</p></div>
+                <div v-for="movement in processedMovements" class="circle" :id="'circle'+movement.index" :style="'left:'+movement.offset+'%;'">
+                    <div class="popupSpan"><p class="desc">{{movement}}</p></div>
+                </div>
             </div>    
     </div>`,
     computed : {
