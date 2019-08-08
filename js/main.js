@@ -36,6 +36,7 @@ var app = new Vue({
     },
     computed : {
         movements(){
+            console.log(this.metrics)
             let earliest = new Date(this.metrics.movement[this.metrics.movement.length-1])
             let latest = new Date(this.metrics.movement[0])
             let span = latest-earliest
