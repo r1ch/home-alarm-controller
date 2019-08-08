@@ -15,22 +15,18 @@ Vue.component('time-line', {
     </div>`,
     computed : {
         processedMovements(){
-            let m = this.movements
-            if(m){
-                let earliest = new Date(m[m.length-1])
-                let latest = new Date(m[0])
+            if(this.movements){
+                let earliest = new Date(this.movements[this.movements.length-1].timestamp)
+                let latest = new Date(this.movements[0].timestamp)
                 let span = latest-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)/span
-                console.log(earliest,latest,span)
-                let output = m.map((M)=>({
-                    location : M.detail,
-                    date : new Date(M.timestamp),
-                    offset : offset(M.timestamp)          
+                return this.movements.map((movement)=>({
+                    location : movement.detail,
+                    date : new Date(movement.timestamp),
+                    offset : offset(movement.timestamp)          
                 }))
-                console.log("Out",output)
-                return output
             } else {
-                console.log("Nothing")
+                console.log("Evaluated too early")
             }
         }
     }
