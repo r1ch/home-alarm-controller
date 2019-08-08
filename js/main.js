@@ -15,7 +15,10 @@ var app = new Vue({
     mounted : function(){
         signHttpRequest("GET","/alarm/monitor")
         .then(axios)
-        .then(console.log)
+        .then(({data:{shadow,metrics}})=>{
+            this.shadow = data.shadow
+            this.metrics = data.metrics
+        })
     }
 })  
 
