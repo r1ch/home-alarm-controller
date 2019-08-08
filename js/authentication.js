@@ -2,21 +2,19 @@ var profile;
 
 function DeferredCredentials() {
 	let res, rej
-	let notReady = true;
 	let promise = new Promise((resolve, reject) => {
 		res = resolve;
 		rej = reject;
 	});
 	promise.resolve = ()=>{
 		console.log("Credentials Ready")
-		notReady = false;
 		res();
 	};
 	promise.reject = rej;
 	return promise;
 }
 
-var CredentialsStatus = DeferredCredentials()
+var Credentials = DeferredCredentials()
 
 function authenticate(googleUser) {
     getIdToken(googleUser)
@@ -57,11 +55,11 @@ function handleSTSResponse(data) {
         data.Credentials.SecretAccessKey,
         data.Credentials.SessionToken);
     AWS.config.region = window.config.region;
-    return  CredentialsStatus.resolve()
+    return  Credentials.resolve()
 }
 
 function signHttpRequest(method,path) {
-    return CredentialsStatus.then(()=>{
+    return Credentials.then(()=>{
 	    let request = new AWS.HttpRequest(window.config.apiGatewayUrl, window.config.region);
 	    request.method = method;
 	    request.path = window.config.apiGatewayPath;
