@@ -10,9 +10,8 @@ Vue.component('time-line', {
     props:['movements','states'],
     template: `
         <div class = "row">
-{{states}}
             <div class="progress">
-                <div v-for="state in states" :class="'progress-bar'" :style="'width:5%'"></div>
+                <div v-for="state in states" class="progress-bar bg-success" style="width:  5%"></div>
             </div>
         </div>
     `,
