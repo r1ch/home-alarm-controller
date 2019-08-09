@@ -42,7 +42,7 @@ Vue.component('time-line', {
                 return this.states
                     .filter(state=>Object.keys(colourMap).includes(state.detail))
                     .map((state,index,arr)=>{
-                        let previous = index === 0 ? now : arr[index-1]
+                        let previous = index === 0 ? ""+now : arr[index-1]
                         let output = {
                             date : new Date(state.timestamp),
                             offset : spanBetween(previous.timestamp,state.timestamp),
