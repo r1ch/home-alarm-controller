@@ -39,7 +39,7 @@ Vue.component('time-line', {
                 let span = now-earliest
                 let spanBetween  =  (now,then)=>{
                     console.log(now,then)
-                    return (new Date(now)-new Date(then))*100/span);
+                    return (new Date(now)-new Date(then))*100/span;
                 }
                 let progress = 100;
                 return this.states
