@@ -32,19 +32,22 @@ Vue.component('time-line', {
             }
         },
         processedStates(){
-            let colourMap = {quiet:"success",guarding:"warning",sounding:"danger"}
+            let colourMap = {quiet:"success",guarding:"warning"}
             if(this.states.length >0){
                 let earliest = new Date(this.states[this.states.length-1].timestamp)
                 let latest = new Date()
                 let span = latest-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)*100/span
                 let progress = 0;
-                return this.states.reverse().map((state)=>{
+                return this.states
+                    .reverse()
+                    .filter(state=>Object.keys(colourMap).includes(state.detail))
+                    .map((state)=>{
                     let slice = offset(state.timestamp)-progress
                     let output = {
                         date : new Date(state.timestamp),
                         offset : slice,
-                        class : colourMap[state.detail]  ? colourMap[state.detail] : "info",
+                        class : colourMap[state.detail]
                         detail : state.detail
                     }
                     progress += slice
