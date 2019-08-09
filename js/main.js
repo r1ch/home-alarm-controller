@@ -68,7 +68,7 @@ Vue.component('time-line', {
                             class : stateMap[state.detail].bg,
                             detail : state.detail
                         }
-                        console.log("Sort",new Date(b.timestamp)+stateMap[b.detail].import)
+                        console.log("Sort",new Date(state.timestamp)+stateMap[state.detail].import,stateMap[state.detail].import,state)
                         console.log(output)
                         return output
                     })
