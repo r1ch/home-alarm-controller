@@ -9,11 +9,11 @@ Vue.component('google-login', {
 Vue.component('time-line', {
     props:['movements','states'],
     template: `relative
-        <div class = "timeLineContainer">
+        <div id = "timelineContainer">
             <div class="progress">
                 <div v-for="state in processedStates" :class="'progress-bar bg-'+state.class" :style="'width:'+state.offset+'%'">{{state.detail}}</div>
             </div>
-            <div class = "timeLineEvent" v-for = "movement in processedMovements" :style = "'position:absolute;top:8;left:'+movement.offset+'%'">
+            <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'position:absolute;top:8;left:'+movement.offset+'%'">
                 <i class="'fab fa-'+movement.icon+'"></i>
             </div>
         </div>
