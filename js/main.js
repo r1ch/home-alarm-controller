@@ -37,16 +37,11 @@ Vue.component('time-line', {
                 let earliest = new Date(this.states[this.states.length-1].timestamp)
                 let now = new Date()
                 let span = now-earliest
-                let spanBetween  =  (now,then)=>{
-                    console.log(now,then)
-                    return (new Date(now)-new Date(then))*100/span;
-                }
-                let progress = 100;
+                let spanBetween  =  (now,then)=>(new Date(now)-new Date(then))*100/span;
                 return this.states
                     .filter(state=>Object.keys(colourMap).includes(state.detail))
                     .map((state,index,arr)=>{
-                        let previous = index === 0 ? ""+now : arr[index-1]
-                        console.log(previous,index)
+                        let previous = index === 0 ? {timestamp:now} : arr[index-1]
                         let output = {
                             date : new Date(state.timestamp),
                             offset : spanBetween(previous.timestamp,state.timestamp),
