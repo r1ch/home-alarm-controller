@@ -59,7 +59,15 @@ Vue.component('time-line', {
                 let spanBetween  =  (now,then)=>(new Date(now)-new Date(then))*100/span;
                 return this.states
                     .filter(state=>Object.keys(stateMap).includes(state.detail))
-                    .sort((a,b)=>stateMap[a.detail].import+new Date(a.timestamp)-stateMap[b.detail].import-new Date(b.timestamp))
+                    .sort((a,b)=>{
+                       let timeDiff =  new Date(a.timestamp) - new Date(b.timestamp);
+                       console.log(timeDiff)
+                       if(timeDiff !== 0) return timeDiff
+                       console.log(a.detail,b.detail)
+                       let importDiff = stateMap[a.detail].import - stateMap[b.detail].import
+                       console.log(importDiff)
+                       return importDiff
+                    })
                     .map((state,index,arr)=>{
                         let previous = index === 0 ? {timestamp:now} : arr[index-1]
                         let output = {
