@@ -47,7 +47,7 @@ Vue.component('time-line', {
                     let output = {
                         date : new Date(state.timestamp),
                         offset : slice,
-                        class : colourMap[state.detail]
+                        class : colourMap[state.detail],
                         detail : state.detail
                     }
                     progress += slice
