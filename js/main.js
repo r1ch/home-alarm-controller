@@ -37,7 +37,7 @@ Vue.component('time-line', {
                 let earliest = new Date(this.states[this.states.length-1].timestamp)
                 let now = new Date()
                 let span = now-earliest
-                let spanBetween  =  (now,then)=>(now-then)*100/span
+                let spanBetween  =  (now,then)=>(new Date(now)-new Date(then))*100/span
                 let progress = 100;
                 return this.states
                     .filter(state=>Object.keys(colourMap).includes(state.detail))
