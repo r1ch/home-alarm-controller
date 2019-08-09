@@ -58,7 +58,7 @@ Vue.component('time-line', {
                 let span = now-earliest
                 let spanBetween  =  (now,then)=>(new Date(now)-new Date(then))*100/span;
                 return this.states
-                    .filter(state=>Object.keys(colourMap).includes(state.detail))
+                    .filter(state=>Object.keys(stateMap).includes(state.detail))
                     .sort((a,b)=>new Date(a.timestamp)+stateMap[a.detail].import-new Date(b.timestamp)-stateMap[b.detail].import)
                     .map((state,index,arr)=>{
                         let previous = index === 0 ? {timestamp:now} : arr[index-1]
