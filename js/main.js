@@ -65,7 +65,7 @@ Vue.component('time-line', {
                        if(timeDiff !== 0) return timeDiff
                        console.log(`${a.detail} ${b.detail}`)
                        let importDiff = stateMap[a.detail].import - stateMap[b.detail].import
-                       console.log(`${importDiff}`)
+                       console.log(`${importDiff},${a},${b}`)
                        return importDiff
                     })
                     .map((state,index,arr)=>{
@@ -76,7 +76,6 @@ Vue.component('time-line', {
                             class : stateMap[state.detail].bg,
                             detail : state.detail
                         }
-                        console.log("Sort",stateMap[state.detail].import+new Date(state.timestamp),stateMap[state.detail].import,state)
                         console.log(output)
                         return output
                     })
