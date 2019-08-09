@@ -49,6 +49,7 @@ Vue.component('time-line', {
                         class : colourMap[state.detail],
                         detail : state.detail
                     }
+                    console.log(output)
                     return output
                 })
             } else {
