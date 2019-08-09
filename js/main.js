@@ -61,11 +61,11 @@ Vue.component('time-line', {
                     .filter(state=>Object.keys(stateMap).includes(state.detail))
                     .sort((a,b)=>{
                        let timeDiff =  new Date(a.timestamp) - new Date(b.timestamp);
-                       console.log(timeDiff)
+                       console.log(`${timeDiff}`)
                        if(timeDiff !== 0) return timeDiff
-                       console.log(a.detail,b.detail)
+                       console.log(`${a.detail} ${b.detail}`)
                        let importDiff = stateMap[a.detail].import - stateMap[b.detail].import
-                       console.log(importDiff)
+                       console.log(`${importDiff}`)
                        return importDiff
                     })
                     .map((state,index,arr)=>{
