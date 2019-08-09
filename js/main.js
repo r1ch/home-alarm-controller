@@ -8,7 +8,7 @@ Vue.component('google-login', {
 
 Vue.component('time-line', {
     props:['movements','states'],
-    template: `relative
+    template: `
         <div id = "timelineContainer">
             <div class="progress">
                 <div v-for="state in processedStates" :class="'progress-bar bg-'+state.class" :style="'width:'+state.offset+'%'">{{state.detail}}</div>
