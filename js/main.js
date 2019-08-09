@@ -146,7 +146,7 @@ var app = new Vue({
                 "timestamp": "2019-08-08T06:59:00.000Z"
             }
         ]
-        this.movement = [
+        this.movements = [
             {
                 "detail": "Entry",
                 "timestamp": "2019-08-08T19:56:00.000Z"
