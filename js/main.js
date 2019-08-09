@@ -37,7 +37,21 @@ Vue.component('time-line', {
             }
         },
         processedStates(){
-            let colourMap = {quiet:"success",guarding:"warning"}
+            let stateMap = {
+                quiet:{
+                    bg : "success",
+                    import : 0
+                },
+                guarding:{
+                    bg: "warning",
+                    import : 1
+                },
+                sounding: {
+                    bg : "danger",
+                    import : 2
+                }
+            }
+            //the rest are transient
             if(this.states.length >0){
                 let earliest = new Date(this.states[this.states.length-1].timestamp)
                 let now = new Date()
@@ -45,12 +59,13 @@ Vue.component('time-line', {
                 let spanBetween  =  (now,then)=>(new Date(now)-new Date(then))*100/span;
                 return this.states
                     .filter(state=>Object.keys(colourMap).includes(state.detail))
+                    .sort((a,b)=>new Date(a.timestamp)+stateMap[a.detail].import-new Date(b.timestamp)-stateMap[b.detail].import
                     .map((state,index,arr)=>{
                         let previous = index === 0 ? {timestamp:now} : arr[index-1]
                         let output = {
                             date : new Date(state.timestamp),
                             offset : spanBetween(previous.timestamp,state.timestamp),
-                            class : colourMap[state.detail],
+                            class : stateMap[state.detail].bg,
                             detail : state.detail
                         }
                         console.log(output)
