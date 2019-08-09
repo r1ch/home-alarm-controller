@@ -59,7 +59,7 @@ Vue.component('time-line', {
                 let spanBetween  =  (now,then)=>(new Date(now)-new Date(then))*100/span;
                 return this.states
                     .filter(state=>Object.keys(stateMap).includes(state.detail))
-                    .sort((a,b)=>{
+                    .sort((b,a)=>{
                        let timeDiff =  new Date(a.timestamp) - new Date(b.timestamp);
                        console.log(`${timeDiff}`)
                        if(timeDiff !== 0) return timeDiff
