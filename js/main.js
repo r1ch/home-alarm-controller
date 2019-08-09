@@ -17,8 +17,8 @@ Vue.component('time-line', {
         processedMovements(){
             if(this.movements.length >0){
                 let earliest = new Date(this.movements[this.movements.length-1].timestamp)
-                let latest = new Date()
-                let span = latest-earliest
+                let now = new Date()
+                let span = now-earliest
                 let offset  =  (time)=>(new Date(time)-earliest)*100/span
                 return this.movements.map((movement,index)=>({
                     location : movement.detail,
@@ -35,18 +35,17 @@ Vue.component('time-line', {
             let colourMap = {quiet:"success",guarding:"warning"}
             if(this.states.length >0){
                 let earliest = new Date(this.states[this.states.length-1].timestamp)
-                let latest = new Date()
+                let now = new Date()
                 let span = latest-earliest
-                let offset  =  (time)=>(new Date(time)-earliest)*100/span
-                let progress = 0;
+                let spanBetween  =  (now,then)=>(now-then)*100/span
+                let progress = 100;
                 return this.states
-                    .reverse()
                     .filter(state=>Object.keys(colourMap).includes(state.detail))
-                    .map((state)=>{
-                    let slice = offset(state.timestamp)-progress
+                    .map((state,index,arr)=>{
+                    let previous = index === 0 ? now : arr[index-1]
                     let output = {
                         date : new Date(state.timestamp),
-                        offset : slice,
+                        offset : spanBetween(previous,state,timestamp),
                         class : colourMap[state.detail],
                         detail : state.detail
                     }
