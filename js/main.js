@@ -13,6 +13,7 @@ Vue.component('time-line', {
             <div class="progress">
                 <div v-for="strategy in processedStrategies" :class="'progress-bar bg-'+strategy.class" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
             </div>
+            {{strategies}}
             <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'position:absolute;top:8;left:'+movement.offset+'%'">
                 <i :class="'fab fa-'+movement.icon"></i>
             </div>
@@ -37,7 +38,6 @@ Vue.component('time-line', {
             }
         },
         processedStrategies(){
-            console.log("run",this.shadow)
             let classMap = {
                 blind : "success",
                 standard : "danger",
@@ -45,13 +45,11 @@ Vue.component('time-line', {
             }
             //the rest are transient
             if(this.strategies.length > 0 && this.shadow){
-               console.log("Have strategies")
                let earliest = new Date(this.strategies[this.strategies.length-1].timestamp)
                let now = new Date();
                let span = now - earliest
                let offset = (a,b)=>(new Date(a) - new Date(b))*100/span
                //now is 100%, earliest is 0%, divide range
-               let output = [];
                //we are currently at whatever the shadow says, then traverse backwards
                let previous = {
                 detail: this.shadow.strategy,
