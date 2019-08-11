@@ -51,7 +51,7 @@ Vue.component('time-line', {
                 bedtime : "warning"
             }
             //the rest are transient
-            if(this.strategies.length > 0 && this.shadow){
+            if(this.strategies && this.strategies.length > 0 && this.shadow){
                let earliest = new Date(this.strategies[this.strategies.length-1].timestamp)
                let now = new Date();
                let span = now - earliest
