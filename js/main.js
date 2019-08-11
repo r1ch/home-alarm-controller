@@ -11,7 +11,7 @@ Vue.component('time-line', {
     template: `
         <div id = "timelineContainer">
             <div class="progress">
-                <div v-for="strategy in processedStrategy" :class="'progress-bar bg-'+strategy.class" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
+                <div v-for="strategy in processedStrategies" :class="'progress-bar bg-'+strategy.class" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
             </div>
             <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'position:absolute;top:8;left:'+movement.offset+'%'">
                 <i :class="'fab fa-'+movement.icon"></i>
