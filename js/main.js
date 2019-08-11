@@ -44,6 +44,7 @@ Vue.component('time-line', {
             }
         },
         processedStates(){
+            console.log(this)
             //colours
             let classMap = {
                 blind : "success",
