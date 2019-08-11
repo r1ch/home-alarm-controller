@@ -52,7 +52,7 @@ Vue.component('time-line', {
                 timestamp : now
                }
                return this.strategies.map((strategy)=>{
-                   console.log(strategy,previous)
+                   console.log(strategy.detail,previous.detail)
                    let portion = {
                         offset : offset(previous.timestamp,strategy.timestamp),
                         type : typeMap[strategy.detail],
