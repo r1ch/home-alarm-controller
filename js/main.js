@@ -7,7 +7,7 @@ Vue.component('google-login', {
 })
 
 Vue.component('time-line', {
-    props:['movements','states'],
+    props:['movements','strategies','shadow'],
     template: `
         <div id = "timelineContainer">
             <div>
