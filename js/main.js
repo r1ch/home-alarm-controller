@@ -44,7 +44,7 @@ Vue.component('time-line', {
                 bedtime : "warning"
             }
             //the rest are transient
-            if(this.strategies && this.strategies.length > 0 && this.shadow){
+            if(this.strategies.length > 0 && this.shadow){
                console.log("Have strategies")
                let earliest = new Date(this.strategies[this.strategies.length-1].timestamp)
                let now = new Date();
@@ -57,16 +57,14 @@ Vue.component('time-line', {
                 detail: this.shadow.strategy,
                 timestamp : now
                }
-               for(i=0;i<this.strategies.length;i++){
-                output.push({
-                    offset : offset(previous.timestamp,this.strategies[i].timestamp),
-                    class : classMap[previous.detail],
-                    detail : previous.detail
-                })
-                previous = this.strategies[i]
-               }
-               console.log("Now",output)
-               return output.reverse()
+               return this.strategies.map((strategy)=>{
+                   return {
+                        offset : offset(previous.timestamp,this.strategies[i].timestamp),
+                        class : classMap[previous.detail],
+                        detail : previous.detail
+                   }
+                   previous = strategy
+                }).reverse()
             } else {
                 console.log("No strategies/shadow yet")
                 console.log(this.strategies)
