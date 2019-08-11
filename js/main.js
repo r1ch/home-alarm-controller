@@ -52,12 +52,13 @@ Vue.component('time-line', {
                 timestamp : now
                }
                return this.strategies.map((strategy)=>{
-                   return {
+                   let portion = {
                         offset : offset(previous.timestamp,strategy.timestamp),
                         type : typeMap[previous.detail],
                         detail : previous.detail
                    }
                    previous = strategy
+                   return portion
                 }).reverse()
             } else {
                 console.log("No strategies/shadow yet")
