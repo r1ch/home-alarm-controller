@@ -20,6 +20,7 @@ Vue.component('time-line', {
     computed : {
         processedMovements(){
             if(this.movements.length >0){
+                console.log("Have movements")
                 let earliest = new Date(this.movements[this.movements.length-1].timestamp)
                 let now = new Date()
                 let span = now-earliest
@@ -65,7 +66,7 @@ Vue.component('time-line', {
                 })
                 previous = this.strategies[i]
                }
-               console.log(states)
+               console.log("Now",states)
                return states.reverse()
             } else {
                 console.log("No strategies/shadow yet")
