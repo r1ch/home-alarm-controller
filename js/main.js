@@ -37,6 +37,7 @@ Vue.component('time-line', {
             }
         },
         processedStrategies(){
+            console.log("run",this.shadow)
             let classMap = {
                 blind : "success",
                 standard : "danger",
@@ -50,26 +51,25 @@ Vue.component('time-line', {
                let span = now - earliest
                let offset = (a,b)=>(new Date(a) - new Date(b))*100/span
                //now is 100%, earliest is 0%, divide range
-               let states = [];
+               let output = [];
                //we are currently at whatever the shadow says, then traverse backwards
                let previous = {
                 detail: this.shadow.strategy,
                 timestamp : now
                }
                for(i=0;i<this.strategies.length;i++){
-                states.push({
+                output.push({
                     offset : offset(previous.timestamp,this.strategies[i].timestamp),
                     class : classMap[previous.detail],
                     detail : previous.detail
                 })
                 previous = this.strategies[i]
                }
-               console.log("Now",states)
-               return states.reverse()
+               console.log("Now",output)
+               return output.reverse()
             } else {
                 console.log("No strategies/shadow yet")
                 console.log(this.strategies)
-                console.log(this.strategies.length)
                 console.log(this.shadow)
             }
         }
