@@ -38,19 +38,18 @@ Vue.component('time-line', {
             }
         },
         processedStrategies(){
+            return []
             let classMap = {
                 blind : "success",
                 standard : "danger",
                 bedtime : "warning"
             }
             //the rest are transient
-            if(this.strategies.length > 0 && this.shadow){
+            if(this.shadow && this.strategies.length > 0){
                let earliest = new Date(this.strategies[this.strategies.length-1].timestamp)
                let now = new Date();
                let span = now - earliest
                let offset = (a,b)=>(new Date(a) - new Date(b))*100/span
-               //now is 100%, earliest is 0%, divide range
-               //we are currently at whatever the shadow says, then traverse backwards
                let previous = {
                 detail: this.shadow.strategy,
                 timestamp : now
