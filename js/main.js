@@ -59,12 +59,13 @@ Vue.component('time-line', {
                for(i=0;i<this.strategies.length;i++){
                 states.push({
                     offset : offset(previous.timestamp,this.strategies[i].timestamp),
-                    class : classMap[previous.detail]
+                    class : classMap[previous.detail],
+                    detail : previous.detail
                 })
                 previous = this.strategies[i]
                }
                console.log(states)
-               return states 
+               return states.reverse()
             } else {
                 console.log("No strategies/shadow yet")
             }
