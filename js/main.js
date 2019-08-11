@@ -11,7 +11,7 @@ Vue.component('time-line', {
     template: `
         <div id = "timelineContainer">
             <div class="progress">
-                <div v-for="state in processedStates" :class="'progress-bar bg-'+state.class" :style="'width:'+state.offset+'%'">{{state.detail}}</div>
+                <div v-for="strategy in processedStrategy" :class="'progress-bar bg-'+strategy.class" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
             </div>
             <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'position:absolute;top:8;left:'+movement.offset+'%'">
                 <i :class="'fab fa-'+movement.icon"></i>
@@ -36,9 +36,7 @@ Vue.component('time-line', {
                 console.log("No movements yet")
             }
         },
-        processedStates(){
-            console.log("S",this.strategies)
-            //colours
+        processedStrategies(){
             let classMap = {
                 blind : "success",
                 standard : "danger",
@@ -46,7 +44,7 @@ Vue.component('time-line', {
             }
             //the rest are transient
             if(this.strategies && this.strategies.length > 0 && this.shadow){
-               console.log("run")
+               console.log("Have strategies")
                let earliest = new Date(this.strategies[this.strategies.length-1].timestamp)
                let now = new Date();
                let span = now - earliest
@@ -70,6 +68,9 @@ Vue.component('time-line', {
                return states.reverse()
             } else {
                 console.log("No strategies/shadow yet")
+                console.log(this.strategies)
+                console.log(this.strategies.length)
+                console.log(this.shadow)
             }
         }
     }
