@@ -10,13 +10,6 @@ Vue.component('time-line', {
     props:['movements','strategies','shadow'],
     template: `
         <div id = "timelineContainer">
-            <div>
-                {{strategies}}<br>
-                {{shadow}}
-            </div>
-            <div>
-                {{processedStates}}
-            </div>
             <div class="progress">
                 <div v-for="state in processedStates" :class="'progress-bar bg-'+state.class" :style="'width:'+state.offset+'%'">{{state.detail}}</div>
             </div>
@@ -68,7 +61,9 @@ Vue.component('time-line', {
                     offset : offset(previous.timestamp,this.strategies[i].timestamp),
                     class : classMap[previous.detail]
                 })
+                previous = this.strategies[i]
                }
+               console.log(states)
                return states 
             } else {
                 console.log("No strategies/shadow yet")
