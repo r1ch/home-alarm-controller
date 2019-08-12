@@ -24,7 +24,7 @@ Vue.component('time-line', {
                 let span = now-this.earliest
                 let offset  =  (time)=>(new Date(time)-this.earliest)*100/span
                 return this.movements
-                .filter(movement=>movement.timestamp>this.earliest)
+                .filter(movement=>new Date(movement.timestamp)>this.earliest)
                 .map((movement,index)=>({
                     location : movement.detail,
                     date : new Date(movement.timestamp),
