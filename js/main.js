@@ -23,7 +23,9 @@ Vue.component('time-line', {
                 let now = new Date()
                 let span = now-this.earliest
                 let offset  =  (time)=>(new Date(time)-this.earliest)*100/span
-                return this.movements.map((movement,index)=>({
+                return this.movements
+                .filter(movement=>movement.timestamp>this.earliest)
+                .map((movement,index)=>({
                     location : movement.detail,
                     date : new Date(movement.timestamp),
                     offset : offset(movement.timestamp),
@@ -78,7 +80,7 @@ var app = new Vue({
     computed : {
         earliest(){
             const reducer = (a,b)=>({timestamp:Math.min(new Date(a.timestamp),new Date(b.timestamp))})
-            let candidates = [...this.strategies, ...this.movements]
+            let candidates = [...this.strategies]
             return candidates.length > 0 ? new Date(candidates.reduce(reducer).timestamp) : new Date()
         }
     },
