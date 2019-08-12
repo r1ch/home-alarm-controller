@@ -38,7 +38,7 @@ Vue.component('time-line', {
                         portion.show = false;
                     }
                     return portion
-                })
+                }).reverse()
             } else {
                 console.log("No movements yet")
             }
