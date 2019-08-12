@@ -20,23 +20,5 @@ body {
 
 
 .timelineEvent {
-  width: 20px;
-  height: 20px;
-  background: #e97162;
-  border-radius: 15px;
   position: absolute;
-  top: -7px;
-  border: 3px solid white;
-  cursor: pointer;
-  &:before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background: white;
-    position: absolute;
-    border-radius: 100%;
-    top: 2px;
-    left: 2px;
-    display: none;
-  }
 }
