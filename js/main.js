@@ -52,8 +52,8 @@ Vue.component('time-line', {
                let offset = (a,b)=>(a - b)*100/this.span.range
                let output = []
                for(i=0;i<this.strategies.length;i++){
-                    let previous = this.strategies.length[i]
-                    let current = this.strategies.length[i+1]
+                    let previous = this.strategies[i]
+                    let current = this.strategies[i+1]
                     let portion = {
                         offset : offset(previous.timestamp,current.timestamp),
                         type : typeMap[current.detail],
