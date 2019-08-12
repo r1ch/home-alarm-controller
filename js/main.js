@@ -19,7 +19,7 @@ Vue.component('time-line', {
         </div>`,
     computed : {
         processedMovements(){
-            if(this.movements.length >0){
+            if(this.movements.length > 0){
                 let offset  =  (time)=>(time-this.span.earliest)*100/this.span.range
                 return this.movements
                 .filter(movement=>movement.timestamp>this.span.earliest)
@@ -48,7 +48,7 @@ Vue.component('time-line', {
                 bedtime : "warning"
             }
             //the rest are transient
-            if(this.shadow && this.strategies.length > 0){
+            if(this.strategies.length > 0){
                let offset = (a,b)=>(a - b)*100/this.span.range
                let output = []
                for(i=0;i<this.strategies.length;i++){
