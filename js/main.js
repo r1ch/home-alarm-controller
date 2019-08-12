@@ -7,7 +7,7 @@ Vue.component('google-login', {
 })
 
 Vue.component('time-line', {
-    props:['strategies','shadow','movements','earliest'],
+    props:['strategies','movements','span'],
     template: `
         <div id = "timelineContainer">
             <div class="progress">
@@ -20,15 +20,13 @@ Vue.component('time-line', {
     computed : {
         processedMovements(){
             if(this.movements.length >0){
-                let now = new Date()
-                let span = now-this.earliest
-                let offset  =  (time)=>(new Date(time)-this.earliest)*100/span
+                let offset  =  (time)=>(time-this.span.earliest)*100/this.span.range
                 return this.movements
-                .filter(movement=>new Date(movement.timestamp)>this.earliest)
+                .filter(movement=>movement.timestamp>this.earliest)
                 .map((movement,index,array)=>{
                     let portion = {
                         location : movement.detail,
-                        date : new Date(movement.timestamp),
+                        date : movement.timestamp,
                         offset : offset(movement.timestamp),
                         index: index,
                         show : true,
@@ -51,9 +49,7 @@ Vue.component('time-line', {
             }
             //the rest are transient
             if(this.shadow && this.strategies.length > 0){
-               let now = new Date();
-               let span = now - this.earliest
-               let offset = (a,b)=>(new Date(a) - new Date(b))*100/span
+               let offset = (a,b)=>(a - b)*100/this.span.range
                let previous = {
                 detail: this.shadow.strategy,
                 timestamp : now
@@ -79,15 +75,39 @@ Vue.component('time-line', {
 var app = new Vue({
     el: '#app',
     data : {
-        shadow : {},
-        strategies : [],
-        movements : [],
+        rawShadow : {},
+        rawStrategies : [],
+        rawMovements : [],
+        span : {
+            now : new Date(),
+            earliest : new Date() - 24*60*60*1000,
+            range : 24*60*60*1000
+        }
     },
     computed : {
-        earliest(){
-            const reducer = (a,b)=>({timestamp:Math.min(new Date(a.timestamp),new Date(b.timestamp))})
-            let candidates = [...this.strategies]
-            return candidates.length > 0 ? new Date(candidates.reduce(reducer).timestamp) : new Date()
+        shadow(){
+           return rawShadow
+        },
+        strategies(){
+            let output = this.rawStrategies.map(strategy=>{
+                strategy.timestamp = new Date(strategy.timestamp)
+                return strategy
+            })
+            let head = {
+                detail : this.shadow.strategy,
+                timestamp : this.span.now
+            }
+            let tail = output.slice(-1)
+            tail.timestamp = this.span.earliest
+            output.unshift(head)
+            output.push(tail)
+            return output
+        },
+        movements(){
+            let output = this.rawMovements.map(movement=>{
+                movement.timestamp = new Date(movement.timestamp)
+                return movement
+            })
         }
     },
     /*mounted : function (){
@@ -99,10 +119,10 @@ var app = new Vue({
     mounted : function(){
         signHttpRequest("GET","/alarm/monitor")
         .then(axios)
-        .then(({data:{shadow,metrics : {strategyState:strategies,alarmState:states,movement:movements}}})=>{
-            this.shadow = shadow
-            this.movements = movements
-            this.strategies = strategies
+        .then(({data:{rawShadow,metrics : {strategyState:rawStrategies,alarmState:rawStates,movement:rawMovements}}})=>{
+            this.rawShadow = rawShadow
+            this.rawMovements = rawMovements
+            this.rawStrategies = rawStrategies
         })
     }
 })  
