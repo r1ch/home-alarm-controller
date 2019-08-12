@@ -52,8 +52,8 @@ Vue.component('time-line', {
             }
             if(this.strategies.length > 0){
                let offset = (a,b)=>{
-                   a =  Math.min(this.span.earliest,a)
-                   b =  Math.min(this.span.earliest,b)
+                   a =  a < this.span.earliest ? this.span.earliest : a
+                   a =  b < this.span.earliest ? this.span.earliest : b
                    (a - b)*100/this.span.range
                }
                let output = []
