@@ -119,10 +119,10 @@ var app = new Vue({
     mounted : function(){
         signHttpRequest("GET","/alarm/monitor")
         .then(axios)
-        .then(({data:{shadow:rawShadow,metrics : {strategyState:rawStrategies,alarmState:rawStates,movement:rawMovements}}})=>{
-            this.rawShadow = rawShadow
-            this.rawMovements = rawMovements
-            this.rawStrategies = rawStrategies
+        .then((data)=>{
+            this.rawShadow = data.shadow
+            this.rawMovements = data.metrics.movement
+            this.rawStrategies = data.metrics.strategyState
         })
     }
 })  
