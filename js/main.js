@@ -54,6 +54,8 @@ Vue.component('time-line', {
                for(i=0;i<this.strategies.length-1;i++){
                     let previous = this.strategies[i]
                     let current = this.strategies[i+1]
+                    console.log(`Pre: ${previous.timestamp}:${previous.detail}`)
+                   console.log(`Cur: ${current.timestamp}:${current.detail}`)
                     let portion = {
                         offset : offset(previous.timestamp,current.timestamp),
                         type : typeMap[current.detail],
@@ -92,10 +94,8 @@ var app = new Vue({
                 strategy.timestamp = new Date(strategy.timestamp)
                 return strategy
             })
-            let head = {
-                detail : this.shadow.strategy,
-                timestamp : this.span.now
-            }
+            let head = output[0]
+            head.timestamp = this.span.now
             let tail = output.slice(-1)
             tail.timestamp = this.span.earliest
             output.unshift(head)
