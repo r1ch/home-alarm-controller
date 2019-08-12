@@ -10,7 +10,7 @@ Vue.component('time-line', {
     props:['strategies','movements','span'],
     template: `
         <div id = "timelineContainer">
-            <div class="progress">
+            <div class="progress timeline">
                 <div v-for="strategy in processedStrategies" :class="'progress-bar bg-'+strategy.type" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
             </div>
             <div class = "timelineEvent" v-for = "movement in processedMovements" v-if = "movement.show" :style = "'left:'+movement.offset+'%'">
