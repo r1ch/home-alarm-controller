@@ -13,8 +13,8 @@ Vue.component('time-line', {
             <div class="progress">
                 <div v-for="strategy in processedStrategies" :class="'progress-bar bg-'+strategy.type" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
             </div>
-            <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'position:absolute;top:8;left:'+movement.offset+'%'">
-                <i :class="'fas fa-'+movement.icon"></i>
+            <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'left:'+movement.offset+'%'">
+                <i :v-if = "movement.show" :class="'fas fa-'+movement.icon"></i>
             </div>
         </div>`,
     computed : {
@@ -25,13 +25,20 @@ Vue.component('time-line', {
                 let offset  =  (time)=>(new Date(time)-this.earliest)*100/span
                 return this.movements
                 .filter(movement=>new Date(movement.timestamp)>this.earliest)
-                .map((movement,index)=>({
-                    location : movement.detail,
-                    date : new Date(movement.timestamp),
-                    offset : offset(movement.timestamp),
-                    index: index,
-                    icon : movement.detail == "Entry" ? "door-open" : "couch"
-                }))
+                .map((movement,index,array)=>{
+                    let portion = {
+                        location : movement.detail,
+                        date : new Date(movement.timestamp),
+                        offset : offset(movement.timestamp),
+                        index: index,
+                        show : true,
+                        icon : movement.detail == "Entry" ? "door-open" : "couch"
+                    }
+                    if(index > 0 && index < array.length-1 && movement[index-1].detail == movement[index+1].detail && new Date(movement[index-1].timestamp) - new Date(movement[index+1].timestamp) < 5){
+                        portion.show = false;
+                    }
+                    return portion
+                })
             } else {
                 console.log("No movements yet")
             }
