@@ -33,10 +33,10 @@ body {
 }
 
 .track-one {
-    top:24px;
-    background: rgba(123,123,0.5);
+    top:-24px;
+    background: rgba(52, 159, 195,0.5);
 }
 .track-two {
-    top:0px;
-    background: rgba(123,123,0.5);
+    top:-48px;
+    background: rgba(228, 228, 54,0.5);
 }
