@@ -45,7 +45,8 @@ Vue.component('time-line', {
             let typeMap = {
                 blind : "success",
                 standard : "danger",
-                bedtime : "warning"
+                bedtime : "warning",
+                unknown : "info"
             }
             //the rest are transient
             if(this.strategies.length > 0){
@@ -95,7 +96,7 @@ var app = new Vue({
                 return strategy
             })
             output.unshift({timestamp: this.span.now})
-            output.push({timestamp:this.span.earliest})
+            output.push({timestamp:this.span.earliest,detail:"unknown"})
             return output
         },
         movements(){
