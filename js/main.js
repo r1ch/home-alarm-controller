@@ -79,7 +79,7 @@ var app = new Vue({
         earliest(){
             const reducer = (a,b)=>({timestamp:Math.min(new Date(a.timestamp),new Date(b.timestamp))})
             let candidates = [...this.strategies, ...this.movements]
-            return candidates.reduce(reducer)
+            return !candidates ? new Date() : candidates.reduce(reducer)
         }
     },
     mounted : function (){
