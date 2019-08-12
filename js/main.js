@@ -51,7 +51,7 @@ Vue.component('time-line', {
             if(this.strategies.length > 0){
                let offset = (a,b)=>(a - b)*100/this.span.range
                let output = []
-               for(i=0;i<this.strategies.length;i++){
+               for(i=0;i<this.strategies.length-1;i++){
                     let previous = this.strategies[i]
                     let current = this.strategies[i+1]
                     let portion = {
