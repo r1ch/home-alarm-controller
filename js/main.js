@@ -34,7 +34,7 @@ Vue.component('time-line', {
                         show : true,
                         icon : movement.detail == "Entry" ? "door-open" : "couch"
                     }
-                    if(index > 0 && index < array.length-1 && movement[index-1].detail == movement[index+1].detail && new Date(movement[index-1].timestamp) - new Date(movement[index+1].timestamp) < 5){
+                    if(index > 0 && index < array.length-1 && array[index-1].detail == array[index+1].detail && new Date(array[index-1].timestamp) - new Date(array[index+1].timestamp) < 5){
                         portion.show = false;
                     }
                     return portion
