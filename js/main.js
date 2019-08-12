@@ -14,7 +14,7 @@ Vue.component('time-line', {
                 <div v-for="strategy in processedStrategies" :class="'progress-bar bg-'+strategy.type" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
             </div>
             <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'left:'+movement.offset+'%'">
-                <i v-if = "{{movement.show}}" :class="'fas fa-'+movement.icon"></i>
+                <i v-if = "movement.show" :class="'fas fa-'+movement.icon"></i>
             </div>
         </div>`,
     computed : {
