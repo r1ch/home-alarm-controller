@@ -27,8 +27,16 @@ body {
 }
 
 .timelineMarker {
-    background: rgba(123,123,123,0.5);
     border-radius: 100%;
     position: relative;
     left: -50%
+}
+
+.track-one {
+    top:24px;
+    background: rgba(123,123,0.5);
+}
+.track-two {
+    top:0px;
+    background: rgba(123,123,0.5);
 }
