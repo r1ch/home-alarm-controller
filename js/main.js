@@ -78,7 +78,7 @@ var app = new Vue({
         rawMovements : [],
         span : {
             now : new Date(),
-            earliest : new Date() - 24*60*60*1000,
+            earliest : new Date(Date.now() - 24*60*60*1000),
             range : 24*60*60*1000
         }
     },
