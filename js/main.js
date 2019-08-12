@@ -78,7 +78,7 @@ var app = new Vue({
     computed : {
         earliest(){
             const reducer = (a,b)=>({timestamp:Math.min(new Date(a.timestamp),new Date(b.timestamp))})
-            let candidates = this.strategies.push(this.movements)
+            let candidates = [...this.strategies, ...this.movements]
             return candidates.reduce(reducer)
         }
     },
