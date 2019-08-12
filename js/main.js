@@ -50,21 +50,24 @@ Vue.component('time-line', {
                 bedtime : "warning",
                 unknown : "info"
             }
-            //the rest are transient
             if(this.strategies.length > 0){
-               let offset = (a,b)=>(a - b)*100/this.span.range
+               let offset = (a,b)=>{
+                   a =  Math.min(this.span.earliest,a)
+                   b =  Math.min(this.span.earliest,b)
+                   (a - b)*100/this.span.range
+               }
                let output = []
                for(i=0;i<this.strategies.length-1;i++){
                     let previous = this.strategies[i]
                     let current = this.strategies[i+1]
                     console.log(`Pre: ${previous.timestamp}:${previous.detail}`)
-                   console.log(`Cur: ${current.timestamp}:${current.detail}`)
+                    console.log(`Cur: ${current.timestamp}:${current.detail}`)
                     let portion = {
                         offset : offset(previous.timestamp,current.timestamp),
                         type : typeMap[current.detail],
                         detail : current.detail
                     }
-                   output.push(portion)
+                    output.push(portion)
                }
                return output.reverse()
             } else {
