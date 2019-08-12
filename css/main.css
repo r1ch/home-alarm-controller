@@ -22,4 +22,13 @@ body {
 
 .timelineEvent {
     position: absolute;
+    width: 24px;
+    height: 24px;
+}
+
+.timelineMarker {
+    background: rgba(123,123,123,0.5);
+    border-radius: 100%;
+    position: relative;
+    left: -50%
 }
