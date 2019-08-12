@@ -22,7 +22,7 @@ Vue.component('time-line', {
             if(this.movements.length >0){
                 let offset  =  (time)=>(time-this.span.earliest)*100/this.span.range
                 return this.movements
-                .filter(movement=>movement.timestamp>this.earliest)
+                .filter(movement=>movement.timestamp>this.span.earliest)
                 .map((movement,index,array)=>{
                     let portion = {
                         location : movement.detail,
@@ -50,20 +50,18 @@ Vue.component('time-line', {
             //the rest are transient
             if(this.shadow && this.strategies.length > 0){
                let offset = (a,b)=>(a - b)*100/this.span.range
-               let previous = {
-                detail: this.shadow.strategy,
-                timestamp : now
+               let output = []
+               for(i=0;i<this.strategies.length;i++){
+                    let previous = this.strategies.length[i]
+                    let current = this.strategies.length[i+1]
+                    let portion = {
+                        offset : offset(previous.timestamp,current.timestamp),
+                        type : typeMap[current.detail],
+                        detail : current.detail
+                    }
+                   output.push(portion)
                }
-               return this.strategies.map((strategy)=>{
-                   console.log(strategy.detail,previous.detail)
-                   let portion = {
-                        offset : offset(previous.timestamp,strategy.timestamp),
-                        type : typeMap[strategy.detail],
-                        detail : strategy.detail
-                   }
-                   previous = strategy
-                   return portion
-                }).reverse()
+               return output.reverse()
             } else {
                 console.log("No strategies/shadow yet")
             }
