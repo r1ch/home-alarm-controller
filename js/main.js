@@ -108,6 +108,7 @@ var app = new Vue({
                 movement.timestamp = new Date(movement.timestamp)
                 return movement
             })
+            return output
         }
     },
     /*mounted : function (){
