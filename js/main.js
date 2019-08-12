@@ -94,9 +94,9 @@ var app = new Vue({
                 strategy.timestamp = new Date(strategy.timestamp)
                 return strategy
             })
-            let head = output.slice(0,1)
+            let head = output.slice(0,1)[0]
             head.timestamp = this.span.now
-            let tail = output.slice(-1)
+            let tail = output.slice(-1)[0]
             tail.timestamp = this.span.earliest
             output.unshift(head)
             output.push(tail)
