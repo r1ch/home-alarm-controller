@@ -14,7 +14,7 @@ Vue.component('time-line', {
                 <div v-for="strategy in processedStrategies" :class="'progress-bar bg-'+strategy.type" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
             </div>
             <div class = "timelineEvent" v-for = "movement in processedMovements" :style = "'left:'+movement.offset+'%'">
-                <i :v-if = "movement.show" :class="'fas fa-'+movement.icon"></i>
+                <i v-if = "{{movement.show}}" :class="'fas fa-'+movement.icon"></i>
             </div>
         </div>`,
     computed : {
@@ -34,7 +34,7 @@ Vue.component('time-line', {
                         show : true,
                         icon : movement.detail == "Entry" ? "door-open" : "couch"
                     }
-                    if(index > 0 && index < array.length-1 && array[index-1].detail == array[index+1].detail && new Date(array[index-1].timestamp) - new Date(array[index+1].timestamp) < 5){
+                    if(index > 0 && index < array.length-1 && array[index-1].detail == array[index+1].detail){// && new Date(array[index-1].timestamp) - new Date(array[index+1].timestamp) < 5){
                         portion.show = false;
                     }
                     return portion
