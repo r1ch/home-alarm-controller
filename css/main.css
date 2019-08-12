@@ -19,6 +19,9 @@ body {
   height: 20%;
 }
 
+#timeline {
+  height: 72px;
+}
 
 .timelineEvent {
     position: absolute;
