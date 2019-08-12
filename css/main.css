@@ -22,10 +22,4 @@ body {
 
 .timelineEvent {
     position: absolute;
-    width: 24px;
-    height: 24px;
-    padding-left: 2px;
-    top: 5px;
-    border-radius: 20px;
-    background: rgba(255, 255, 25, 0.5);
 }
