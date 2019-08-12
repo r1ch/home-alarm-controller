@@ -86,7 +86,7 @@ var app = new Vue({
     },
     computed : {
         shadow(){
-           return rawShadow
+           return this.rawShadow
         },
         strategies(){
             let output = this.rawStrategies.map(strategy=>{
@@ -119,7 +119,7 @@ var app = new Vue({
     mounted : function(){
         signHttpRequest("GET","/alarm/monitor")
         .then(axios)
-        .then((data)=>{
+        .then(data=>{
             this.rawShadow = data.shadow
             this.rawMovements = data.metrics.movement
             this.rawStrategies = data.metrics.strategyState
