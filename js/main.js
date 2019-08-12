@@ -87,6 +87,7 @@ var app = new Vue({
            return this.rawShadow
         },
         strategies(){
+            if(this.rawStrategies.length===0) return []
             let output = this.rawStrategies.map(strategy=>{
                 strategy.timestamp = new Date(strategy.timestamp)
                 return strategy
@@ -102,6 +103,7 @@ var app = new Vue({
             return output
         },
         movements(){
+            if(this.rawMovements.length===0) return []
             let output = this.rawMovements.map(movement=>{
                 movement.timestamp = new Date(movement.timestamp)
                 return movement
