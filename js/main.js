@@ -81,9 +81,10 @@ Vue.component('time-d-three',{
 	for(i=0;i<this.strategies.length;i++){
 		let output = {
 			end : xScale(this.strategies[i].timestamp),
-			start : xScale(this.strategies[i+1].timestamp), 
+			start : xScale(this.strategies[i+1].timestamp),
+			detail : this.strategy[i+1].detail
 		}
-		output.width = output.start-output.end
+		output.width = output.end-output.start
 		strategyBlocks.push(output)
 	}
 	console.log(strategyBlocks)
@@ -122,7 +123,7 @@ var app = new Vue({
                 strategy.timestamp = new Date(strategy.timestamp)
                 return strategy
             })
-            output.unshift({timestamp: Date.now(), detail : "unknown"})
+            output.unshift({timestamp: new Date, detail : "unknown"})
             return output
         },
         movements(){
