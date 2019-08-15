@@ -88,6 +88,17 @@ Vue.component('time-d-three', {
 					return d.width
 				})
 				.attr('height', this.height)
+
+			let icons = svg.selectAll('.icons')
+				.data(strategyBlocks)
+				.enter()
+				.append('text')
+				.attr('class', function(d){return `icon ${d.detail}`})
+				.attr('x', function(d) {
+					return d.start + d.width/2
+				})
+				.attr('y', this.height/2)
+				.text(function(d){return d.detail})
 			
 			let movementSize = 12;
 
@@ -103,23 +114,6 @@ Vue.component('time-d-three', {
 					return yScale(d.detail);
 				})
 				.attr('r', `${movementSize/2}`)
-
-			
-			let icons = svg.selectAll('.icon')
-				.data(this.movements)
-				.enter()
-				.append('text')
-				.attr('x', function(d) {
-					return xScale(d.timestamp);
-				})
-				.attr('y', function(d) {
-					return yScale(d.detail)+iconSize/2;
-				})
-				.attr('font-family', 'FontAwesome')
-				.attr('font-size', `${iconSize}px` )
-				.attr('text-anchor','middle')
-				.text(function(d) { return d.detail == 'Lounge' ? '\uf118' : '\uf52b' })
-			
 
 			return true;
 		}
