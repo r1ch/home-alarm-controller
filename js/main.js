@@ -122,7 +122,7 @@ var app = new Vue({
                 strategy.timestamp = new Date(strategy.timestamp)
                 return strategy
             })
-            output.unshift({timestamp: this.span.now, detail : "unknown"})
+            output.unshift({timestamp: Date.now(), detail : "unknown"})
             return output
         },
         movements(){
