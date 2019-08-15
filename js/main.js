@@ -145,7 +145,7 @@ var app = new Vue({
 				detail: "unknown"
 			})
 		
-			this.movements = this.raw.movements.map(movement => {
+			this.movements = this.raw.metrics.movements.map(movement => {
 				movement.timestamp = new Date(movement.timestamp)
 			})
 		}
