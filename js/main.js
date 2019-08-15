@@ -99,10 +99,10 @@ Vue.component('time-d-three', {
 				.attr('x', function(d) {
 					return d.start + d.width/2
 				})
-				.attr('y', this.height/2)
+				.attr('y', this.height/2 + iconSize/2)
 				.attr('font-family', 'Font Awesome\ 5 Free')
 				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return d.detail == 'Lounge' ? '\uf4b8' : '\f52b' }
+				.text(function(d) { return d.detail == 'Lounge' ? '\uf4b8' : '\f52b' })
 			
 			let movementSize = 12;
 
