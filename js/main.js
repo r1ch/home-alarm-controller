@@ -118,7 +118,7 @@ Vue.component('time-d-three', {
 				.attr('font-family', 'FontAwesome')
 				.attr('font-size', `${iconSize}px` )
 				.attr('text-anchor','middle')
-				.text(function(d) { return d.detail == 'Lounge' ? 'u\f4b8' : 'u\f4b8' })
+				.text(function(d) { return d.detail == 'Lounge' ? '\uf4b8' : '\uf52b' })
 			
 
 			return true;
