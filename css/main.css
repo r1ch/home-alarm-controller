@@ -1,17 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  background: blue-steel;
-  font-family: Arial;
-  overflow: hidden;
-}
-
 
 .strategy.blind {
   fill: rgba(247, 249, 249, 1); 
@@ -25,10 +11,14 @@ body {
   fill : rgba(120, 213, 215, 1);
 }
 
-.movement.Lounge {
-
+.movement.Lounge ::after {
+  content: "<i class = 'fas fa-couch'></i>";
 }
 
 .movement.Entry {
+  content: "<i class = 'fas fa-open-door'></i>";
+}
 
+.y.axis {
+  stroke:none;
 }
