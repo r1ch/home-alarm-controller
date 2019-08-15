@@ -100,12 +100,11 @@ Vue.component('time-d-three', {
 				.data(strategyBlocks)
 				.enter()
 				.append('text')
-				.attr('class', function(d){return `icon ${d.detail}`})
+				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('x', function(d) {
 					return d.start + d.width/2
 				})
 				.attr('y', this.height/2 + iconSize/2)
-				.attr('class', 'fa')
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
