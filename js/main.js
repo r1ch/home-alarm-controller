@@ -151,11 +151,11 @@ var app = new Vue({
 			let earliestDate = new Date(earliestStrategy.timestamp)
 		
 			this.movements = this.raw.metrics.movement
-			.filter(movement=>movement.timestamp>earliestDate)	
 			.map(movement => {
 				movement.timestamp = new Date(movement.timestamp);
 				return movement;
 			})
+			.filter(movement=>movement.timestamp>earliestDate)	
 		}
 	},
 	/*mounted : function (){
