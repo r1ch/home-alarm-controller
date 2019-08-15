@@ -137,7 +137,7 @@ var app = new Vue({
 		raw() {
 			this.shadow = this.raw.shadow;
 			
-			this.strategies = this.raw.metrics.strategies.map(strategy => {
+			this.strategies = this.raw.metrics.strategyState.map(strategy => {
 				strategy.timestamp = new Date(strategy.timestamp);
 				return strategy;
 			}).unshift({
@@ -145,7 +145,7 @@ var app = new Vue({
 				detail: "unknown"
 			})
 		
-			this.movements = this.rawMovements.map(movement => {
+			this.movements = this.raw.movements.map(movement => {
 				movement.timestamp = new Date(movement.timestamp)
 			})
 		}
@@ -163,9 +163,6 @@ var app = new Vue({
 				data
 			}) => {
 				this.raw = data;
-				this.rawShadow = data.shadow
-				this.rawMovements = data.metrics.movement
-				this.rawStrategies = data.metrics.strategyState
 			})
 	}
 })
