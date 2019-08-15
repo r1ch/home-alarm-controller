@@ -10,7 +10,7 @@ Vue.component('time-d-three',{
     data : function(){
         let margin = {top: 100, right: 100, bottom: 100, left: 100};
         let width = 960 - margin.left - margin.right;
-        let height = 200 - margin.top - margin.bottom;
+        let height = 400 - margin.top - margin.bottom;
         return  {
             margin : margin,
             width : width,
@@ -38,7 +38,7 @@ Vue.component('time-d-three',{
         let yScale = d3.scalePoint()
             .domain(this.movements.map(movement=>movement.detail))
             .range([0,this.height])
-		.padding(.1)
+		.padding(50)
 
         let yAxis = d3.axisLeft(yScale)
 
