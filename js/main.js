@@ -18,7 +18,7 @@ Vue.component('time-d-three', {
 			bottom: 50,
 			left: 50
 		};
-		let width = 400 - margin.left - margin.right;
+		let width = 600 - margin.left - margin.right;
 		let height = 150 - margin.top - margin.bottom;
 		return {
 			margin: margin,
