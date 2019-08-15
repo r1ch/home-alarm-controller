@@ -38,7 +38,7 @@ Vue.component('time-d-three',{
         let yScale = d3.scalePoint()
             .domain(this.movements.map(movement=>movement.detail))
             .range([0,this.height])
-		.padding(50)
+		.padding(.1)
 
         let yAxis = d3.axisLeft(yScale)
 
