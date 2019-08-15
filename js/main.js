@@ -55,6 +55,7 @@ Vue.component('time-d-three',{
 
         svg.append("g")
             .attr("class", "x axis")
+            .attr("transform", "translate(0," + this.height + ")")
             .call(xAxis);
        
        return svg
