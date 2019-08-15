@@ -104,7 +104,7 @@ Vue.component('time-d-three', {
 					return 2;
 				})
 			
-			let movements = svg.selectAll('.icon')
+			let icons = svg.selectAll('.icon')
 				.data(this.movements)
 				.enter()
 				.append('text')
