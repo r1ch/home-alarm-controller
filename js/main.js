@@ -7,7 +7,13 @@ Vue.component('google-login', {
 })
 
 Vue.component('time-d-three',{
-    props:['strategies','movements']
+    props:['strategies','movements'],
+    template: `
+        <div id = 'd3'>
+            {{strategies}}<br>
+            {{movements}}
+        </div>
+    `
 })
 
 Vue.component('time-line', {
