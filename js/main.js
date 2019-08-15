@@ -10,8 +10,6 @@ Vue.component('time-d-three',{
     props:['strategies','movements'],
     template: `
         <div id = 'd3'>
-            {{strategies}}<br>
-            {{movements}}
         </div>
     `,
     mounted : function(){
@@ -25,7 +23,7 @@ Vue.component('time-d-three',{
         let xAxis = d3.axisBottom(x)
             .ticks(4); // specify the number of ticks
         
-        let svg = d3.select("d3").append("svg")
+        let svg = d3.select("#d3").append("svg")
             .attr("width", 400)
             .attr("height", 100);
 
