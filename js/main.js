@@ -20,6 +20,7 @@ Vue.component('time-d-three',{
     props:['strategies','movements'],
     template: `
         <div id = 'd3'>
+{{svg}}
         </div>
     `,
     computed : {
