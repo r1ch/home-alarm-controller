@@ -88,6 +88,8 @@ Vue.component('time-d-three', {
 					return d.width
 				})
 				.attr('height', this.height)
+			
+			let iconSize = 12;
 
 			let movements = svg.selectAll('.movement')
 				.data(this.movements)
@@ -100,9 +102,7 @@ Vue.component('time-d-three', {
 				.attr('cy', function(d) {
 					return yScale(d.detail);
 				})
-				.attr('r', function(d) {
-					return 14;
-				})
+				.attr('r', `${iconSize/2}`)
 
 			
 			let icons = svg.selectAll('.icon')
