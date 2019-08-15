@@ -51,7 +51,7 @@ Vue.component('time-d-three', {
 
 			let movementColor = d3.scaleOrdinal()
 				.domain(this.movements.map(movement => movement.detail))
-				.range(d3.schemeSet2);
+				.range(d3.schemeDark2);
 
 			let strategyColor = d3.scaleOrdinal()
 				.domain(this.strategies.map(strategy => strategy.detail))
