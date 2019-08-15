@@ -28,7 +28,7 @@ Vue.component('time-d-three', {
 	},
 	props: ['strategies', 'movements'],
 	template: `
-		<div id = 'd3' :ready ></div>
+		<div id = 'd3' :ready = 'ready' ></div>
     	`,
 	computed: {
 		ready() {
