@@ -92,7 +92,7 @@ Vue.component('time-d-three', {
 				.enter().append('rect')
 				.attr('class', 'strategy')
 				.attr('x', function(d) {
-					return d.end
+					return d.start
 				})
 				.attr('y', 0)
 				.attr('width', function(d) {
