@@ -112,10 +112,10 @@ Vue.component('time-d-three', {
 					return xScale(d.timestamp);
 				})
 				.attr('y', function(d) {
-					return yScale(d.detail);
+					return yScale(d.detail)-12;
 				})
 				.attr('font-family', 'FontAwesome')
-				.attr('font-size', '1em' )
+				.attr('font-size', '12px' )
 				.attr('text-anchor','middle')
 				.text(function(d) { return '\uf118' }); 
 			
