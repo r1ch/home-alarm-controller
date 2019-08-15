@@ -90,6 +90,11 @@ Vue.component('time-d-three', {
 				.attr('height', this.height)
 			
 			let iconSize = 10;
+			let iconMap = {
+				standard : '\uf06e',
+				bedtime : '\uf236',
+				blind : '\uf070'
+			}
 
 			let icons = svg.selectAll('.icons')
 				.data(strategyBlocks)
@@ -101,9 +106,10 @@ Vue.component('time-d-three', {
 				})
 				.attr('y', this.height/2 + iconSize/2)
 				.attr('class', 'fa')
+				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return d.detail == 'Lounge' ? '\uf4b8' : '\uf52b' })
+				.text(function(d) { return iconMap[d.detail])
 			
 			let movementSize = 12;
 
