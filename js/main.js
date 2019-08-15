@@ -60,6 +60,7 @@ Vue.component('time-d-three',{
             .call(yAxis);
        
        return svg
+        }
     }
 })
 
