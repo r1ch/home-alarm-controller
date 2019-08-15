@@ -28,10 +28,10 @@ Vue.component('time-d-three', {
 	},
 	props: ['strategies', 'movements'],
 	template: `
-        <div id = 'd3'></div>
+		<div id = 'd3' :ready ></div>
     	`,
-	watch: {
-		strategies() {
+	computed: {
+		ready() {
 			if (this.strategies.length == 0) return;
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
@@ -118,7 +118,7 @@ Vue.component('time-d-three', {
 					return movementColor(d.detail);
 				});
 
-			return svg
+			return true;
 		}
 	}
 })
