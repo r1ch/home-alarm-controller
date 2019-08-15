@@ -32,3 +32,7 @@
 .y.axis {
   stroke:none;
 }
+
+.y.axis > .domain {
+  stroke:none;
+}
