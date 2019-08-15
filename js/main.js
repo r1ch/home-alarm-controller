@@ -35,10 +35,9 @@ Vue.component('time-d-three',{
         let xAxis = d3.axisBottom(xScale)
             .ticks(10); // specify the number of ticks
             
-        let yScale = d3.scaleBand()
+        let yScale = d3.scalePoint()
             .domain(this.movements.map(movement=>movement.detail))
             .range([0,this.height])
-            .paddingInner(0.05);
 
         let yAxis = d3.axisLeft(yScale)
 
