@@ -32,7 +32,7 @@ Vue.component('time-d-three', {
     	`,
 	computed: {
 		ready() {
-			if (this.strategies.length == 0) return;
+			if (this.strategies.length == 0 || this.movements.length == 0) return;
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
 					return d.timestamp
