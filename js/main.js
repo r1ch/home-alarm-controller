@@ -148,7 +148,8 @@ var app = new Vue({
 			})
 		
 			this.movements = this.raw.metrics.movement.map(movement => {
-				movement.timestamp = new Date(movement.timestamp)
+				movement.timestamp = new Date(movement.timestamp);
+				return movement;
 			})
 		}
 	},
