@@ -42,9 +42,14 @@ Vue.component('time-d-three',{
 
         let yAxis = d3.axisLeft(yScale)
 	
-	let color = d3.scaleOrdinal()
+	let movementColor = d3.scaleOrdinal()
 	    .domain(this.movements.map(movement=>movement.detail))
 	    .range(d3.schemeSet2);
+		
+	let strategyColor = d3.scaleOrdinal()
+	    .domain(this.strategies.map(strategy=>strategy.detail))
+	    .range(d3.schemeSet2);
+
 
         let svg = d3.select("#d3").append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
@@ -62,88 +67,42 @@ Vue.component('time-d-three',{
             .call(xAxis);
             
             
-       let bubble = svg.selectAll('.movement')
+       let movements = svg.selectAll('.movement')
 			.data(this.movements)
 			.enter().append('circle')
 			.attr('class', 'movement')
 			.attr('cx', function(d){return xScale(d.timestamp);})
 			.attr('cy', function(d){ return yScale(d.detail); })
 			.attr('r', function(d){ return 5; })
-			.style('fill', function(d){ return color(d.detail); });
-       
+			.style('fill', function(d){ return movementColor(d.detail); });
+		
+
+	let strategyBlocks = []
+	for(i=0;i<this.strategies.length;i++){
+		let output = {
+			end : xScale(this.strategies[i]),
+			start : xScale(this.strategies[i+1]), 
+		}
+		output.width = output.start-output.end
+		strategyBlocks.push(output)
+	}
+	console.log(strategyBlocks)
+	
+
+	let strategies = svg.selectAll('.strategy')
+			.data(strategyBlocks)
+			.enter().append('rect')
+			.class('class','strategy')
+			.attr('x',function(d){return d.end})
+			.attr('y',0)
+			.attr('width',function(d){return d.width})
+			.attr('height',this.height)
+       			.attr('fill',function(d){return strategyColor(d.detail)})
        return svg
         }
     }
 })
 
-Vue.component('time-line', {
-    props:['strategies','movements','span'],
-    template: `
-        <div id = "timelineContainer">
-            <div class="progress timeline">
-                <div v-for="strategy in processedStrategies" :class="'progress-bar bg-'+strategy.type" :style="'width:'+strategy.offset+'%'">{{strategy.detail}}</div>
-            </div>
-            <div class = "timelineEvent" v-for = "movement in processedMovements" v-if = "movement.show" :style = "'left:'+movement.offset+'%'">
-                <div :class = "'timelineMarker track-'+movement.track">
-                    <i :class="'fas fa-'+movement.icon"></i>
-                </div>
-            </div>
-        </div>`,
-    computed : {
-        processedMovements(){
-            if(this.movements.length > 0){
-                let offset  =  (time)=>(time-this.span.earliest)*100/this.span.range
-                return this.movements
-                .filter(movement=>movement.timestamp>this.span.earliest)
-                .map((movement,index,array)=>{
-                    let portion = {
-                        location : movement.detail,
-                        date : movement.timestamp,
-                        offset : offset(movement.timestamp),
-                        index: index,
-                        show : true,
-                        track : movement.detail == "Entry" ? "one" : "two",
-                        icon : movement.detail == "Entry" ? "door-open" : "couch"
-                    }
-                    return portion
-                }).reverse()
-            } else {
-                console.log("No movements yet")
-            }
-        },
-        processedStrategies(){
-            let typeMap = {
-                blind : "success",
-                standard : "danger",
-                bedtime : "warning",
-                unknown : "info"
-            }
-            if(this.strategies.length > 0){
-               let offset = (a,b)=>{
-                   a =  Math.max(this.span.earliest,a)
-                   b =  Math.max(this.span.earliest,b)
-                   return (a - b)*100/this.span.range
-               }
-               let output = []
-               for(i=0;i<this.strategies.length-1;i++){
-                    let previous = this.strategies[i]
-                    let current = this.strategies[i+1]
-                    console.log(`Pre: ${previous.timestamp}:${previous.detail}`)
-                    console.log(`Cur: ${current.timestamp}:${current.detail}`)
-                    let portion = {
-                        offset : offset(previous.timestamp,current.timestamp),
-                        type : typeMap[current.detail],
-                        detail : current.detail
-                    }
-                    output.push(portion)
-               }
-               return output.reverse()
-            } else {
-                console.log("No strategies/shadow yet")
-            }
-        }
-    }
-})
 
 
 var app = new Vue({
@@ -152,11 +111,6 @@ var app = new Vue({
         rawShadow : {},
         rawStrategies : [],
         rawMovements : [],
-        span : {
-            now : new Date(),
-            earliest : new Date(Date.now() - 24*60*60*1000),
-            range : 24*60*60*1000
-        }
     },
     computed : {
         shadow(){
@@ -168,8 +122,7 @@ var app = new Vue({
                 strategy.timestamp = new Date(strategy.timestamp)
                 return strategy
             })
-            output.unshift({timestamp: this.span.now})
-            output.push({timestamp:this.span.earliest,detail:"unknown"})
+            output.unshift({timestamp: this.span.now, detail : "unknown"})
             return output
         },
         movements(){
