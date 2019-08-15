@@ -29,9 +29,8 @@ Vue.component('time-d-three',{
         let x = d3.scaleTime()
             .domain(d3.extent(this.strategies, function(d){
                 return d.timestamp
-            })
+            }))
             .range([0, this.width])
-            .nice();
 
         let xAxis = d3.axisBottom(x)
             .ticks(10); // specify the number of ticks
