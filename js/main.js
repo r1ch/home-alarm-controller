@@ -89,7 +89,7 @@ Vue.component('time-d-three', {
 				})
 				.attr('height', this.height)
 			
-			let iconSize = 10;
+			let iconSize = 8;
 			let iconMap = {
 				standard : '\uf06e',
 				bedtime : '\uf236',
