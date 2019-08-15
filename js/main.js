@@ -91,7 +91,8 @@ Vue.component('time-d-three', {
 
 			let movements = svg.selectAll('.movement')
 				.data(this.movements)
-				.enter().append('circle')
+				.enter()
+				.append('circle')
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
@@ -102,6 +103,12 @@ Vue.component('time-d-three', {
 				.attr('r', function(d) {
 					return 2;
 				})
+				.append('text')
+				.attr('font-family', 'FontAwesome')
+				.attr('font-size', function(d) { return d.size+'em'} )
+				.attr('text-anchor','middle')
+				.text(function(d) { return '\uf118' }); 
+			
 
 			return true;
 		}
