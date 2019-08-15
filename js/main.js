@@ -147,7 +147,7 @@ var app = new Vue({
 				detail: "unknown"
 			})
 			
-			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
+			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)})).timestamp;
 		
 			this.movements = this.raw.metrics.movement
 			.filter(movement=>movement.timestamp>earliestStrategy)	
