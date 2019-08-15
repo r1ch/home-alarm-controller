@@ -101,9 +101,8 @@ Vue.component('time-d-three', {
 				})
 				.attr('y', this.height/2)
 				.attr('font-family', 'Font Awesome\ 5 Free')
-				.attr('font-size', `${iconSize}px` )
-				.text(function(d) { return '\uf118' }); 
-				.text(function(d){return d.detail})
+				.attr('font-size', `${iconSize}px`)
+				.text(function(d) { return d.detail == 'Lounge' ? '\uf4b8' : '\f52b' }
 			
 			let movementSize = 12;
 
