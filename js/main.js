@@ -13,10 +13,10 @@ Vue.component('google-login', {
 Vue.component('time-d-three', {
 	data: function() {
 		let margin = {
-			top: 100,
-			right: 100,
-			bottom: 100,
-			left: 100
+			top: 10,
+			right: 10,
+			bottom: 10,
+			left: 10
 		};
 		let width = 960 - margin.left - margin.right;
 		let height = 250 - margin.top - margin.bottom;
