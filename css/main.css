@@ -12,34 +12,15 @@ body {
   overflow: hidden;
 }
 
-#timelineContainer {
-  margin-top:100px;
-  position:relative;
-  width: 100%;
-  height: 20%;
+
+.strategy .blind {
+  fill: rgba(247, 249, 249, 1); 
 }
 
-.timeline {
-  height: 48px;
+.strategy .bedtime {
+  fill: rgba(247, 249, 249, 1);
 }
 
-.timelineEvent {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-}
-
-.timelineMarker {
-    border-radius: 100%;
-    position: relative;
-    left: -50%
-}
-
-.track-one {
-    top:-24px;
-    background: rgba(52, 159, 195,0.5);
-}
-.track-two {
-    top:-48px;
-    background: rgba(228, 228, 54,0.5);
+.strategy .standard {
+  fill : rgba(120, 213, 215, 1);
 }
