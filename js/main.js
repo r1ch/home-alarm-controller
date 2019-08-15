@@ -48,14 +48,14 @@ Vue.component('time-d-three',{
         .attr("height", this.height + this.margin.top + this.margin.bottom)
       .append("g")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+            
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
 
         svg.append("g")
             .attr("class", "x axis")
             .call(xAxis);
-            
-       svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis);
        
        return svg
         }
