@@ -113,7 +113,7 @@ Vue.component('time-d-three', {
 					return xScale(d.timestamp);
 				})
 				.attr('y', function(d) {
-					return yScale(d.detail)+iconSize;
+					return yScale(d.detail)+iconSize/2;
 				})
 				.attr('font-family', 'FontAwesome')
 				.attr('font-size', `${iconSize}px` )
