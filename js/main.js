@@ -41,8 +41,6 @@ Vue.component('time-d-three',{
             .paddingInner(0.05);
 
         let yAxis = d3.axisLeft(yScale)
-        
-        let color = d3.scaleOrdinal(d3.schemeCategory20);
 
         let svg = d3.select("#d3").append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
@@ -67,7 +65,7 @@ Vue.component('time-d-three',{
 			.attr('cx', function(d){return xScale(d.timestamp);})
 			.attr('cy', function(d){ return yScale(d.detail); })
 			.attr('r', function(d){ return 5; })
-			.style('fill', function(d){ return color(d.detail); });
+			.style('fill', function(d){ return "red"; });
        
        return svg
         }
