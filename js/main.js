@@ -104,11 +104,14 @@ Vue.component('time-d-three', {
 				.attr('x', function(d) {
 					return d.start + d.width/2
 				})
-				.attr('y', this.height/2 + iconSize/2)
+				.attr('y', function(d) {
+					if(d.width > iconSize) return this.height/2 + iconSize/2
+					else return iconSize/2
+				})
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return d.width > iconSize*1.2  ? iconMap[d.detail] : "" })
+				.text(function(d) { return iconMap[d.detail]})
 			
 			let movementSize = 12;
 
