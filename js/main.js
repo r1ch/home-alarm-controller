@@ -32,18 +32,14 @@ Vue.component('time-d-three',{
             ])
         .range([0, this.width]);
 
-        let xAxis = d3.axis()
-            .scale(x)
-            .orient("bottom")
+        let xAxis = d3.axisBottom(x)
             .ticks(10); // specify the number of ticks
             
         let y = d3.scale.ordinal()
             .domain(this.movements.map(movement=>movement.detail))
             .rangePoints([0, this.height]);
 
-        let yAxis = d3.svg.axis()
-            .scale(y)
-            .orient("left");
+        let yAxis = d3.axisLeft(y)
 
         let svg = d3.select("#d3").append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
