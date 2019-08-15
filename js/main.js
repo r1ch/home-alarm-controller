@@ -140,7 +140,9 @@ var app = new Vue({
 			this.strategies = this.raw.metrics.strategyState.map(strategy => {
 				strategy.timestamp = new Date(strategy.timestamp);
 				return strategy;
-			}).unshift({
+			})
+			
+			this.strategies.unshift({
 				timestamp: new Date,
 				detail: "unknown"
 			})
