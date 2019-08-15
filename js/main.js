@@ -113,12 +113,12 @@ Vue.component('time-d-three', {
 					return xScale(d.timestamp);
 				})
 				.attr('y', function(d) {
-					return yScale(d.detail)-iconSize/2;
+					return yScale(d.detail)+iconSize;
 				})
 				.attr('font-family', 'FontAwesome')
 				.attr('font-size', `${iconSize}px` )
 				.attr('text-anchor','middle')
-				.text(function(d) { return '\uf118' }); 
+				.text(function(d) { return d.detail == 'Lounge' : 'u\f4b8' : 'u\f4b8' })
 			
 
 			return true;
