@@ -109,7 +109,7 @@ Vue.component('time-d-three', {
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return iconMap[d.detail])
+				.text(function(d) { return iconMap[d.detail] })
 			
 			let movementSize = 12;
 
