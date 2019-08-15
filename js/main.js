@@ -49,15 +49,6 @@ Vue.component('time-d-three', {
 
 			let yAxis = d3.axisLeft(yScale)
 
-			let movementColor = d3.scaleOrdinal()
-				.domain(this.movements.map(movement => movement.detail))
-				.range(d3.schemeDark2);
-
-			let strategyColor = d3.scaleOrdinal()
-				.domain(this.strategies.map(strategy => strategy.detail))
-				.range(d3.schemePastel2);
-
-
 			let svg = d3.select("#d3").append("svg")
 				.attr("width", this.width + this.margin.left + this.margin.right)
 				.attr("height", this.height + this.margin.top + this.margin.bottom)
@@ -88,7 +79,7 @@ Vue.component('time-d-three', {
 			let strategies = svg.selectAll('.strategy')
 				.data(strategyBlocks)
 				.enter().append('rect')
-				.attr('class', 'strategy')
+				.attr('class', function(d){return `strategy ${d.detail}`})
 				.attr('x', function(d) {
 					return d.start
 				})
@@ -97,14 +88,11 @@ Vue.component('time-d-three', {
 					return d.width
 				})
 				.attr('height', this.height)
-				.attr('fill', function(d) {
-					return strategyColor(d.detail)
-				})
 
 			let movements = svg.selectAll('.movement')
 				.data(this.movements)
 				.enter().append('circle')
-				.attr('class', 'movement')
+				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
 				})
@@ -114,9 +102,6 @@ Vue.component('time-d-three', {
 				.attr('r', function(d) {
 					return 2;
 				})
-				.style('fill', function(d) {
-					return movementColor(d.detail);
-				});
 
 			return true;
 		}
