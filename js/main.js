@@ -26,21 +26,21 @@ Vue.component('time-d-three',{
     computed : {
         svg(){
         if(this.strategies.length == 0) return;
-        let x = d3.scaleTime()
+        let xScale = d3.scaleTime()
             .domain(d3.extent(this.strategies, function(d){
                 return d.timestamp
             }))
             .range([0, this.width])
 
-        let xAxis = d3.axisBottom(x)
+        let xAxis = d3.axisBottom(xScale)
             .ticks(10); // specify the number of ticks
             
-        let y = d3.scaleBand()
+        let yScale = d3.scaleBand()
             .domain(this.movements.map(movement=>movement.detail))
             .range([0,this.height])
             .paddingInner(0.05);
 
-        let yAxis = d3.axisLeft(y)
+        let yAxis = d3.axisLeft(yScale)
         
         let color = d3.scaleOrdinal(d3.schemeCategory20);
 
