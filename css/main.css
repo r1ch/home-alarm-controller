@@ -11,23 +11,14 @@
   fill : rgba(120, 213, 215, 1);
 }
 
-
-
-.movement::before {
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-  }
-
-.Lounge::before {
-  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f007";
+.movement.Lounge {
+    fill : rgba(99, 210, 255, 0.2);
 }
 
-.Entry::before {
-  font-family: "Font Awesome 5 Free"; font-weight: 400; content: "\f1ea";
+.movement.Entry {
+    fill : rgba(32, 129, 195, 1);
 }
+
 
 .y.axis {
   stroke:none;
