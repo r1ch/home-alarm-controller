@@ -69,7 +69,7 @@ Vue.component('time-d-three',{
 			.attr('cx', function(d){return xScale(d.timestamp);})
 			.attr('cy', function(d){ return yScale(d.detail); })
 			.attr('r', function(d){ return 5; })
-			.style('fill', function(d){ return colour(d.detail); });
+			.style('fill', function(d){ return color(d.detail); });
        
        return svg
         }
