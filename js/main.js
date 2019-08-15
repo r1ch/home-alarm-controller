@@ -13,7 +13,27 @@ Vue.component('time-d-three',{
             {{strategies}}<br>
             {{movements}}
         </div>
-    `
+    `,
+    mounted : function(){
+        let x = d3.scaleTime()
+            .domain([
+              this.strategies[this.strategies.length-1],
+              this.strategies[0]
+            ])
+        .range([0, 300]);
+        
+        let xAxis = d3.axisBottom(x)
+            .ticks(4); // specify the number of ticks
+        
+        let svg = d3.select("d3").append("svg")
+            .attr("width", 400)
+            .attr("height", 100);
+
+        svg.append('g')            // create a <g> element
+            .attr('class', 'x axis') // specify classes
+            .call(xAxis);            // let the axis do its thing
+
+    }
 })
 
 Vue.component('time-line', {
