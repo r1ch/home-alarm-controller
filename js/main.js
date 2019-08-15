@@ -7,34 +7,59 @@ Vue.component('google-login', {
 })
 
 Vue.component('time-d-three',{
+    data : function(){
+        let margin = {top: 100, right: 100, bottom: 100, left: 100};
+        let width : 960 - margin.left - margin.right;
+        let height = 500 - margin.top - margin.bottom;
+        return  {
+            margin : margin,
+            width : width,
+            height : height
+        }
+    },
     props:['strategies','movements'],
     template: `
         <div id = 'd3'>
-            {{g}}
         </div>
     `,
     computed : {
-        g(){
+        svg(){
         if(this.strategies.length == 0) return;
         let x = d3.scaleTime()
             .domain([
               this.strategies[this.strategies.length-1].timestamp,
               this.strategies[0].timestamp
             ])
-        .range([0, 300]);
+        .range([0, this.width]);
 
-        let xAxis = d3.axisBottom(x)
-            .ticks(4); // specify the number of ticks
+        let xAxis = d3.axis()
+            .scale(x)
+            .orient("bottom")
+            .ticks(10); // specify the number of ticks
+            
+        let y = d3.scale.ordinal()
+            .domain(this.movements.map(movement=>movement.detail))
+            .rangePoints([0, this.height]);
+
+        let yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left");
 
         let svg = d3.select("#d3").append("svg")
-            .attr("width", 400)
-            .attr("height", 100);
+        .attr("width", this.width + this.margin.left + this.margin.right)
+        .attr("height", this.height + this.margin.top + this.margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-        return svg.append('g')            // create a <g> element
-            .attr('class', 'x axis') // specify classes
-            .call(xAxis);            // let the axis do its thing
-
-        }
+        svg.append("g")
+            .attr("class", "x axis")
+            .call(xAxis);
+            
+       svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis);
+       
+       return svg
     }
 })
 
