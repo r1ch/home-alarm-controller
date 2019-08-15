@@ -101,8 +101,9 @@ Vue.component('time-d-three', {
 					return yScale(d.detail);
 				})
 				.attr('r', function(d) {
-					return 2;
+					return 14;
 				})
+
 			
 			let icons = svg.selectAll('.icon')
 				.data(this.movements)
@@ -112,10 +113,10 @@ Vue.component('time-d-three', {
 					return xScale(d.timestamp);
 				})
 				.attr('y', function(d) {
-					return yScale(d.detail)-12;
+					return yScale(d.detail)-iconSize/2;
 				})
 				.attr('font-family', 'FontAwesome')
-				.attr('font-size', '12px' )
+				.attr('font-size', `${iconSize}px` )
 				.attr('text-anchor','middle')
 				.text(function(d) { return '\uf118' }); 
 			
