@@ -89,7 +89,7 @@ Vue.component('time-d-three', {
 				})
 				.attr('height', this.height)
 			
-			let iconSize = 12;
+			let movementSize = 12;
 
 			let movements = svg.selectAll('.movement')
 				.data(this.movements)
@@ -102,7 +102,7 @@ Vue.component('time-d-three', {
 				.attr('cy', function(d) {
 					return yScale(d.detail);
 				})
-				.attr('r', `${iconSize/2}`)
+				.attr('r', `${movementSize/2}`)
 
 			
 			let icons = svg.selectAll('.icon')
@@ -118,7 +118,7 @@ Vue.component('time-d-three', {
 				.attr('font-family', 'FontAwesome')
 				.attr('font-size', `${iconSize}px` )
 				.attr('text-anchor','middle')
-				.text(function(d) { return d.detail == 'Lounge' ? '\uf4b8' : '\uf52b' })
+				.text(function(d) { return d.detail == 'Lounge' ? '\uf118' : '\uf52b' })
 			
 
 			return true;
