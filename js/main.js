@@ -87,7 +87,7 @@ Vue.component('time-d-three', {
 				strategyBlocks.push(output)
 			}
 
-			/*let strategies = svg.selectAll('.strategy')
+			let strategies = svg.selectAll('.strategy')
 				.data(strategyBlocks)
 				.enter().append('rect')
 				.attr('class', 'strategy')
@@ -101,7 +101,7 @@ Vue.component('time-d-three', {
 				.attr('height', this.height)
 				.attr('fill', function(d) {
 					return strategyColor(d.detail)
-				})*/
+				})
 
 			let movements = svg.selectAll('.movement')
 				.data(this.movements)
