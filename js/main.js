@@ -106,7 +106,7 @@ Vue.component('time-d-three', {
 				})
 				.attr('y', (d)=>{
 					if(d.width > iconSize) return this.height/2 + iconSize/2
-					else return iconSize
+					else return iconSize/2
 				})
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
