@@ -57,7 +57,7 @@ Vue.component('time-d-three', {
 
 			let strategyColor = d3.scaleOrdinal()
 				.domain(this.strategies.map(strategy => strategy.detail))
-				.range(d3.schemeSet);
+				.range(d3.schemePastel2);
 
 
 			let svg = d3.select("#d3").append("svg")
