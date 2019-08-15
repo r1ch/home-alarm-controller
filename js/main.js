@@ -92,7 +92,7 @@ Vue.component('time-d-three',{
 	let strategies = svg.selectAll('.strategy')
 			.data(strategyBlocks)
 			.enter().append('rect')
-			.class('class','strategy')
+			.attr('class','strategy')
 			.attr('x',function(d){return d.end})
 			.attr('y',0)
 			.attr('width',function(d){return d.width})
