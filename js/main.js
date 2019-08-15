@@ -88,6 +88,8 @@ Vue.component('time-d-three', {
 					return d.width
 				})
 				.attr('height', this.height)
+			
+			let iconSize = 10;
 
 			let icons = svg.selectAll('.icons')
 				.data(strategyBlocks)
@@ -98,6 +100,9 @@ Vue.component('time-d-three', {
 					return d.start + d.width/2
 				})
 				.attr('y', this.height/2)
+				.attr('font-family', 'Font Awesome\ 5 Free')
+				.attr('font-size', `${iconSize}px` )
+				.text(function(d) { return '\uf118' }); 
 				.text(function(d){return d.detail})
 			
 			let movementSize = 12;
