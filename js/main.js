@@ -152,10 +152,10 @@ var app = new Vue({
 				return strategy;
 			})
 			
-			this.strategies.unshift({
+			/*this.strategies.unshift({
 				timestamp: new Date,
 				detail: "unknown"
-			})
+			})*/
 			
 			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
 			let earliestDate = new Date(earliestStrategy.timestamp)
