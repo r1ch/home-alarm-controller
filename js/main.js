@@ -15,7 +15,7 @@ Vue.component('time-d-three',{
     `,
     computed : {
         g(){
-        if(strategies.length == 0) return;
+        if(this.strategies.length == 0) return;
         let x = d3.scaleTime()
             .domain([
               this.strategies[this.strategies.length-1].timestamp,
