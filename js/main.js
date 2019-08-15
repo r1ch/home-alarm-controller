@@ -28,12 +28,10 @@ Vue.component('time-d-three', {
 	},
 	props: ['strategies', 'movements'],
 	template: `
-        <div id = 'd3'>
-		{{svg}}
-	</div>
+        <div id = 'd3'></div>
     	`,
-	computed: {
-		svg() {
+	watch: {
+		strategies() {
 			if (this.strategies.length == 0) return;
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
@@ -130,33 +128,26 @@ Vue.component('time-d-three', {
 var app = new Vue({
 	el: '#app',
 	data: {
-		rawShadow: {},
-		rawStrategies: [],
-		rawMovements: [],
+		raw : {},
+		shadow : {},
+		strategies : [],
+		movements : [],
 	},
-	computed: {
-		shadow() {
-			return this.rawShadow
-		},
-		strategies() {
-			if (this.rawStrategies.length === 0) return []
-			let output = this.rawStrategies.map(strategy => {
-				strategy.timestamp = new Date(strategy.timestamp)
-				return strategy
-			})
-			output.unshift({
+	watch: {
+		raw() {
+			this.shadow = this.raw.shadow;
+			
+			this.strategies = this.raw.metrics.strategies.map(strategy => {
+				strategy.timestamp = new Date(strategy.timestamp);
+				return strategy;
+			}).unshift({
 				timestamp: new Date,
 				detail: "unknown"
 			})
-			return output
-		},
-		movements() {
-			if (this.rawMovements.length === 0) return []
-			let output = this.rawMovements.map(movement => {
+		
+			this.movements = this.rawMovements.map(movement => {
 				movement.timestamp = new Date(movement.timestamp)
-				return movement
 			})
-			return output
 		}
 	},
 	/*mounted : function (){
@@ -171,6 +162,7 @@ var app = new Vue({
 			.then(({
 				data
 			}) => {
+				this.raw = data;
 				this.rawShadow = data.shadow
 				this.rawMovements = data.metrics.movement
 				this.rawStrategies = data.metrics.strategyState
