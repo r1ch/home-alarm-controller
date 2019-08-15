@@ -100,7 +100,7 @@ Vue.component('time-d-three', {
 					return d.start + d.width/2
 				})
 				.attr('y', this.height/2 + iconSize/2)
-				.attr('font-family', 'FontAwesome')
+				.attr('class', 'fa')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
 				.text(function(d) { return d.detail == 'Lounge' ? '\uf4b8' : '\uf52b' })
