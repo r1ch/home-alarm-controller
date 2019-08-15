@@ -95,6 +95,7 @@ Vue.component('time-d-three', {
 				bedtime : '\uf236',
 				blind : '\uf070'
 			}
+			let context = this;
 
 			let icons = svg.selectAll('.icons')
 				.data(strategyBlocks)
@@ -104,8 +105,7 @@ Vue.component('time-d-three', {
 				.attr('x', function(d) {
 					return d.start + d.width/2
 				})
-				.attr('y', function(d) {
-					console.log(d.width,iconSize,d.width > iconSize,this.height/2 + iconSize/2)
+				.attr('y', (d)=>{
 					if(d.width > iconSize) return (this.height/2 + iconSize/2)
 					else return (iconSize/2)
 				})
