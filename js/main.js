@@ -82,7 +82,7 @@ Vue.component('time-d-three',{
 		let output = {
 			end : xScale(this.strategies[i].timestamp),
 			start : xScale(this.strategies[i+1].timestamp),
-			detail : this.strategy[i+1].detail
+			detail : this.strategies[i+1].detail
 		}
 		output.width = output.end-output.start
 		strategyBlocks.push(output)
