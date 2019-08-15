@@ -13,22 +13,22 @@ body {
 }
 
 
-.strategy .blind {
+.strategy.blind {
   fill: rgba(247, 249, 249, 1); 
 }
 
-.strategy .bedtime {
+.strategy.bedtime {
   fill: rgba(247, 249, 249, 1);
 }
 
-.strategy .standard {
+.strategy.standard {
   fill : rgba(120, 213, 215, 1);
 }
 
-.movement .lounge {
+.movement.Lounge {
 
 }
 
-.movement .entry {
+.movement.Entry {
 
 }
