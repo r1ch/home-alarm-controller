@@ -18,12 +18,16 @@ Vue.component('time-d-three', {
 			bottom: 50,
 			left: 50
 		};
-		let width = 600 - margin.left - margin.right;
-		let height = 150 - margin.top - margin.bottom;
+		let fullWidth = 600
+		let fullHeight = 150
+		let width = fullWidth - margin.left - margin.right;
+		let height = fullHeight - margin.top - margin.bottom;
 		return {
 			margin: margin,
 			width: width,
-			height: height
+			height: height,
+			fullWidth : fullWidth,
+			fullHeight : fullHeight
 		}
 	},
 	props: ['strategies', 'movements'],
