@@ -56,7 +56,7 @@ Vue.component('time-d-three', {
 			let svg = d3.select("#d3").append("svg")
 				.attr("width", '100%')
 				.attr("height", '100%')
-				.attr('viewBox',`${this.margin.left} ${this.margin.top} ${this.margin.right + this.width} ${this.margin.bottom + this.height}`)
+				.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
 				//.attr('preserveAspectRatio','xMinYMin')
 				.append("g")
 				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
