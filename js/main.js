@@ -1,5 +1,9 @@
 Vue.component('google-login', {
-	template: '<div v-if = "!authenticated" class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>',
+	template: `
+		<div class = "row">
+			<div v-if = "!authenticated" class="g-signin2 mx-auto" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
+		</div>
+	`,
 	data: () => ({
 		authenticated: false
 	}),
@@ -32,7 +36,9 @@ Vue.component('time-d-three', {
 	},
 	props: ['strategies', 'movements'],
 	template: `
-		<div id = 'd3' :ready = 'ready' ></div>
+		<div class = "row">
+			<div id = 'd3' :ready = 'ready' class = 'col-sm-12'></div>
+		</div>
     	`,
 	computed: {
 		ready() {
