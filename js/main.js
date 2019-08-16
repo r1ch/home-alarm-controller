@@ -39,10 +39,10 @@ Vue.component('alarm-controls',{
 					case "quiet":
 						return "Arm"
 					break;
-					case: "arming"
-					case: "guarding"
-					case: "warning"
-					case: "sounding"
+					case "arming":
+					case "guarding":
+					case "warning":
+					case "sounding":
 						return "Disarm"
 					break;
 					default : 
