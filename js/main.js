@@ -18,17 +18,10 @@ Vue.component('alarm-controls',{
 	props: ['shadow'],
 	data: () => ({
 		authenticated: false,
-		actionMap : {
-			"quiet" : {text : "Arm", handler : arm()},
-			"arming" : {text : "Disarm", handler : disarm()},
-			"guarding" : {text : "Disarm", handler : disarm()},
-			"warning" : {text : "Disarm", handler : disarm()},
-			"sounding" : {text : "Disarm", handler : disarm()}
-		}
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row">
-			<button @click = "nextAction.handler" type="button" class="btn btn-primary col-sm-3">{{nextAction.text}}</button>
+			<button @click = "action.handler" type="button" class="btn btn-primary col-sm-3">{{action.text}}</button>
 			<button type="button" class="btn btn-secondary col-sm-3">Secondary</button>
 			<button type="button" class="btn btn-success col-sm-3">Success</button>
 			<button type="button" class="btn btn-danger col-sm-3">Danger</button>
@@ -40,19 +33,18 @@ Vue.component('alarm-controls',{
 		})
 	},
 	methods: {
-		arm (){},
-		disarm (){},
-		bedtime (){},
-		visitors (days){
+		action() {
+			let actionMap = {
+				"quiet" : {text:"Arm","handler":this.arm},
+				"arming" : {text:"Disarm","handler":this.disarm},
+				"guarding" : {text:"Disarm","handler":this.disarm},
+				"warning" : {text:"Disarm","handler":this.disarm},
+				"sounding" : {text:"Disarm","handler":this.disarm},
+				"default" : {text:"Disarm","handler":this.disarm},
+			}
+			return actionMap[this.shadow.state||"default"]
 		}
 	},
-	computed: {
-		nextAction() {
-			if (this.shadow){
-				return this.actionMap[this.quiet];
-			}
-		}
-	}
 })
 
 Vue.component('time-d-three', {
