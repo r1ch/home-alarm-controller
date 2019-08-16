@@ -16,12 +16,41 @@ Vue.component('google-login', {
 
 Vue.component('alarm-controls',{
 	props: ['shadow'],
+	data: () => ({
+		authenticated: false
+	}),
 	template: `
-		<button type="button" class="btn btn-primary">Primary</button>
-		<button type="button" class="btn btn-secondary">Secondary</button>
-		<button type="button" class="btn btn-success">Success</button>
-		<button type="button" class="btn btn-danger">Danger</button>
-	`
+		<div v-if = "authenticated" class = "row">
+			<button type="button" class="btn btn-primary">{{nextAction}}</button>
+			<button type="button" class="btn btn-secondary">Secondary</button>
+			<button type="button" class="btn btn-success">Success</button>
+			<button type="button" class="btn btn-danger">Danger</button>
+		</div>
+	`,
+	mounted: function() {
+		Credentials.then(() => {
+			this.authenticated = true
+		})
+	},
+	computed: {
+		nextAction() {
+			if (this.shadow){
+				switch (this.shadow.state){
+					case "quiet":
+						return "Arm"
+					break;
+					case: "arming"
+					case: "guarding"
+					case: "warning"
+					case: "sounding"
+						return "Disarm"
+					break;
+					default : 
+						return "Disarm"
+				}
+			}
+		}
+	}
 })
 
 Vue.component('time-d-three', {
