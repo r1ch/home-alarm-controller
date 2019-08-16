@@ -1,7 +1,7 @@
 Vue.component('google-login', {
 	template: `
 		<div class = "row justify-content-center">
-			<div v-if = "!authenticated" class="g-signin2 col-sm-6" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
+			<div v-if = "!authenticated" class="g-signin2 col-sm-1" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
 		</div>
 	`,
 	data: () => ({
