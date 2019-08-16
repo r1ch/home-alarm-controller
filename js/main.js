@@ -21,7 +21,7 @@ Vue.component('alarm-controls',{
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row">
-			<button v-on:click = "action().handler" type="button" class="btn btn-primary col-sm-3">{{action().text}}</button>
+			<button v-on:click = "action().handler()" type="button" class="btn btn-primary col-sm-3">{{action().text}}</button>
 			<button type="button" class="btn btn-secondary col-sm-3">Secondary</button>
 			<button type="button" class="btn btn-success col-sm-3">Success</button>
 			<button type="button" class="btn btn-danger col-sm-3">Danger</button>
