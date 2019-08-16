@@ -14,6 +14,10 @@ Vue.component('google-login', {
 	}
 })
 
+Vue.component('alarm-controls',{
+	props: ['shadow']
+})
+
 Vue.component('time-d-three', {
 	data: function() {
 		let margin = {
