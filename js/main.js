@@ -50,10 +50,17 @@ Vue.component('time-d-three', {
 			let yAxis = d3.axisLeft(yScale)
 
 			let svg = d3.select("#d3").append("svg")
-				.attr("width", this.width + this.margin.left + this.margin.right)
+				.attr("width", '100%')
+				.attr("height", '100%')
+				.attr('viewBox','0 0 '+Math.min(this.width,this.height)+' '+Math.min(this.width,this.height))
+				.attr('preserveAspectRatio','xMinYMin')
+				.append("g")
+				.attr("transform", "translate(" + Math.min(this.width,this.height) / 2 + "," + Math.min(this.width,this.height) / 2 + ")");
+
+				/*.attr("width", this.width + this.margin.left + this.margin.right)
 				.attr("height", this.height + this.margin.top + this.margin.bottom)
 				.append("g")
-				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");*/
 
 			svg.append("g")
 				.attr("class", "y axis")
