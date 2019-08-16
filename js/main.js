@@ -33,6 +33,25 @@ Vue.component('alarm-controls',{
 		})
 	},
 	methods: {
+		arm(){
+			signHttpRequest("POST", "/alarm/monitor/on")
+			.then(axios)
+			.then(({
+				data
+			}) => {
+				console.log(data)
+			})
+		},
+		disarm(){
+			signHttpRequest("POST", "/alarm/monitor/off")
+			.then(axios)
+			.then(({
+				data
+			}) => {
+				console.log(data)
+			})
+		},
+		bedtime(){},
 		action() {
 			let actionMap = {
 				"quiet" : {text:"Arm","handler":this.arm},
