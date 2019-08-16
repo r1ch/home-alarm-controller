@@ -15,7 +15,13 @@ Vue.component('google-login', {
 })
 
 Vue.component('alarm-controls',{
-	props: ['shadow']
+	props: ['shadow'],
+	template: `
+		<button type="button" class="btn btn-primary">Primary</button>
+		<button type="button" class="btn btn-secondary">Secondary</button>
+		<button type="button" class="btn btn-success">Success</button>
+		<button type="button" class="btn btn-danger">Danger</button>
+	`
 })
 
 Vue.component('time-d-three', {
