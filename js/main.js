@@ -17,14 +17,21 @@ Vue.component('google-login', {
 Vue.component('alarm-controls',{
 	props: ['shadow'],
 	data: () => ({
-		authenticated: false
+		authenticated: false,
+		actionMap : {
+			"quiet" : {text : "Arm", handler : arm()},
+			"arming" : {text : "Disarm", handler : disarm()},
+			"guarding" : {text : "Disarm", handler : disarm()},
+			"warning" : {text : "Disarm", handler : disarm()},
+			"sounding" : {text : "Disarm", handler : disarm()}
+		}
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row">
-			<button type="button" class="btn btn-primary">{{nextAction}}</button>
-			<button type="button" class="btn btn-secondary">Secondary</button>
-			<button type="button" class="btn btn-success">Success</button>
-			<button type="button" class="btn btn-danger">Danger</button>
+			<button @click = "nextAction.handler" type="button" class="btn btn-primary col-sm-3">{{nextAction.text}}</button>
+			<button type="button" class="btn btn-secondary col-sm-3">Secondary</button>
+			<button type="button" class="btn btn-success col-sm-3">Success</button>
+			<button type="button" class="btn btn-danger col-sm-3">Danger</button>
 		</div>
 	`,
 	mounted: function() {
@@ -32,22 +39,17 @@ Vue.component('alarm-controls',{
 			this.authenticated = true
 		})
 	},
+	methods: {
+		arm (){},
+		disarm (){},
+		bedtime (){},
+		visitors (days){
+		}
+	},
 	computed: {
 		nextAction() {
 			if (this.shadow){
-				switch (this.shadow.state){
-					case "quiet":
-						return "Arm"
-					break;
-					case "arming":
-					case "guarding":
-					case "warning":
-					case "sounding":
-						return "Disarm"
-					break;
-					default : 
-						return "Disarm"
-				}
+				return this.actionMap[this.quiet];
 			}
 		}
 	}
