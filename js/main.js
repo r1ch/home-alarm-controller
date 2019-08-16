@@ -52,10 +52,10 @@ Vue.component('time-d-three', {
 			let svg = d3.select("#d3").append("svg")
 				.attr("width", '100%')
 				.attr("height", '100%')
-				.attr('viewBox','0 0 '+Math.min(this.width,this.height)+' '+Math.min(this.width,this.height))
-				.attr('preserveAspectRatio','xMinYMin')
+				.attr('viewBox',`${this.margin.left} ${this.margin.top} ${this.margin.right + this.width} ${this.margin.bottom + this.height}`)
+				//.attr('preserveAspectRatio','xMinYMin')
 				.append("g")
-				.attr("transform", "translate(" + Math.min(this.width,this.height) / 2 + "," + Math.min(this.width,this.height) / 2 + ")");
+				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
 
 				/*.attr("width", this.width + this.margin.left + this.margin.right)
 				.attr("height", this.height + this.margin.top + this.margin.bottom)
