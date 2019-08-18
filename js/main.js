@@ -81,7 +81,9 @@ Vue.component('time-d-three', {
 	props: ['strategies', 'movements'],
 	template: `
 		<div class = "row">
-			<div id = 'd3' :ready = 'ready' class = 'col-sm-12'></div>
+			<div :ready = 'ready' class = 'col-sm-12'>
+				<svg id = 'd3'></svg>
+			</div>
 		</div>
     	`,
 	computed: {
