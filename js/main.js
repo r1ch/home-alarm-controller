@@ -81,8 +81,7 @@ Vue.component('time-d-three', {
 	props: ['strategies', 'movements'],
 	template: `
 		<div class = "row">
-			<div :ready = 'ready' class = 'col-sm-12'>
-				<svg id = 'd3'></svg>
+			<div id = 'd3' :ready = 'ready' class = 'col-sm-12'>
 			</div>
 		</div>
     	`,
@@ -106,6 +105,9 @@ Vue.component('time-d-three', {
 			let yAxis = d3.axisLeft(yScale)
 
 			let svg = d3.select("#d3")
+				.selectAll("svg");
+			
+			 svg.enter().append("svg")
 				.attr("width", '100%')
 				.attr("height", '100%')
 				.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
