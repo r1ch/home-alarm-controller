@@ -105,18 +105,13 @@ Vue.component('time-d-three', {
 
 			let yAxis = d3.axisLeft(yScale)
 
-			let svg = d3.select("#d3").append("svg")
+			let svg = d3.select("#d3")
 				.attr("width", '100%')
 				.attr("height", '100%')
 				.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
-				//.attr('preserveAspectRatio','xMinYMin')
 				.append("g")
 				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
 
-				/*.attr("width", this.width + this.margin.left + this.margin.right)
-				.attr("height", this.height + this.margin.top + this.margin.bottom)
-				.append("g")
-				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");*/
 
 			svg.append("g")
 				.attr("class", "y axis")
