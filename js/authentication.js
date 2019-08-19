@@ -58,7 +58,7 @@ function handleSTSResponse(data) {
     return  Credentials.resolve()
 }
 
-function signHttpRequest(method,path) {
+function signHttpRequest(method,path,data) {
     return Credentials.then(()=>{
 	    let request = new AWS.HttpRequest(window.config.apiGatewayUrl, window.config.region);
 	    request.method = method;
@@ -75,7 +75,8 @@ function signHttpRequest(method,path) {
 	    	method : r.method,
 		url : r.path,
 		baseURL : r.endpoint.href,
-		headers : r.headers
+		headers : r.headers,
+		data: data
 	    }
     });
 }
