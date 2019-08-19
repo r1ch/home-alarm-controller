@@ -145,10 +145,9 @@ Vue.component('time-d-three', {
 				strategyBlocks.push(output)
 			}
 
-			let strategies = svg.selectAll('.strategy')
+			svg.selectAll('.strategy')
 				.data(strategyBlocks)
-			
-			strategies.enter()
+				.enter()
 				.append('rect')
 				.attr('class', function(d){return `strategy ${d.detail}`})
 				.attr('x', function(d) {
@@ -160,7 +159,9 @@ Vue.component('time-d-three', {
 				})
 				.attr('height', this.height)
 			
-			strategies.exit()
+			svg.selectAll('.strategy')
+				.data(strategyBlocks)
+				.exit()
 				.remove()
 			
 			let iconSize = 8;
@@ -170,10 +171,9 @@ Vue.component('time-d-three', {
 				blind : '\uf070'
 			}
 
-			let icons = svg.selectAll('.icons')
+			svg.selectAll('.icons')
 				.data(strategyBlocks)
-				
-			icons.enter()
+				.enter()
 				.append('text')
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('x', function(d) {
@@ -188,12 +188,14 @@ Vue.component('time-d-three', {
 				.attr('font-size', `${iconSize}px`)
 				.text(function(d) { return iconMap[d.detail]})
 			
-			icons.exit()
+			svg.selectAll('.icons')
+				.data(strategyBlocks)
+				.exit()
 				.remove()
 			
 			let movementSize = 12;
 
-			let movements = svg.selectAll('.movement')
+			svg.selectAll('.movement')
 				.data(this.movements)
 				.enter()
 				.append('circle')
@@ -205,6 +207,11 @@ Vue.component('time-d-three', {
 					return yScale(d.detail);
 				})
 				.attr('r', `${movementSize/2}`)
+			
+			svg.selectAll('.movement')
+				.data(this.movements)
+				.exit()
+				.remove()
 
 			return true;
 		}
