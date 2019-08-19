@@ -113,6 +113,9 @@ Vue.component('time-d-three', {
 	methods: {
 		draw() {
 			if (this.strategies.length == 0 || this.movements.length == 0) return;
+			
+			  let t = d3.transition().duration(750);
+			
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
 					return d.timestamp
@@ -131,9 +134,11 @@ Vue.component('time-d-three', {
 
 
 			this.svg.select(".y")
+				.transition(t)
 				.call(yAxis);
 
 			this.svg.select(".x")
+				.transition(t)
 				.call(xAxis);
 
 			let strategyBlocks = [];
@@ -150,6 +155,20 @@ Vue.component('time-d-three', {
 
 			let strategies = this.svg.selectAll('.strategy')
 				.data(strategyBlocks)
+				.transition(t)
+			
+						
+			strategies.exit().remove()
+			
+			strategies
+				.attr('x', function(d) {
+					return d.start
+				})
+				.attr('y', 0)
+				.attr('width', function(d) {
+					return d.width
+				})
+				.attr('height', this.height)
 			
 			strategies.enter()
 				.append('rect')
@@ -162,9 +181,7 @@ Vue.component('time-d-three', {
 					return d.width
 				})
 				.attr('height', this.height)
-			
-			strategies.exit()
-				.remove()
+
 			
 			let iconSize = 8;
 			let iconMap = {
@@ -175,6 +192,24 @@ Vue.component('time-d-three', {
 
 			let icons = this.svg.selectAll('.icon')
 				.data(strategyBlocks)
+				.transition(t)
+			
+			icons.exit().remove()
+			
+			
+			icons
+				.attr('class', function(d){return `icon ${d.detail} fa`})
+				.attr('x', function(d) {
+					return d.start + d.width/2
+				})
+				.attr('y', (d)=>{
+					if(d.width > iconSize) return this.height/2 + iconSize/2
+					else return iconSize/2
+				})
+				.attr('text-anchor', 'middle')
+				.attr('font-weight', '900')
+				.attr('font-size', `${iconSize}px`)
+				.text(function(d) { return iconMap[d.detail]})
 			
 			icons.enter()
 				.append('text')
@@ -190,14 +225,27 @@ Vue.component('time-d-three', {
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
 				.text(function(d) { return iconMap[d.detail]})
-			
-			icons.exit()
-				.remove()
+		
 			
 			let movementSize = 12;
 
 			let movements =  this.svg.selectAll('.movement')
 				.data(this.movements)
+				.transition(t)
+			
+						
+			movements.exit().remove()
+			
+			movements
+				.attr('class', function(d){return `movement ${d.detail}`})
+				.attr('cx', function(d) {
+					return xScale(d.timestamp);
+				})
+				.attr('cy', function(d) {
+					return yScale(d.detail);
+				})
+				.attr('r', `${movementSize/2}`)
+
 				
 			movements.enter()
 				.append('circle')
@@ -210,8 +258,8 @@ Vue.component('time-d-three', {
 				})
 				.attr('r', `${movementSize/2}`)
 			
-			movements.exit()
-				.remove()
+
+
 
 			return true;
 		}
