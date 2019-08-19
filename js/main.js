@@ -199,7 +199,7 @@ Vue.component('time-d-three', {
 			icons.exit().remove()
 			
 			
-			icons.
+			icons
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
@@ -239,7 +239,7 @@ Vue.component('time-d-three', {
 						
 			movements.exit().remove()
 			
-			movements.
+			movements
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.transition(t)
 				.attr('cx', function(d) {
