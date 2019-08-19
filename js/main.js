@@ -173,7 +173,7 @@ Vue.component('time-d-three', {
 				blind : '\uf070'
 			}
 
-			let icons = this.svg.selectAll('.icons')
+			let icons = this.svg.selectAll('.icon')
 				.data(strategyBlocks)
 			
 			icons.enter()
