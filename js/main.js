@@ -26,6 +26,7 @@ Vue.component('presence-list',{
 	},
 	template: `
 		<div v-if = "authenticated" class = "row">
+{{presence}}
 			<table>
 				<tbody>
 					<tr v-for = "person in presence">
