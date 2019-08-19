@@ -229,6 +229,13 @@ var app = new Vue({
 				detail: "unknown"
 			})
 			
+			if(this.strategies.length == 1){
+				this.strategies.push({
+					timestamp: new Date(Date.now - 24*60*60*1000),
+					detail: this.shadow.strategy
+				})
+			}
+			
 			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
 			let earliestDate = new Date(earliestStrategy.timestamp)
 		
