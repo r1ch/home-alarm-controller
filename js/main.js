@@ -3,8 +3,8 @@ Vue.component('google-login', {
 		authenticated: false
 	}),
 	template: `
-		<div class = "row justify-content-center">
-			<div v-if = "!authenticated" class="g-signin2 col-sm-auto" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
+		<div class = "row">
+			<div v-if = "!authenticated" class="g-signin2 col sm1 offset-sm5" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
 		</div>
 	`,
 	mounted: function() {
@@ -39,9 +39,9 @@ Vue.component('alarm-controls',{
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row">
-			<button v-on:click = "action().handler()" type="button" class="btn btn-primary col-sm-12 col-md-3">{{action().text}}</button>
-			<button v-on:click = "bedtime()" type="button" class="btn btn-secondary col-sm-12 col-md-3">Bedtime</button>
-			<button v-on:click = "visitors()" type="button" class="btn btn-success col-sm-12 col-md-3">Visitor</button>
+			<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
+			<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
+			<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
 		{{shadow}}
 		</div>
 	`,
@@ -89,9 +89,9 @@ Vue.component('time-d-three', {
 	data: function() {
 		let margin = {
 			top: 50,
-			right: 50,
+			right: 20,
 			bottom: 50,
-			left: 50
+			left: 20
 		};
 		let fullWidth = 600
 		let fullHeight = 150
@@ -109,7 +109,7 @@ Vue.component('time-d-three', {
 	props: ['strategies', 'movements'],
 	template: `
 		<div class = "row">
-			<div id = 'd3' class = 'col-sm-12'>
+			<div id = 'd3' class = 'col sm12'>
 			</div>
 		</div>
     	`,
@@ -123,7 +123,9 @@ Vue.component('time-d-three', {
 				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
 		
 		this.svg.append("g")
-			.attr("class", "y axis")
+			.attr('font-weight', '900')
+			.attr('font-size', `8px`)
+			.attr("class", "y axis awesome")
 		
 		this.svg.append("g")
 			.attr("class", "x axis")
@@ -143,6 +145,15 @@ Vue.component('time-d-three', {
 			
 			let t = d3.transition().duration(750);
 			
+			let iconMap = {
+				standard : '\uf06e',
+				bedtime : '\uf236',
+				blind : '\uf070',
+				Lounge : '\uf4b8',
+				Entry : '\uf52b'
+			}
+			let iconSize = 8;
+			
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
 					return d.timestamp
@@ -153,7 +164,7 @@ Vue.component('time-d-three', {
 				.ticks(5); // specify the number of ticks
 
 			let yScale = d3.scalePoint()
-				.domain(this.movements.map(movement => movement.detail))
+				.domain(this.movements.map(movement => iconMap[movement.detail]))
 				.range([0, this.height])
 				.padding(.5)
 
@@ -214,12 +225,7 @@ Vue.component('time-d-three', {
 				})
 
 			
-			let iconSize = 8;
-			let iconMap = {
-				standard : '\uf06e',
-				bedtime : '\uf236',
-				blind : '\uf070'
-			}
+
 
 			let icons = this.svg.selectAll('.icon')
 				.data(strategyBlocks)
@@ -228,7 +234,7 @@ Vue.component('time-d-three', {
 			
 			
 			icons
-				.attr('class', function(d){return `icon ${d.detail} fa`})
+				.attr('class', function(d){return `icon awesome ${d.detail} fa`})
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
