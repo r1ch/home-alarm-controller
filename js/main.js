@@ -49,7 +49,7 @@ Vue.component('alarm-controls',{
 				.then(setTimeout(()=>{this.$root.fetchData()},1000))
 		},
 		visitors(){
-			signHttpRequest("PATCH", "/alarm/monitor/visitors")
+			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: 1, device: "Guest"})
 				.then(axios)
 		},
 		action() {
