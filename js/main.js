@@ -276,7 +276,7 @@ Vue.component('time-d-three', {
 			movements
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cy', function(d) {
-					return yScale(d.detail);
+					return yScale(iconMap[d.detail]);
 				})
 				.transition(t)
 				.attr('cx', function(d) {
@@ -289,7 +289,7 @@ Vue.component('time-d-three', {
 				.append('circle')
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cy', function(d) {
-					return yScale(d.detail);
+					return yScale(iconMap[d.detail]);
 				})
 				.transition(t)
 				.attr('cx', function(d) {
