@@ -22,9 +22,10 @@ Vue.component('alarm-controls',{
 	template: `
 		<div v-if = "authenticated" class = "row">
 			<button v-on:click = "action().handler()" type="button" class="btn btn-primary col-sm-3">{{action().text}}</button>
-			<button type="button" class="btn btn-secondary col-sm-3">Secondary</button>
-			<button type="button" class="btn btn-success col-sm-3">Success</button>
+			<button v-on:click = "bedtime()" type="button" class="btn btn-secondary col-sm-3">Bedtime</button>
+			<button v-on:click = "visitors()" type="button" class="btn btn-success col-sm-3">Visitor</button>
 			<button type="button" class="btn btn-danger col-sm-3">Danger</button>
+			{{shadow}}
 		</div>
 	`,
 	mounted: function() {
@@ -35,15 +36,23 @@ Vue.component('alarm-controls',{
 	methods: {
 		arm(){
 			signHttpRequest("POST", "/alarm/monitor/on")
-			.then(axios)
-			.then(this.$root.fetchData())
+				.then(axios)
+				.then(setTimeout(()=>{this.$root.fetchData()},1000))
 		},
 		disarm(){
 			signHttpRequest("POST", "/alarm/monitor/off")
-			.then(axios)
-			.then(this.$root.fetchData())
+				.then(axios)
+				.then(setTimeout(()=>{this.$root.fetchData()},1000))
 		},
-		bedtime(){},
+		bedtime(){
+			signHttpRequest("POST", "/alarm/monitor/bedtime")
+				.then(axios)
+				.then(setTimeout(()=>{this.$root.fetchData()},1000))
+		},
+		visitors(){
+			signHttpRequest("PATCH", "/alarm/monitor/visitors")
+				.then(axios)
+		},
 		action() {
 			let actionMap = {
 				"quiet" : {text:"Arm","handler":this.arm},
