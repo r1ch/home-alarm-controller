@@ -1,9 +1,21 @@
 Vue.component('google-login', {
+	data: () => ({
+		authenticated: false
+	}),
 	template: `
 		<div class = "row justify-content-center">
 			<div v-if = "!authenticated" class="g-signin2 col-sm-auto" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
 		</div>
 	`,
+	mounted: function() {
+		Credentials.then(() => {
+			this.authenticated = true
+		})
+	}
+})
+
+Vue.component('presence-list',{
+	props: ['presence'],
 	data: () => ({
 		authenticated: false
 	}),
@@ -11,7 +23,13 @@ Vue.component('google-login', {
 		Credentials.then(() => {
 			this.authenticated = true
 		})
-	}
+	},
+	template: `
+		<div v-if = "authenticated" class = "row">
+			{{presence}}
+		</div>
+	`,
+	
 })
 
 Vue.component('alarm-controls',{
@@ -21,10 +39,11 @@ Vue.component('alarm-controls',{
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row">
+		{{here}}
 			<button v-on:click = "action().handler()" type="button" class="btn btn-primary col-sm-12 col-md-3">{{action().text}}</button>
 			<button v-on:click = "bedtime()" type="button" class="btn btn-secondary col-sm-12 col-md-3">Bedtime</button>
 			<button v-on:click = "visitors()" type="button" class="btn btn-success col-sm-12 col-md-3">Visitor</button>
-			{{shadow}}
+		{{shadow}}
 		</div>
 	`,
 	mounted: function() {
@@ -51,6 +70,7 @@ Vue.component('alarm-controls',{
 		visitors(){
 			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: 1, device: "Guest"})
 				.then(axios)
+				.then(setTimeout(()=>{this.$root.fetchPresence()},1000))
 		},
 		action() {
 			let actionMap = {
@@ -285,7 +305,10 @@ Vue.component('time-d-three', {
 var app = new Vue({
 	el: '#app',
 	data: {
-		raw : false,
+		raw :  {
+			data: false,
+			presence : false
+		}
 	},
 	methods : {
 		fetchData(){
@@ -294,18 +317,31 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
-					this.raw = data;
+					this.raw.data = data;
+				})
+		},
+		fetchPresence(){
+			signHttpRequest("GET", "/alarm/monitor/visitors")
+				.then(axios)
+				.then(({
+					data
+				}) => {
+					this.raw.presence = data;
 				})
 		}
 	},
 	computed: {
+		presence(){
+			if(!this.raw.presence) return []
+			return this.raw.presence.people
+		},
 		shadow(){
-			if(!this.raw.shadow) return {}
-			return this.raw.shadow;
+			if(!this.raw.data.shadow) return {}
+			return this.raw.data.shadow;
 		},
 		strategies(){
-			if(!this.raw.metrics) return []
-			let strategies = this.raw.metrics.strategyState.map(strategy => {
+			if(!this.raw.data.metrics) return []
+			let strategies = this.raw.data.metrics.strategyState.map(strategy => {
 				strategy.timestamp = new Date(strategy.timestamp);
 				return strategy;
 			})
@@ -324,11 +360,11 @@ var app = new Vue({
 			return strategies
 		},
 		movements() {
-			if(!this.raw.metrics || this.strategies.length == 0) return []
+			if(!this.raw.data.metrics || this.strategies.length == 0) return []
 			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
 			let earliestDate = new Date(earliestStrategy.timestamp)
 
-			return this.raw.metrics.movement
+			return this.raw.data.metrics.movement
 			.map(movement => {
 				movement.timestamp = new Date(movement.timestamp);
 				return movement;
@@ -344,5 +380,6 @@ var app = new Vue({
 	}*/
 	mounted: function() {
 		this.fetchData();
+		this.fetchPresence();
 	}
 })
