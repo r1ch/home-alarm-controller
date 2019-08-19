@@ -108,8 +108,8 @@ Vue.component('time-d-three', {
 	},
 	props: ['strategies', 'movements'],
 	template: `
-		<div class = "row">
-			<div id = 'd3' class = 'col sm12'>
+		<div class = 'row'>
+			<div id = 'd3'>
 			</div>
 		</div>
     	`,
