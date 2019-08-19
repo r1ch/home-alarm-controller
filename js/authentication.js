@@ -65,6 +65,7 @@ function signHttpRequest(method,path,data) {
 	    request.path = window.config.apiGatewayPath;
 	    request.path += path
 	    request.headers['Host'] = request.endpoint.host;
+	    request.body = JSON.stringify(data);
 	    // Signing
 	    var signer = new AWS.Signers.V4(request, 'execute-api');
 	    signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
