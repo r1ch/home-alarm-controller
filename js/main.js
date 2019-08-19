@@ -36,12 +36,17 @@ Vue.component('alarm-controls',{
 	props: ['shadow'],
 	data: () => ({
 		authenticated: false,
+		disabled : {
+			arm:true,
+			bedtime:true,
+			visitors:true
+		}
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row">
-			<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
-			<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
-			<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
+			<button :disabled="disabled.arm" v-on:click = "action().handler()" type="button" class="btn center-align">{{action().text}}</button>
+			<button :disabled="disabled.bedtime" v-on:click = "bedtime()" type="button" class="btn center-align">Bedtime</button>
+			<button :disabled="disabled.visitors" v-on:click = "visitors()" type="button" class="btn center-align">Visitor</button>
 		{{shadow}}
 		</div>
 	`,
@@ -50,23 +55,32 @@ Vue.component('alarm-controls',{
 			this.authenticated = true
 		})
 	},
+	watch : {
+		shadow(){
+			this.disabled.forEach(button=>button.disabled=false);
+		}
+	},
 	methods: {
 		arm(){
+			this.disabled.arm = true;
 			signHttpRequest("POST", "/alarm/monitor/on")
 				.then(axios)
 				.then(this.$root.pollData())
 		},
 		disarm(){
+			this.disabled.arm = true;
 			signHttpRequest("POST", "/alarm/monitor/off")
 				.then(axios)
 				.then(this.$root.pollData())
 		},
 		bedtime(){
+			this.disabled.bedtime = true;
 			signHttpRequest("POST", "/alarm/monitor/bedtime")
 				.then(axios)
 				.then(this.$root.pollData())
 		},
 		visitors(){
+			this.disabled.visitors = true;
 			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: 1, device: "Guest"})
 				.then(axios)
 				.then(this.$root.pollPresence())
