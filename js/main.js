@@ -125,7 +125,7 @@ Vue.component('time-d-three', {
 		this.svg.append("g")
 			.attr('font-weight', '900')
 			.attr('font-size', `8px`)
-			.attr("class", "y axis awesome")
+			.attr("class", "y axis fa")
 		
 		this.svg.append("g")
 			.attr("class", "x axis")
@@ -234,7 +234,7 @@ Vue.component('time-d-three', {
 			
 			
 			icons
-				.attr('class', function(d){return `icon awesome ${d.detail} fa`})
+				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
