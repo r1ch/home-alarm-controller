@@ -54,22 +54,22 @@ Vue.component('alarm-controls',{
 		arm(){
 			signHttpRequest("POST", "/alarm/monitor/on")
 				.then(axios)
-				.then(setTimeout(()=>{this.$root.fetchData()},1000))
+				.then(this.$root.pollData())
 		},
 		disarm(){
 			signHttpRequest("POST", "/alarm/monitor/off")
 				.then(axios)
-				.then(setTimeout(()=>{this.$root.fetchData()},1000))
+				.then(this.$root.pollData())
 		},
 		bedtime(){
 			signHttpRequest("POST", "/alarm/monitor/bedtime")
 				.then(axios)
-				.then(setTimeout(()=>{this.$root.fetchData()},1000))
+				.then(this.$root.pollData())
 		},
 		visitors(){
 			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: 1, device: "Guest"})
 				.then(axios)
-				.then(setTimeout(()=>{this.$root.fetchPresence()},1000))
+				.then(this.$root.pollPresence())
 		},
 		action() {
 			let actionMap = {
@@ -329,7 +329,7 @@ var app = new Vue({
 			this.pollers.presence = this.poll(this.fetchPresence,this.pollers.data)
 		},
 		poll(fn,poller){
-			let [count, maxCount, interval] = [0,10,500];
+			let [count, maxCount, interval] = [0,4,500];
 			return setInterval(()=>{
 				if(count<maxCount){
 					count++
