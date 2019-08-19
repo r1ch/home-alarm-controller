@@ -322,11 +322,11 @@ var app = new Vue({
 	methods : {
 		pollData(){
 			if(this.pollers.data) clearInterval(this.pollers.data)
-			this.pollers.data = poll(this.fetchData,this.pollers.data)
+			this.pollers.data = this.poll(this.fetchData,this.pollers.data)
 		},
 		pollPresence(){
 			if(this.pollers.presence) clearInterval(this.pollers.presence)
-			this.pollers.presence = poll(this.fetchPresence,this.pollers.data)
+			this.pollers.presence = this.poll(this.fetchPresence,this.pollers.data)
 		},
 		poll(fn,poller){
 			let [count, maxCount, interval] = [0,10,500];
