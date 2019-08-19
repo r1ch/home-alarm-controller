@@ -94,6 +94,13 @@ Vue.component('time-d-three', {
 				.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
 				.append("g")
 				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
+		
+		this.svg.append("g")
+			.attr("class", "y axis")
+		
+		this.svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + this.height + ")")
 	},
 	watch : {
 		strategies(){
@@ -123,13 +130,10 @@ Vue.component('time-d-three', {
 			let yAxis = d3.axisLeft(yScale)
 
 
-			this.svg.append("g")
-				.attr("class", "y axis")
+			this.svg.select(".y")
 				.call(yAxis);
 
-			this.svg.append("g")
-				.attr("class", "x axis")
-				.attr("transform", "translate(0," + this.height + ")")
+			this.svg.select(".x")
 				.call(xAxis);
 
 			let strategyBlocks = [];
