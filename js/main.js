@@ -157,7 +157,7 @@ Vue.component('time-d-three', {
 				.data(strategyBlocks)
 			
 						
-			strategies.exit().transition(t).remove()
+			strategies.exit().remove()
 			
 			strategies.transition(t)
 				.attr('x', function(d) {
@@ -193,7 +193,7 @@ Vue.component('time-d-three', {
 			let icons = this.svg.selectAll('.icon')
 				.data(strategyBlocks)
 			
-			icons.exit().transition(t).remove()
+			icons.exit().remove()
 			
 			
 			icons.transition(t)
@@ -232,7 +232,7 @@ Vue.component('time-d-three', {
 			let movements =  this.svg.selectAll('.movement')
 				.data(this.movements)
 						
-			movements.exit().transition(t).remove()
+			movements.exit().remove()
 			
 			movements.transition(t)
 				.attr('class', function(d){return `movement ${d.detail}`})
