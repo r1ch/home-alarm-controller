@@ -106,6 +106,7 @@ Vue.component('time-d-three', {
 
 			let svg = d3.select("#d3")
 				.selectAll("svg")
+				.data([1])
 				.enter()
 				.append("svg")
 				.attr("width", '100%')
