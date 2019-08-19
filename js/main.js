@@ -165,11 +165,12 @@ Vue.component('time-d-three', {
 					return d.width
 				})
 				.attr('height', this.height)
+				.attr('y', 0)
 				.transition(t)
 				.attr('x', function(d) {
 					return d.start
 				})
-				.attr('y', 0)
+
 
 			
 			strategies.enter()
@@ -179,11 +180,11 @@ Vue.component('time-d-three', {
 					return d.width
 				})
 				.attr('height', this.height)
+				.attr('y', 0)
 				.transition(t)
 				.attr('x', function(d) {
 					return d.start
 				})
-				.attr('y', 0)
 
 			
 			let iconSize = 8;
@@ -204,14 +205,14 @@ Vue.component('time-d-three', {
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return iconMap[d.detail]})
-				.transition()
-				.attr('x', function(d) {
-					return d.start + d.width/2
-				})
+				.text(function(d) { return d.width > iconSize ? iconMap[d.detail] : ""})
 				.attr('y', (d)=>{
 					if(d.width > iconSize) return this.height/2 + iconSize/2
 					else return iconSize/2
+				})
+				.transition(t)
+				.attr('x', function(d) {
+					return d.start + d.width/2
 				})
 
 			
@@ -221,14 +222,14 @@ Vue.component('time-d-three', {
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return iconMap[d.detail]})
-				.transition()
-				.attr('x', function(d) {
-					return d.start + d.width/2
-				})
+				.text(function(d) { return d.width > iconSize ? iconMap[d.detail] : ""})
 				.attr('y', (d)=>{
 					if(d.width > iconSize) return this.height/2 + iconSize/2
 					else return iconSize/2
+				})
+				.transition(t)
+				.attr('x', function(d) {
+					return d.start + d.width/2
 				})
 		
 			
@@ -241,12 +242,12 @@ Vue.component('time-d-three', {
 			
 			movements
 				.attr('class', function(d){return `movement ${d.detail}`})
+				.attr('cy', function(d) {
+					return yScale(d.detail);
+				})
 				.transition(t)
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
-				})
-				.attr('cy', function(d) {
-					return yScale(d.detail);
 				})
 				.attr('r', `${movementSize/2}`)
 
@@ -254,12 +255,12 @@ Vue.component('time-d-three', {
 			movements.enter()
 				.append('circle')
 				.attr('class', function(d){return `movement ${d.detail}`})
+				.attr('cy', function(d) {
+					return yScale(d.detail);
+				})
 				.transition(t)
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
-				})
-				.attr('cy', function(d) {
-					return yScale(d.detail);
 				})
 				.attr('r', `${movementSize/2}`)
 			
