@@ -114,7 +114,7 @@ Vue.component('time-d-three', {
 		draw() {
 			if (this.strategies.length == 0 || this.movements.length == 0) return;
 			
-			  let t = d3.transition().duration(750);
+			let t = d3.transition().duration(750);
 			
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
@@ -195,7 +195,7 @@ Vue.component('time-d-three', {
 			icons.exit().transition(t).remove()
 			
 			
-			icons
+			icons.transition(t)
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('x', function(d) {
 					return d.start + d.width/2
@@ -209,7 +209,7 @@ Vue.component('time-d-three', {
 				.attr('font-size', `${iconSize}px`)
 				.text(function(d) { return iconMap[d.detail]})
 			
-			icons.enter()
+			icons.enter().transition(t)
 				.append('text')
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('x', function(d) {
@@ -232,7 +232,7 @@ Vue.component('time-d-three', {
 						
 			movements.exit().transition(t).remove()
 			
-			movements
+			movements.transition(t)
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
@@ -243,7 +243,7 @@ Vue.component('time-d-three', {
 				.attr('r', `${movementSize/2}`)
 
 				
-			movements.enter()
+			movements.enter().transition(t)
 				.append('circle')
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cx', function(d) {
