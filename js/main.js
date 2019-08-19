@@ -75,7 +75,7 @@ Vue.component('time-d-three', {
 			width: width,
 			height: height,
 			fullWidth : fullWidth,
-			fullHeight : fullHeight
+			fullHeight : fullHeight,
 			svg : false;
 		}
 	},
