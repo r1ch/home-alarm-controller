@@ -254,7 +254,7 @@ var app = new Vue({
 
 			if(strategies.length == 1){
 				strategies.push({
-					timestamp: new Date(Date.now - 24*60*60*1000),
+					timestamp: new Date(Date.now() - 24*60*60*1000),
 					detail: this.shadow.strategy
 				})
 			}
