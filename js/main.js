@@ -198,7 +198,8 @@ Vue.component('time-d-three', {
 
 			let movements =  this.svg.selectAll('.movement')
 				.data(this.movements)
-				.enter()
+				
+			movements.enter()
 				.append('circle')
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cx', function(d) {
