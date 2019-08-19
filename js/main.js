@@ -199,10 +199,7 @@ Vue.component('time-d-three', {
 var app = new Vue({
 	el: '#app',
 	data: {
-		raw : {},
-		shadow : {},
-		strategies : [],
-		movements : [],
+		raw : false,
 	},
 	methods : {
 		fetchData(){
@@ -215,39 +212,42 @@ var app = new Vue({
 				})
 		}
 	},
-	watch: {
-		raw: {
-			handler : function(){
-				this.shadow = this.raw.shadow;
+	computed: {
+		shadow(){
+			if(!raw) return {}
+			return this.raw.shadow;
+		},
+		strategies(){
+			if(!raw) return []
+			let strategies = this.raw.metrics.strategyState.map(strategy => {
+				strategy.timestamp = new Date(strategy.timestamp);
+				return strategy;
+			})
 
-				this.strategies = this.raw.metrics.strategyState.map(strategy => {
-					strategy.timestamp = new Date(strategy.timestamp);
-					return strategy;
+			strategies.unshift({
+				timestamp: new Date,
+				detail: "unknown"
+			})
+
+			if(strategies.length == 1){
+				strategies.push({
+					timestamp: new Date(Date.now - 24*60*60*1000),
+					detail: this.shadow.strategy
 				})
+			}
+			return strategies
+		},
+		movements() {
+			if(!raw) return []
+			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
+			let earliestDate = new Date(earliestStrategy.timestamp)
 
-				this.strategies.unshift({
-					timestamp: new Date,
-					detail: "unknown"
-				})
-
-				if(this.strategies.length == 1){
-					this.strategies.push({
-						timestamp: new Date(Date.now - 24*60*60*1000),
-						detail: this.shadow.strategy
-					})
-				}
-
-				let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
-				let earliestDate = new Date(earliestStrategy.timestamp)
-
-				this.movements = this.raw.metrics.movement
-				.map(movement => {
-					movement.timestamp = new Date(movement.timestamp);
-					return movement;
-				})
-				.filter(movement=>movement.timestamp>earliestDate)	
-			},
-			deep : true
+			return this.raw.metrics.movement
+			.map(movement => {
+				movement.timestamp = new Date(movement.timestamp);
+				return movement;
+			})
+			.filter(movement=>movement.timestamp>earliestDate)	
 		}
 	},
 	/*mounted : function (){
