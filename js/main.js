@@ -159,7 +159,7 @@ Vue.component('time-d-three', {
 						
 			strategies.exit().transition(t).remove()
 			
-			strategies
+			strategies.transition(t)
 				.attr('x', function(d) {
 					return d.start
 				})
@@ -171,6 +171,7 @@ Vue.component('time-d-three', {
 			
 			strategies.enter()
 				.append('rect')
+				.transition(t)
 				.attr('class', function(d){return `strategy ${d.detail}`})
 				.attr('x', function(d) {
 					return d.start
@@ -209,8 +210,9 @@ Vue.component('time-d-three', {
 				.attr('font-size', `${iconSize}px`)
 				.text(function(d) { return iconMap[d.detail]})
 			
-			icons.enter().transition(t)
+			icons.enter()
 				.append('text')
+				.transition(t)
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('x', function(d) {
 					return d.start + d.width/2
@@ -243,8 +245,9 @@ Vue.component('time-d-three', {
 				.attr('r', `${movementSize/2}`)
 
 				
-			movements.enter().transition(t)
+			movements.enter()
 				.append('circle')
+				.transition(t)
 				.attr('class', function(d){return `movement ${d.detail}`})
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
