@@ -214,9 +214,11 @@ var app = new Vue({
 	},
 	computed: {
 		shadow(){
+			if(!raw) return {}
 			return this.raw.shadow;
 		},
 		strategies(){
+			if(!raw) return []
 			let strategies = this.raw.metrics.strategyState.map(strategy => {
 				strategy.timestamp = new Date(strategy.timestamp);
 				return strategy;
@@ -236,6 +238,7 @@ var app = new Vue({
 			return strategies
 		},
 		movements() {
+			if(!raw) return []
 			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
 			let earliestDate = new Date(earliestStrategy.timestamp)
 
