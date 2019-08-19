@@ -346,6 +346,7 @@ var app = new Vue({
 					data
 				}) => {
 					console.log(data)
+					console.log(this.raw.data)
 					console.log(data == this.raw.data)
 					this.raw.data = data;
 				})
