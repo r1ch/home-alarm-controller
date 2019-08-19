@@ -81,12 +81,20 @@ Vue.component('time-d-three', {
 	props: ['strategies', 'movements'],
 	template: `
 		<div class = "row">
-			<div id = 'd3' :ready = 'ready' class = 'col-sm-12'>
+			<div id = 'd3' class = 'col-sm-12'>
 			</div>
 		</div>
     	`,
-	computed: {
-		ready() {
+	watch : {
+		strategies(){
+			this.draw()
+		},
+		movements(){
+			this.draw()
+		},
+	},
+	methods: {
+		draw() {
 			if (this.strategies.length == 0 || this.movements.length == 0) return;
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
