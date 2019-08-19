@@ -105,9 +105,9 @@ Vue.component('time-d-three', {
 			let yAxis = d3.axisLeft(yScale)
 
 			let svg = d3.select("#d3")
-				.selectAll("svg");
-			
-			 svg.enter().append("svg")
+				.selectAll("svg")
+				.enter()
+				.append("svg")
 				.attr("width", '100%')
 				.attr("height", '100%')
 				.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
