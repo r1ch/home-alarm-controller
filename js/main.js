@@ -159,28 +159,31 @@ Vue.component('time-d-three', {
 						
 			strategies.exit().remove()
 			
-			strategies.transition(t)
-				.attr('x', function(d) {
-					return d.start
-				})
-				.attr('y', 0)
+			strategies
+				.attr('class', function(d){return `strategy ${d.detail}`})
 				.attr('width', function(d) {
 					return d.width
 				})
 				.attr('height', this.height)
+				.transition(t)
+				.attr('x', function(d) {
+					return d.start
+				})
+				.attr('y', 0)
+
 			
 			strategies.enter()
 				.append('rect')
-				.transition(t)
 				.attr('class', function(d){return `strategy ${d.detail}`})
-				.attr('x', function(d) {
-					return d.start
-				})
-				.attr('y', 0)
 				.attr('width', function(d) {
 					return d.width
 				})
 				.attr('height', this.height)
+				.transition(t)
+				.attr('x', function(d) {
+					return d.start
+				})
+				.attr('y', 0)
 
 			
 			let iconSize = 8;
@@ -196,8 +199,13 @@ Vue.component('time-d-three', {
 			icons.exit().remove()
 			
 			
-			icons.transition(t)
+			icons.
 				.attr('class', function(d){return `icon ${d.detail} fa`})
+				.attr('text-anchor', 'middle')
+				.attr('font-weight', '900')
+				.attr('font-size', `${iconSize}px`)
+				.text(function(d) { return iconMap[d.detail]})
+				.transition()
 				.attr('x', function(d) {
 					return d.start + d.width/2
 				})
@@ -205,15 +213,16 @@ Vue.component('time-d-three', {
 					if(d.width > iconSize) return this.height/2 + iconSize/2
 					else return iconSize/2
 				})
-				.attr('text-anchor', 'middle')
-				.attr('font-weight', '900')
-				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return iconMap[d.detail]})
+
 			
 			icons.enter()
 				.append('text')
-				.transition(t)
 				.attr('class', function(d){return `icon ${d.detail} fa`})
+				.attr('text-anchor', 'middle')
+				.attr('font-weight', '900')
+				.attr('font-size', `${iconSize}px`)
+				.text(function(d) { return iconMap[d.detail]})
+				.transition()
 				.attr('x', function(d) {
 					return d.start + d.width/2
 				})
@@ -221,10 +230,6 @@ Vue.component('time-d-three', {
 					if(d.width > iconSize) return this.height/2 + iconSize/2
 					else return iconSize/2
 				})
-				.attr('text-anchor', 'middle')
-				.attr('font-weight', '900')
-				.attr('font-size', `${iconSize}px`)
-				.text(function(d) { return iconMap[d.detail]})
 		
 			
 			let movementSize = 12;
@@ -234,8 +239,9 @@ Vue.component('time-d-three', {
 						
 			movements.exit().remove()
 			
-			movements.transition(t)
+			movements.
 				.attr('class', function(d){return `movement ${d.detail}`})
+				.transition(t)
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
 				})
@@ -247,8 +253,8 @@ Vue.component('time-d-three', {
 				
 			movements.enter()
 				.append('circle')
-				.transition(t)
 				.attr('class', function(d){return `movement ${d.detail}`})
+				.transition(t)
 				.attr('cx', function(d) {
 					return xScale(d.timestamp);
 				})
