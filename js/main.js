@@ -316,12 +316,25 @@ var app = new Vue({
 		}
 	},
 	methods : {
+		poll(fn){
+			let [count, maxCount, interval] = [0,10,500];
+			return ()=>{
+				let i = setInterval(()=>{
+					if(count<maxCount){
+						fn();
+					} else {
+						clearInterval(i)
+					}
+				},interval)
+			}
+		},
 		fetchData(){
 			signHttpRequest("GET", "/alarm/monitor")
 				.then(axios)
 				.then(({
 					data
 				}) => {
+					console.log(data)
 					this.raw.data = data;
 				})
 		},
@@ -331,6 +344,7 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
+					console.log(data)
 					this.raw.presence = data;
 				})
 		}
