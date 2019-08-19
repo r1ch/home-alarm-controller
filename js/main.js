@@ -331,7 +331,7 @@ var app = new Vue({
 		},
 		pollPresence(){
 			if(this.pollers.presence) clearInterval(this.pollers.presence)
-			this.pollers.presence = this.poll(this.fetchPresence,this.pollers.data)
+			this.pollers.presence = this.poll(this.fetchPresence,this.pollers.presence)
 		},
 		poll(fn,poller){
 			let [count, maxCount, interval] = [0,4,500];
@@ -359,6 +359,7 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
+					console.log(`Data = ${data}, ${this.raw.presence}`)
 					this.raw.presence = data;
 				})
 		}
