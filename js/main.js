@@ -147,7 +147,9 @@ Vue.component('time-d-three', {
 
 			let strategies = svg.selectAll('.strategy')
 				.data(strategyBlocks)
-				.enter().append('rect')
+			
+			strategies.enter()
+				.append('rect')
 				.attr('class', function(d){return `strategy ${d.detail}`})
 				.attr('x', function(d) {
 					return d.start
@@ -158,6 +160,9 @@ Vue.component('time-d-three', {
 				})
 				.attr('height', this.height)
 			
+			strategies.exit()
+				.remove()
+			
 			let iconSize = 8;
 			let iconMap = {
 				standard : '\uf06e',
@@ -167,7 +172,8 @@ Vue.component('time-d-three', {
 
 			let icons = svg.selectAll('.icons')
 				.data(strategyBlocks)
-				.enter()
+				
+			icons.enter()
 				.append('text')
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('x', function(d) {
@@ -181,6 +187,9 @@ Vue.component('time-d-three', {
 				.attr('font-weight', '900')
 				.attr('font-size', `${iconSize}px`)
 				.text(function(d) { return iconMap[d.detail]})
+			
+			icons.exit()
+				.remove()
 			
 			let movementSize = 12;
 
