@@ -89,9 +89,9 @@ Vue.component('time-d-three', {
 	data: function() {
 		let margin = {
 			top: 50,
-			right: 10,
+			right: 20,
 			bottom: 50,
-			left: 10
+			left: 20
 		};
 		let fullWidth = 600
 		let fullHeight = 150
