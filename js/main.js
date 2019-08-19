@@ -26,7 +26,13 @@ Vue.component('presence-list',{
 	},
 	template: `
 		<div v-if = "authenticated" class = "row">
-			{{presence}}
+			<table>
+				<tbody>
+					<tr v-for = "person in presence">
+						<td>person</td>
+					</tr>	
+				</tbody>
+			</table>
 		</div>
 	`,
 	
@@ -344,9 +350,6 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
-					console.log(data)
-					console.log(this.raw.data)
-					console.log(data == this.raw.data)
 					this.raw.data = data;
 				})
 		},
@@ -356,8 +359,6 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
-					console.log(data)
-					console.log(data = this.raw.data)
 					this.raw.presence = data;
 				})
 		}
