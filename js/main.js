@@ -76,7 +76,7 @@ Vue.component('time-d-three', {
 			height: height,
 			fullWidth : fullWidth,
 			fullHeight : fullHeight,
-			svg : false;
+			svg : false
 		}
 	},
 	props: ['strategies', 'movements'],
