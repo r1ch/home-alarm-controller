@@ -66,7 +66,6 @@ Vue.component('alarm-controls',{
 				.then(this.$root.pollData())
 		},
 		visitors(){
-			this.disabled.visitors = true;
 			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: 1, device: "Guest"})
 				.then(axios)
 				.then(this.$root.pollPresence())
