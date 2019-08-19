@@ -321,24 +321,23 @@ var app = new Vue({
 	},
 	methods : {
 		pollData(){
-			poll(this.fetchData,this.pollers.data)
+			if(this.pollers.data) clearInterval(this.pollers.data)
+			this.pollers.data = poll(this.fetchData,this.pollers.data)
 		},
 		pollPresence(){
-			poll(this.fetchPresence,this.pollers.presence)
+			if(this.pollers.presence) clearInterval(this.pollers.presence)
+			this.pollers.presence = poll(this.fetchPresence,this.pollers.data)
 		},
 		poll(fn,poller){
-			if(poller) clearInterval(poller)
 			let [count, maxCount, interval] = [0,10,500];
-			return ()=>{
-				poller = setInterval(()=>{
-					if(count<maxCount){
-						count++
-						fn();
-					} else {
-						clearInterval(ref)
-					}
-				},interval)
-			}()
+			return setInterval(()=>{
+				if(count<maxCount){
+					count++
+					fn();
+				} else {
+					clearInterval(poller)
+				}
+			},interval)
 		},
 		fetchData(){
 			signHttpRequest("GET", "/alarm/monitor")
