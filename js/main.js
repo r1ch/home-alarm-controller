@@ -216,35 +216,38 @@ var app = new Vue({
 		}
 	},
 	watch: {
-		raw() {
-			this.shadow = this.raw.shadow;
-			
-			this.strategies = this.raw.metrics.strategyState.map(strategy => {
-				strategy.timestamp = new Date(strategy.timestamp);
-				return strategy;
-			})
-			
-			this.strategies.unshift({
-				timestamp: new Date,
-				detail: "unknown"
-			})
-			
-			if(this.strategies.length == 1){
-				this.strategies.push({
-					timestamp: new Date(Date.now - 24*60*60*1000),
-					detail: this.shadow.strategy
+		raw: {
+			handler : function(){
+				this.shadow = this.raw.shadow;
+
+				this.strategies = this.raw.metrics.strategyState.map(strategy => {
+					strategy.timestamp = new Date(strategy.timestamp);
+					return strategy;
 				})
-			}
-			
-			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
-			let earliestDate = new Date(earliestStrategy.timestamp)
-		
-			this.movements = this.raw.metrics.movement
-			.map(movement => {
-				movement.timestamp = new Date(movement.timestamp);
-				return movement;
-			})
-			.filter(movement=>movement.timestamp>earliestDate)	
+
+				this.strategies.unshift({
+					timestamp: new Date,
+					detail: "unknown"
+				})
+
+				if(this.strategies.length == 1){
+					this.strategies.push({
+						timestamp: new Date(Date.now - 24*60*60*1000),
+						detail: this.shadow.strategy
+					})
+				}
+
+				let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
+				let earliestDate = new Date(earliestStrategy.timestamp)
+
+				this.movements = this.raw.metrics.movement
+				.map(movement => {
+					movement.timestamp = new Date(movement.timestamp);
+					return movement;
+				})
+				.filter(movement=>movement.timestamp>earliestDate)	
+			},
+			deep : true
 		}
 	},
 	/*mounted : function (){
