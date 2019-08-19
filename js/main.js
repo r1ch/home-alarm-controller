@@ -335,6 +335,7 @@ var app = new Vue({
 					data
 				}) => {
 					console.log(data)
+					console.log(data == this.raw.data)
 					this.raw.data = data;
 				})
 		},
@@ -345,6 +346,7 @@ var app = new Vue({
 					data
 				}) => {
 					console.log(data)
+					console.log(data = this.raw.data)
 					this.raw.presence = data;
 				})
 		}
