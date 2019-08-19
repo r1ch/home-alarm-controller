@@ -332,6 +332,7 @@ var app = new Vue({
 			return ()=>{
 				poller = setInterval(()=>{
 					if(count<maxCount){
+						count++
 						fn();
 					} else {
 						clearInterval(ref)
