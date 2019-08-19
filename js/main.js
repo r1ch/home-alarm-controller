@@ -21,10 +21,9 @@ Vue.component('alarm-controls',{
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row">
-			<button v-on:click = "action().handler()" type="button" class="btn btn-primary col-sm-3">{{action().text}}</button>
-			<button v-on:click = "bedtime()" type="button" class="btn btn-secondary col-sm-3">Bedtime</button>
-			<button v-on:click = "visitors()" type="button" class="btn btn-success col-sm-3">Visitor</button>
-			<button type="button" class="btn btn-danger col-sm-3">Danger</button>
+			<button v-on:click = "action().handler()" type="button" class="btn btn-primary col-sm-12 col-md-3">{{action().text}}</button>
+			<button v-on:click = "bedtime()" type="button" class="btn btn-secondary col-sm-12 col-md-3">Bedtime</button>
+			<button v-on:click = "visitors()" type="button" class="btn btn-success col-sm-12 col-md-3">Visitor</button>
 			{{shadow}}
 		</div>
 	`,
