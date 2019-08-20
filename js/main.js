@@ -14,6 +14,37 @@ Vue.component('google-login', {
 	}
 })
 
+Vue.component('state-view',{
+	props: ['shadow'],
+	data: () => ({
+		authenticated: false,
+	}),
+	template: `
+		<div class = "row">
+			<span class="fa-stack fa-5x">
+			  <i :class="'fas fa-'+icon[0]+' fa-stack-5x"></i>
+			  <i :class="'fas fa-'+icon[1]+' fa-stack-1x fa-inverse"></i>
+			</span>
+		</div>
+	`,
+	mounted: function() {
+		Credentials.then(() => {
+			this.authenticated = true
+		})
+	},
+	computed : {
+		icon(){
+			if(!this.shadow.strategy || !this.shadow.state){
+				return ["walking","eye"]
+			} else if (this.shadow.strategy == "bedtime"){
+				return ["home","bed"]
+			} else {
+				return ["home","eye-slash"]
+			}
+		}
+	}
+})
+	
 Vue.component('alarm-controls',{
 	props: ['shadow','presence'],
 	data: () => ({
@@ -22,21 +53,14 @@ Vue.component('alarm-controls',{
 	template: `
 		<div v-if = "authenticated" class = "row center-align">
 			<div class = "col m6 s12 center-align">
-				<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
-				<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
-				<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
+				<button v-on:click = "action().handler()" type="button" class="btn"><i :class = "'fas fa-'+action().icon"></i></button>
+				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
+				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 			</div>
 			<div class = "col m6 s12 center-align">
-				<div class = "row">
-					<i :class = "'fas fa-5x fa-'+icon"></i><br>
-					<small>{{shadow.state}}</small><br>
-					<small>{{shadow.strategy}}</small>
-				</div>
-				<div class = "row">
 					<ul class="collection" v-if = "presence && presence.length > 0" >
 					      <li class="collection-item" v-for = "person in presence">{{person}}</li>
 					</ul>
-				</div>
 			</div>
 		</div>
 	`,
@@ -79,12 +103,12 @@ Vue.component('alarm-controls',{
 		},
 		action() {
 			let actionMap = {
-				"quiet" : {text:"Arm","handler":this.arm},
-				"arming" : {text:"Disarm","handler":this.disarm},
-				"guarding" : {text:"Disarm","handler":this.disarm},
-				"warning" : {text:"Disarm","handler":this.disarm},
-				"sounding" : {text:"Disarm","handler":this.disarm},
-				"default" : {text:"Disarm","handler":this.disarm},
+				"quiet" : {icon:"lock","handler":this.arm},
+				"arming" : {icon:"lock-open","handler":this.disarm},
+				"guarding" : {icon:"lock-open","handler":this.disarm},
+				"warning" : {icon:"lock-open","handler":this.disarm},
+				"sounding" : {icon:"lock-open","handler":this.disarm},
+				"default" : {icon:"lock-open","handler":this.disarm},
 			}
 			return actionMap[this.shadow.state || "default"]
 		}
