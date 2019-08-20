@@ -53,14 +53,15 @@ Vue.component('alarm-controls',{
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row center-align">
-			<div class = "col m6 s12 center-align">
+			<div class = "col s12 center-align">
 				<button v-on:click = "action().handler()" type="button" class="btn"><i :class = "'fas fa-'+action().icon"></i></button>
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 			</div>
-			<div class = "col m6 s12 center-align">
-					<ul class="collection" v-if = "presence.length > 0" >
-					      <li class="collection-item" v-for = "person in presence">{{person}}</li>
+			<div class = "col s12 center-align">
+					<ul class="collection" v-if = "presence" >
+						<li class="collection-item" v-if = "presence.length == 0">No one is home</li>
+						<li class="collection-item" v-for = "person in presence">{{person}}</li>
 					</ul>
 			</div>
 		</div>
