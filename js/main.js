@@ -45,10 +45,10 @@ Vue.component('alarm-controls',{
 		authenticated: false,
 	}),
 	template: `
-		<div v-if = "authenticated" class = "row">
-			<button v-on:click = "action().handler()" type="button" class="btn center-align">{{action().text}}</button>
-			<button v-on:click = "bedtime()" type="button" class="btn center-align">Bedtime</button>
-			<button v-on:click = "visitors()" type="button" class="btn center-align">Visitor</button>
+		<div v-if = "authenticated" class = "row center-align">
+			<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
+			<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
+			<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
 		</div>
 	`,
 	mounted: function() {
