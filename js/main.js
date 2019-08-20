@@ -25,12 +25,11 @@ Vue.component('presence-list',{
 		})
 	},
 	template: `
-		<div v-if = "authenticated" class = "row">
-asdfasdf
-{{presence}}
+		<div class = "row">
+			{{authenticated}}
+			{{presence}}
 		</div>
 	`,
-	
 })
 
 Vue.component('alarm-controls',{
