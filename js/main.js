@@ -75,7 +75,7 @@ Vue.component('alarm-controls',{
 				"sounding" : "eye",
 				"default" : ""
 			}
-			return iconMap[state  | "default"]
+			return iconMap[this.state  | "default"]
 		}
 	},
 	methods: {
