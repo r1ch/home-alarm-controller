@@ -32,7 +32,7 @@ Vue.component('alarm-controls',{
 				<small>{{shadow.strategy != "blind" ? shadow.stategy : ""}}</small>
 			</div>
 			<div class = "col m3 s12 center-align">
-				<ul class="collection" v-if = "presence.length > 0" >
+				<ul class="collection" v-if = "presence && presence.length > 0" >
 				      <li class="collection-item" v-for = "person in presence">{{person}}</li>
 				</ul>
 			</div>
