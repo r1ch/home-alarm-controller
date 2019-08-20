@@ -49,7 +49,7 @@ Vue.component('alarm-controls',{
 		icon(){
 			let iconMap = {
 				"blind" : "eye-slash",
-				"bedtime" : "hotel",
+				"bedtime" : "bed",
 				"standard" : "eye",
 				"default" : "eye"
 			}
