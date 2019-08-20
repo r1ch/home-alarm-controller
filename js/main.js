@@ -21,18 +21,18 @@ Vue.component('alarm-controls',{
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row center-align">
-			<div class = "col m4 s12 center-align">
+			<div class = "col m6 s12 center-align">
 				<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
 				<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
 				<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
 			</div>
-			<div class = "col m4 s12 center-align">
+			<div class = "col m3 s12 center-align">
 				<i :class = "'fab fa '+icon"></i>
 				<small>{{shadow.state}}</small>
 				<small>{{shadow.strategy != "blind" ? shadow.stategy : ""}}</small>
 			</div>
-			<div class = "col m4 s12 center-align">
-				<ul class="collection">
+			<div class = "col m3 s12 center-align">
+				<ul class="collection" v-if = "presence.length > 0" >
 				      <li class="collection-item" v-for = "person in presence">{{person}}</li>
 				</ul>
 			</div>
