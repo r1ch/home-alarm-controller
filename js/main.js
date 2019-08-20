@@ -46,7 +46,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
 			</div>
 			<div class = "col m6 s12 center-align">
-				<i :class = "'fab fa '+icon">
+				<i :class = "'fab fa '+icon"></i>
 				<small>{{state}}</small>
 				<strategy>{{strategy}}</small>
 			</div>
