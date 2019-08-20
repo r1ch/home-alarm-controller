@@ -77,7 +77,7 @@ Vue.component('alarm-controls',{
 			}
 			return iconMap[state  | "default"]
 		}
-	}
+	},
 	methods: {
 		arm(){
 			signHttpRequest("POST", "/alarm/monitor/on")
