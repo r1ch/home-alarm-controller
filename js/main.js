@@ -390,30 +390,6 @@ var app = new Vue({
 		}
 	},
 	computed: {
-		background(){
-			switch(this.shadow.state){
-				case "quiet":
-					return "teal lighten-4"
-					break;
-				case "arming":
-					return "deep-purple lighten-3"
-					break;
-				case "guarding":
-					if(this.shadow.strategy == "bedtime")
-						return "grey lighten-1"
-						return "deep-purple lighten-2"
-					break;
-				case "warning" : 
-					return "red accent-1"
-					break;
-				case "sounding" :
-					return "red accent-2"
-					break;
-				default : 
-					return "green lighten-5"
-			
-			}
-		},
 		presence(){
 			if(!this.raw.presence) return []
 			return this.raw.presence.people
