@@ -20,14 +20,13 @@
     <title>Home monitor</title>
 </head>
 
-<body>
-    <div id="app" class = "container">
+<body id = "app" >
+    <div class = "container">
         <state-view :shadow = "shadow"></state-view>
         <google-login></google-login>
         <time-d-three :movements = "movements" :strategies = "strategies"></time-d-three>
         <alarm-controls :shadow = "shadow" :presence = "presence"></alarm-controls>
     </div>
-    <script src="js/main.js"></script>
 </body>
-
+<script src="js/main.js"></script>
 </html>
