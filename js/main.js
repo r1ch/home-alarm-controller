@@ -47,8 +47,9 @@ Vue.component('alarm-controls',{
 			</div>
 			<div class = "col m6 s12 center-align">
 				<i :class = "'fab fa '+icon"></i>
-				<small>{{state}}</small>
-				<small>{{strategy}}</small>
+				<small>{{shadow.state}}</small>
+				<small>{{shadow.strategy}}</small>
+				<small>{{shadow.armed}}</small>
 			</div>
 		</div>
 	`,
@@ -58,14 +59,6 @@ Vue.component('alarm-controls',{
 		})
 	},
 	computed : {
-		state(){
-			if(!this.shadow.reported) return ""
-			return this.shadow.desired.state || this.shadow.reported.state
-		},
-		strategy(){
-			if(!this.shadow.reported) return ""
-			return this.shadow.desired.strategy || this.shadow.reported.strategy
-		},
 		icon(){
 			let iconMap = {
 				"blind" : "eye-slash",
@@ -108,7 +101,7 @@ Vue.component('alarm-controls',{
 				"sounding" : {text:"Disarm","handler":this.disarm},
 				"default" : {text:"Disarm","handler":this.disarm},
 			}
-			return this.shadow.reported && this.shadow.reported.state ? actionMap[this.shadow.reported.state] : actionMap["default"];
+			return actionMap[this.shadow.state | "default"]
 		}
 	},
 })
@@ -394,7 +387,7 @@ var app = new Vue({
 		},
 		shadow(){
 			if(!this.raw.data.shadow) return {}
-			return this.raw.data.shadow;
+			return this.raw.data.shadow.reported;
 		},
 		strategies(){
 			if(!this.raw.data.metrics) return []
@@ -411,7 +404,7 @@ var app = new Vue({
 			if(strategies.length == 1){
 				strategies.push({
 					timestamp: new Date(Date.now() - 24*60*60*1000),
-					detail: this.shadow.reported.strategy
+					detail: this.shadow.strategy
 				})
 			}
 			return strategies
