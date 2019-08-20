@@ -28,8 +28,8 @@ Vue.component('alarm-controls',{
 			</div>
 			<div class = "col m6 s12 center-align">
 				<div class = "row">
-					<i :class = "'fas fa-'+icon"></i>
-					<small>{{shadow.state}}</small>
+					<i :class = "'fas fa-5x fa-'+icon"></i><br>
+					<small>{{shadow.state}}</small><br>
 					<small>{{shadow.strategy}}</small>
 				</div>
 				<div class = "row">
