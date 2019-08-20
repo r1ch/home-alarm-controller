@@ -59,12 +59,12 @@ Vue.component('alarm-controls',{
 	},
 	computed : {
 		state(){
-			if(!state.shadow.reported) return ""
-			return state.shadow.desired.state || state.shadow.reported.state
+			if(!this.shadow.reported) return ""
+			return this.shadow.desired.state || this.shadow.reported.state
 		},
 		strategy(){
-			if(!state.shadow.reported) return ""
-			return state.shadow.desired.strategy || state.shadow.reported.strategy
+			if(!this.shadow.reported) return ""
+			return this.shadow.desired.strategy || this.shadow.reported.strategy
 		},
 		icon(){
 			let iconMap = {
