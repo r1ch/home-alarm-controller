@@ -68,11 +68,11 @@ Vue.component('alarm-controls',{
 		},
 		icon(){
 			let iconMap = {
-				"blind" : "eye-slash"
-				"arming" : "eye"
-				"guarding" : "eye"
-				"warning" : "eye"
-				"sounding" : "eye"
+				"blind" : "eye-slash",
+				"arming" : "eye",
+				"guarding" : "eye",
+				"warning" : "eye",
+				"sounding" : "eye",
 				"default" : ""
 			}
 			return iconMap[state  | "default"]
