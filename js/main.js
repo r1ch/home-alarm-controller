@@ -26,14 +26,8 @@ Vue.component('presence-list',{
 	},
 	template: `
 		<div v-if = "authenticated" class = "row">
+asdfasdf
 {{presence}}
-			<table>
-				<tbody>
-					<tr v-for = "person in presence">
-						<td>!:{{person}}</td>
-					</tr>	
-				</tbody>
-			</table>
 		</div>
 	`,
 	
@@ -46,9 +40,16 @@ Vue.component('alarm-controls',{
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row center-align">
-			<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
-			<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
-			<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
+			<div class = "col m6 s12 center-align">
+				<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
+				<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
+				<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
+			</div>
+			<div class = "col m6 s12 center-align">
+				<i :class = "'fab fa '+icon">
+				<small>{{state}}</small>
+				<strategy>{{strategy}}</small>
+			</div>
 		</div>
 	`,
 	mounted: function() {
@@ -56,6 +57,16 @@ Vue.component('alarm-controls',{
 			this.authenticated = true
 		})
 	},
+	computed : {
+		state(){
+			if(!state.shadow.reported) return ""
+			return state.shadow.desired.state || state.shadow.reported.state
+		},
+		strategy(){
+			if(!state.shadow.reported) return ""
+			return state.shadow.desired.strategy || state.shadow.reported.strategy
+		},
+	}
 	methods: {
 		arm(){
 			signHttpRequest("POST", "/alarm/monitor/on")
