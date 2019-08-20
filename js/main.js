@@ -53,7 +53,7 @@ Vue.component('alarm-controls',{
 				"standard" : "eye",
 				"default" : "eye"
 			}
-			return iconMap[this.strategy || "default"]
+			return iconMap[this.shadow.strategy || "default"]
 		}
 	},
 	methods: {
