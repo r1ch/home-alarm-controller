@@ -59,7 +59,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 			</div>
 			<div class = "col m6 s12 center-align">
-					<ul class="collection" v-if = "presence && presence.length > 0" >
+					<ul class="collection" v-if = "presence.length > 0" >
 					      <li class="collection-item" v-for = "person in presence">{{person}}</li>
 					</ul>
 			</div>
