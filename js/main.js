@@ -15,19 +15,18 @@ Vue.component('google-login', {
 })
 
 Vue.component('presence-list',{
-	props: ['presence'],
 	data: () => ({
 		authenticated: false
 	}),
 	mounted: function() {
+		console.log("Mounted")
 		Credentials.then(() => {
 			this.authenticated = true
 		})
 	},
 	template: `
 		<div class = "row">
-			{{authenticated}}
-			{{presence}}
+Hi there
 		</div>
 	`,
 })
@@ -374,7 +373,6 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
-					console.log(`Data = ${data}, ${this.raw.presence}`)
 					this.raw.presence = data;
 				})
 		}
