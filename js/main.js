@@ -30,7 +30,7 @@ Vue.component('presence-list',{
 			<table>
 				<tbody>
 					<tr v-for = "person in presence">
-						<td>person</td>
+						<td>{{person}}</td>
 					</tr>
 				</tbody>
 			</table>
