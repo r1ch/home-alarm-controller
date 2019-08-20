@@ -3,8 +3,8 @@ Vue.component('google-login', {
 		authenticated: false
 	}),
 	template: `
-		<div class = "row">
-			<div v-if = "!authenticated" class="g-signin2 col sm1 offset-sm5" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
+		<div class = "row center-align">
+			<div v-if = "!authenticated" class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
 		</div>
 	`,
 	mounted: function() {
