@@ -20,7 +20,7 @@ Vue.component('state-view',{
 		authenticated: false,
 	}),
 	template: `
-		<div class = "row">
+		<div class = "row" v-if = "authenticated">
 			<span class="fa-stack fa-5x">
 			  <i :class="'fas fa-'+icon[0]+' fa-stack-5x"></i>
 			  <i :class="'fas fa-'+icon[1]+' fa-stack-1x fa-inverse"></i>
