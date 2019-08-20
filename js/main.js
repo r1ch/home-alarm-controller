@@ -21,7 +21,9 @@ Vue.component('state-view',{
 	}),
 	template: `
 		<div class = "row center-align" v-if = "authenticated">
-			  <i :class="'fas fa-'+icon+' fa-5x'"></i>
+			<br>
+			<br>
+			<i :class="'fas fa-'+icon+' fa-5x'"></i>
 		</div>
 	`,
 	mounted: function() {
@@ -35,8 +37,10 @@ Vue.component('state-view',{
 				return "lock"
 			} else if (this.shadow.strategy == "bedtime"){
 				return "bed"
-			} else {
+			} else if (this.shadow.state == "quiet"){
 				return "lock-open"
+			} else {
+				return "lock"
 			}
 		}
 	}
