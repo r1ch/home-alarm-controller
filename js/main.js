@@ -66,6 +66,17 @@ Vue.component('alarm-controls',{
 			if(!state.shadow.reported) return ""
 			return state.shadow.desired.strategy || state.shadow.reported.strategy
 		},
+		icon(){
+			let iconMap = {
+				"blind" : "eye-slash"
+				"arming" : "eye"
+				"guarding" : "eye"
+				"warning" : "eye"
+				"sounding" : "eye"
+				"default" : ""
+			}
+			return iconMap[state  | "default"]
+		}
 	}
 	methods: {
 		arm(){
