@@ -86,7 +86,7 @@ Vue.component('alarm-controls',{
 				"sounding" : {text:"Disarm","handler":this.disarm},
 				"default" : {text:"Disarm","handler":this.disarm},
 			}
-			return actionMap[this.shadow.reported.state||"default"]
+			return this.shadow.reported && this.shadow.reported.state ? actionMap[this.shadow.reported.state||"default"]
 		}
 	},
 })
