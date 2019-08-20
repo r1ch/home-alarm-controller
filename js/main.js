@@ -48,7 +48,7 @@ Vue.component('alarm-controls',{
 			<div class = "col m6 s12 center-align">
 				<i :class = "'fab fa '+icon"></i>
 				<small>{{state}}</small>
-				<strategy>{{strategy}}</small>
+				<small>{{strategy}}</small>
 			</div>
 		</div>
 	`,
