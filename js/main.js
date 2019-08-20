@@ -14,47 +14,27 @@ Vue.component('google-login', {
 	}
 })
 
-Vue.component('presence-list',{
-	props: ['presence'],
-	data: () => ({
-		authenticated: false
-	}),
-	mounted: function() {
-		console.log("Mounted")
-		Credentials.then(() => {
-			this.authenticated = true
-		})
-	},
-	template: `
-		<div v-if = "authenticated" class = "row">
-			<table>
-				<tbody>
-					<tr v-for = "person in presence">
-						<td>{{person}}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	`,
-})
-
 Vue.component('alarm-controls',{
-	props: ['shadow'],
+	props: ['shadow','presence'],
 	data: () => ({
 		authenticated: false,
 	}),
 	template: `
 		<div v-if = "authenticated" class = "row center-align">
-			<div class = "col m6 s12 center-align">
+			<div class = "col m4 s12 center-align">
 				<button v-on:click = "action().handler()" type="button" class="btn">{{action().text}}</button>
 				<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
 				<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
 			</div>
-			<div class = "col m6 s12 center-align">
+			<div class = "col m4 s12 center-align">
 				<i :class = "'fab fa '+icon"></i>
 				<small>{{shadow.state}}</small>
-				<small>{{shadow.strategy}}</small>
-				<small>{{shadow.armed}}</small>
+				<small>{{shadow.strategy != "blind" ? shadow.stategy : ""}}</small>
+			</div>
+			<div class = "col m4 s12 center-align">
+				<ul class="collection">
+				      <li class="collection-item" v-for = "person in presence">{{person}}</li>
+				</ul>
 			</div>
 		</div>
 	`,
@@ -66,14 +46,11 @@ Vue.component('alarm-controls',{
 	computed : {
 		icon(){
 			let iconMap = {
-				"blind" : "eye-slash",
-				"arming" : "eye",
-				"guarding" : "eye",
-				"warning" : "eye",
-				"sounding" : "eye",
-				"default" : ""
+				"blind" : "visibility_off",
+				"bedtime" : "hotel",
+				"default" : "visibility"
 			}
-			return iconMap[this.state  | "default"]
+			return iconMap[this.strategy  | "default"]
 		}
 	},
 	methods: {
