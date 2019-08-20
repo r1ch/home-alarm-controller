@@ -26,15 +26,17 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "bedtime()" type="button" class="btn">Bedtime</button>
 				<button v-on:click = "visitors()" type="button" class="btn">Visitor</button>
 			</div>
-			<div class = "col m3 s12 center-align">
-				<i :class = "'fab fa '+icon"></i>
-				<small>{{shadow.state}}</small>
-				<small>{{shadow.strategy != "blind" ? shadow.stategy : ""}}</small>
-			</div>
-			<div class = "col m3 s12 center-align">
-				<ul class="collection" v-if = "presence && presence.length > 0" >
-				      <li class="collection-item" v-for = "person in presence">{{person}}</li>
-				</ul>
+			<div class = "col m6 s12 center-align">
+				<div class = "row">
+					<i :class = "'fas fa-'+icon"></i>
+					<small>{{shadow.state}}</small>
+					<small>{{shadow.strategy}}</small>
+				</div>
+				<div class = "row">
+					<ul class="collection" v-if = "presence && presence.length > 0" >
+					      <li class="collection-item" v-for = "person in presence">{{person}}</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	`,
@@ -46,9 +48,10 @@ Vue.component('alarm-controls',{
 	computed : {
 		icon(){
 			let iconMap = {
-				"blind" : "visibility_off",
+				"blind" : "eye-slash",
 				"bedtime" : "hotel",
-				"default" : "visibility"
+				"standard" : "eye",
+				"default" : "eye"
 			}
 			return iconMap[this.strategy  | "default"]
 		}
