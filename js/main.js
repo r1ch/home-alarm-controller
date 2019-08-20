@@ -20,11 +20,8 @@ Vue.component('state-view',{
 		authenticated: false,
 	}),
 	template: `
-		<div class = "row" v-if = "authenticated">
-			<span class="fa-stack fa-5x">
-			  <i :class="'fas fa-'+icon[0]+' fa-stack-5x'"></i>
-			  <i :class="'fas fa-'+icon[1]+' fa-stack-1x fa-inverse'"></i>
-			</span>
+		<div class = "row center-align" v-if = "authenticated">
+			  <i :class="'fas fa-'+icon+' fa-5x'"></i>
 		</div>
 	`,
 	mounted: function() {
@@ -35,11 +32,11 @@ Vue.component('state-view',{
 	computed : {
 		icon(){
 			if(!this.shadow.strategy || !this.shadow.state){
-				return ["walking","eye"]
+				return "lock"
 			} else if (this.shadow.strategy == "bedtime"){
-				return ["home","bed"]
+				return "bed"
 			} else {
-				return ["home","eye-slash"]
+				return "lock-open"
 			}
 		}
 	}
@@ -72,10 +69,10 @@ Vue.component('alarm-controls',{
 	computed : {
 		icon(){
 			let iconMap = {
-				"blind" : "eye-slash",
+				"blind" : "lock-open",
 				"bedtime" : "bed",
-				"standard" : "eye",
-				"default" : "eye"
+				"standard" : "lock",
+				"default" : "lock"
 			}
 			return iconMap[this.shadow.strategy || "default"]
 		}
