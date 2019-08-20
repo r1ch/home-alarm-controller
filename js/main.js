@@ -15,6 +15,7 @@ Vue.component('google-login', {
 })
 
 Vue.component('presence-list',{
+	props: ['presence'],
 	data: () => ({
 		authenticated: false
 	}),
@@ -25,8 +26,14 @@ Vue.component('presence-list',{
 		})
 	},
 	template: `
-		<div class = "row">
-Hi there
+		<div v-if = "authenticated" class = "row">
+			<table>
+				<tbody>
+					<tr v-for = "person in presence">
+						<td>person</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	`,
 })
