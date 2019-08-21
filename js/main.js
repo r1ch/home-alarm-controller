@@ -4,7 +4,9 @@ Vue.component('google-login', {
 	}),
 	template: `
 		<div class = "row center-align">
-			<div v-if = "!authenticated" class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
+			<div class = "col s1">
+				<div v-if = "!authenticated" class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
+			</div>
 		</div>
 	`,
 	mounted: function() {
@@ -15,9 +17,9 @@ Vue.component('google-login', {
 })
 
 Vue.component('state-view',{
-	props: ['shadow'],
+	props: ['shadow','ready'],
 	template: `
-		<div class = "row center-align">
+		<div class = "row center-align" v-if = "ready">
 			<br>
 			<br>
 			<i :class="'fas fa-'+icon+' fa-5x'"></i>
@@ -122,9 +124,9 @@ Vue.component('time-d-three', {
 			svg : false
 		}
 	},
-	props: ['strategies', 'movements','ready'],
+	props: ['strategies', 'movements'],
 	template: `
-		<div class = 'row' v-if = 'ready'>
+		<div class = 'row'>
 			<div id = 'd3'>
 			</div>
 		</div>
