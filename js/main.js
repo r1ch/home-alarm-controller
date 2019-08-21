@@ -49,8 +49,14 @@ Vue.component('alarm-controls',{
 			</div>
 			<div class="divider"></div>
 			<div class = "col s12 center-align">
-				<div v-if = "presence.length == 0">No one is home</div>
-				<div v-for = "person in presence">{{person}}</li>
+				<span v-if = "presence.length == 0">
+					<i class = "fas fa-user-slash"></i>
+				</span>
+				<span v-for = "person in presence">
+					<i class = "fas fa-user"></i>
+					<br>
+					<small>{{person}}</small>
+				</div>
 			</div>
 		</div>
 	`,
