@@ -15,9 +15,9 @@ Vue.component('google-login', {
 })
 
 Vue.component('state-view',{
-	props: ['shadow','ready'],
+	props: ['shadow'],
 	template: `
-		<div class = "row center-align" v-if = "ready">
+		<div class = "row center-align">
 			<br>
 			<br>
 			<i :class="'fas fa-'+icon+' fa-5x'"></i>
