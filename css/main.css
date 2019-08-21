@@ -8,6 +8,13 @@ html, body, #app {
   margin: 20vh auto;
 }
 
+.heart-pull {
+  color:Tomato;
+  position:relative;
+  top:1em;
+  left:.5em;
+}
+
 .strategy.blind {
   fill: rgba(247, 249, 249, 1); 
 }
