@@ -48,10 +48,14 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 			</div>
 			<div class = "col s12 center-align">
-					<ul class="collection" v-if = "presence" >
-						<li class="collection-item" v-if = "presence.length == 0">No one is home</li>
-						<li class="collection-item" v-for = "person in presence">{{person}}</li>
-					</ul>
+				<nav>
+					<div class="nav-wrapper">
+						<ul id="nav-mobile" class="right">
+							<li class="collection-item" v-if = "presence.length == 0">No one is home</li>
+							<li v-for = "person in presence">{{person}}</li>
+						</ul>
+					</div>
+				</nav>
 			</div>
 		</div>
 	`,
