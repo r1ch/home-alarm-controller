@@ -59,7 +59,12 @@ Vue.component('alarm-controls',{
 								<small>Nobody</small>
 							</td>
 							<td v-for = "person in presence">
-								<i class = "fas fa-user"></i>
+								<span = "fas fa-stack">
+								<i class = "fas fa-user fa-stack-2x"></i>
+								<i class = "fas fa-heart fa-stack-1x" style:"color:Tomato" 
+									v-if = "presence.indexOf("Guest") > 0 ? presence.length > 2 : presence.length > 1"
+								></i>
+								<span>
 								<br>
 								<small>{{person}}</small>
 							</td>
