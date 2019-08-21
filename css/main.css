@@ -4,6 +4,10 @@ html, body, #app {
   padding: 0;
 }
 
+#d3{
+  overflow:scroll
+}
+
 .abcRioButtonBlue {
   margin: 20vh auto;
 }
