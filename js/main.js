@@ -15,22 +15,14 @@ Vue.component('google-login', {
 })
 
 Vue.component('state-view',{
-	props: ['shadow'],
-	data: () => ({
-		authenticated: false,
-	}),
+	props: ['shadow','ready'],
 	template: `
-		<div class = "row center-align" v-if = "authenticated">
+		<div class = "row center-align" v-if = "ready">
 			<br>
 			<br>
 			<i :class="'fas fa-'+icon+' fa-5x'"></i>
 		</div>
 	`,
-	mounted: function() {
-		Credentials.then(() => {
-			this.authenticated = true
-		})
-	},
 	computed : {
 		icon(){
 			if(!this.shadow.strategy || !this.shadow.state){
@@ -47,12 +39,9 @@ Vue.component('state-view',{
 })
 	
 Vue.component('alarm-controls',{
-	props: ['shadow','presence'],
-	data: () => ({
-		authenticated: false,
-	}),
+	props: ['shadow','presence','ready'],
 	template: `
-		<div v-if = "authenticated" class = "row center-align">
+		<div v-if = "ready" class = "row center-align">
 			<div class = "col s12 center-align">
 				<button v-on:click = "action().handler()" type="button" class="btn"><i :class = "'fas fa-'+action().icon"></i></button>
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
@@ -66,11 +55,6 @@ Vue.component('alarm-controls',{
 			</div>
 		</div>
 	`,
-	mounted: function() {
-		Credentials.then(() => {
-			this.authenticated = true
-		})
-	},
 	computed : {
 		icon(){
 			let iconMap = {
@@ -138,9 +122,9 @@ Vue.component('time-d-three', {
 			svg : false
 		}
 	},
-	props: ['strategies', 'movements'],
+	props: ['strategies', 'movements','ready'],
 	template: `
-		<div class = 'row'>
+		<div class = 'row' v-if = 'ready'>
 			<div id = 'd3'>
 			</div>
 		</div>
@@ -391,16 +375,25 @@ var app = new Vue({
 		}
 	},
 	computed: {
+		ready(){
+			if(
+				!this.raw.presence || 
+				!this.raw.data ||
+				!this.raw.data.shadow ||
+				!this.raw.data.metrics
+			) return false
+			return true
+		},
 		presence(){
-			if(!this.raw.presence) return []
+			if(!this.ready) return []
 			return this.raw.presence.people
 		},
 		shadow(){
-			if(!this.raw.data.shadow) return {}
+			if(!this.ready) return {}
 			return this.raw.data.shadow.reported;
 		},
 		strategies(){
-			if(!this.raw.data.metrics) return []
+			if(!this.ready) return []
 			let strategies = this.raw.data.metrics.strategyState.map(strategy => {
 				strategy.timestamp = new Date(strategy.timestamp);
 				return strategy;
@@ -420,7 +413,7 @@ var app = new Vue({
 			return strategies
 		},
 		movements() {
-			if(!this.raw.data.metrics || this.strategies.length == 0) return []
+			if(!this.ready || this.strategies.length == 0) return []
 			let earliestStrategy = this.strategies.reduce((a,b)=>({timestamp:Math.min(a.timestamp,b.timestamp)}));
 			let earliestDate = new Date(earliestStrategy.timestamp)
 
