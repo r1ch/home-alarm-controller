@@ -123,10 +123,10 @@ Vue.component('time-d-three', {
 	props: ['strategies', 'movements'],
 	data: function() {
 		let margin = {
-			top: 50,
-			right: 25,
-			bottom: 50,
-			left: 25
+			top: 10,
+			right: 10,
+			bottom: 10,
+			left: 10
 		};
 		let fullWidth = 600
 		let fullHeight = 150
