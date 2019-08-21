@@ -62,7 +62,7 @@ Vue.component('alarm-controls',{
 								<small>{{person}}</small>
 							</td>
 						</tr>
-					<tbody>
+					</tbody>
 				</table>
 			</div>
 		</div>
