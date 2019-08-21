@@ -150,9 +150,11 @@ Vue.component('time-d-three', {
 	mounted : function(){
 		this.svg = d3.select("#d3")
 				.append("svg")
-				.attr("width", '100%')
-				.attr("height", '100%')
-				.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
+				.attr('width',this.fullWidth)
+				.attr('height',this.fullHeight)
+				//.attr("width", '100%')
+				//.attr("height", '100%')
+				//.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
 				.append("g")
 				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
 		
