@@ -5,7 +5,8 @@ html, body, #app {
 }
 
 #d3{
-  overflow:scroll
+  overflow:scroll;
+  width: 100%;
 }
 
 .abcRioButtonBlue {
