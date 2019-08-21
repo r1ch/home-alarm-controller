@@ -20,6 +20,8 @@ Vue.component('state-view',{
 		<div class = "row center-align" v-if = "ready">
 			<br><br>
 			<i :class="'fas fa-'+icon+' fa-5x'"></i>
+			<br>
+			<small>{{shadow.state}}</small>
 		</div>
 	`,
 	computed : {
