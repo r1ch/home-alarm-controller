@@ -4,6 +4,9 @@ html, body, #app {
   padding: 0;
 }
 
+abcRioButtonBlue {
+  margin: 0 auto;
+}
 
 .strategy.blind {
   fill: rgba(247, 249, 249, 1); 
