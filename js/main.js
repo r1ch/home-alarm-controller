@@ -45,16 +45,23 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 			</div>
-			<div class="divider"></div>
 			<div class = "col s12 center-align section">
-				<span v-if = "presence.length == 0">
-					<i class = "fas fa-user-slash"></i>
-				</span>
-				<span v-for = "person in presence">
-					<i class = "fas fa-user"></i>
-					<br>
-					<small>{{person}}</small>
-				</span>
+				<table class = "centered">
+					<tbody>
+						<tr>
+							<td v-if = "presence.length == 0">
+								<i class = "fas fa-user-slash"></i>
+								<br>
+								<small>Nobody</small>
+							</td>
+							<td v-for = "person in presence">
+								<i class = "fas fa-user"></i>
+								<br>
+								<small>{{person}}</small>
+							</td>
+						</tr>
+					<tbody>
+				</table>
 			</div>
 		</div>
 	`,
