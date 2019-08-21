@@ -61,7 +61,7 @@ Vue.component('alarm-controls',{
 				"blind" : "lock-open",
 				"bedtime" : "bed",
 				"standard" : "lock",
-				"default" : "lock"
+				"default" : ""
 			}
 			return iconMap[this.shadow.strategy || "default"]
 		}
