@@ -3,7 +3,7 @@ Vue.component('google-login', {
 		authenticated: false
 	}),
 	template: `
-		<div class = "row">
+		<div class = "row section">
 			<div v-if = "!authenticated" class="g-signin2" data-width="200" data-height="50" data-onsuccess="authenticate" data-theme="dark"></div>
 		</div>
 	`,
@@ -17,9 +17,7 @@ Vue.component('google-login', {
 Vue.component('state-view',{
 	props: ['shadow','ready'],
 	template: `
-		<div class = "row center-align" v-if = "ready">
-			<br>
-			<br>
+		<div class = "row center-align section" v-if = "ready">
 			<i :class="'fas fa-'+icon+' fa-5x'"></i>
 		</div>
 	`,
@@ -42,13 +40,13 @@ Vue.component('alarm-controls',{
 	props: ['shadow','presence','ready'],
 	template: `
 		<div v-if = "ready" class = "row center-align">
-			<div class = "col s12 center-align">
+			<div class = "col s12 center-align section">
 				<button v-on:click = "action().handler()" type="button" class="btn"><i :class = "'fas fa-'+action().icon"></i></button>
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 			</div>
 			<div class="divider"></div>
-			<div class = "col s12 center-align">
+			<div class = "col s12 center-align section">
 				<span v-if = "presence.length == 0">
 					<i class = "fas fa-user-slash"></i>
 				</span>
@@ -56,7 +54,7 @@ Vue.component('alarm-controls',{
 					<i class = "fas fa-user"></i>
 					<br>
 					<small>{{person}}</small>
-				</div>
+				</span>
 			</div>
 		</div>
 	`,
