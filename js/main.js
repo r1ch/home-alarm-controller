@@ -46,7 +46,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 			</div>
 			<div class = "col s12 center-align section">
-				<table class = "centered">
+				<table class = "centered striped">
 					<tbody>
 						<tr>
 							<td v-if = "presence.length == 0">
