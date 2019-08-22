@@ -128,7 +128,7 @@ Vue.component('time-d-three', {
 			bottom: 25,
 			left: 25
 		};
-		let fullWidth = 800
+		let fullWidth = 1000
 		let fullHeight = 150
 		let width = fullWidth - margin.left - margin.right;
 		let height = fullHeight - margin.top - margin.bottom;
@@ -192,7 +192,7 @@ Vue.component('time-d-three', {
 				Lounge : '\uf4b8',
 				Entry : '\uf52b'
 			}
-			let iconSize = 8;
+			let iconSize = 12;
 			
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
