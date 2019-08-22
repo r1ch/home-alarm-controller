@@ -128,7 +128,7 @@ Vue.component('time-d-three', {
 			bottom: 25,
 			left: 25
 		};
-		let fullWidth = 600
+		let fullWidth = 800
 		let fullHeight = 150
 		let width = fullWidth - margin.left - margin.right;
 		let height = fullHeight - margin.top - margin.bottom;
@@ -159,7 +159,13 @@ Vue.component('time-d-three', {
 		this.svg.append("g")
 			.attr('font-weight', '900')
 			.attr('font-size', `8px`)
-			.attr("class", "y axis fa")
+			.attr("class", "y lefthand axis fa")
+		
+		this.svg.append("g")
+			.attr('font-weight', '900')
+			.attr('font-size', `8px`)
+			.attr("class", "y righthand axis fa")
+			.attr("transform","translate(0," + this.width +  ")")
 		
 		this.svg.append("g")
 			.attr("class", "x axis")
@@ -202,10 +208,15 @@ Vue.component('time-d-three', {
 				.range([0, this.height])
 				.padding(.5)
 
-			let yAxis = d3.axisLeft(yScale)
+			let yLeftAxis = d3.axisLeft(yScale)
+			let yLeftRight = d3.axisRight(yScale)
 
 
-			this.svg.select(".y")
+			this.svg.select(".y.lefthand")
+				.transition(t)
+				.call(yAxis);
+			
+			this.svg.select(".y.righthand")
 				.transition(t)
 				.call(yAxis);
 
