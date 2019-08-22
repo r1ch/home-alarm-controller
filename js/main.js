@@ -284,7 +284,7 @@ Vue.component('time-d-three', {
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${this.iconSize}px`)
-				.text(function(d) { return d.width > this.iconSize ? iconMap[d.detail] : ""})
+				.text((d)=>{ return d.width > this.iconSize ? iconMap[d.detail] : ""})
 				.attr('y', (d)=>{
 					if(d.width > this.iconSize) return this.height/2 + this.iconSize/2
 					else return this.iconSize/2
@@ -301,10 +301,10 @@ Vue.component('time-d-three', {
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${this.iconSize}px`)
-				.text(function(d) { return d.width > iconSize ? iconMap[d.detail] : ""})
+				.text((d)=> { return d.width > this.iconSize ? iconMap[d.detail] : ""})
 				.attr('y', (d)=>{
-					if(d.width > iconSize) return this.height/2 + iconSize/2
-					else return iconSize/2
+					if(d.width > this.iconSize) return this.height/2 + this.iconSize/2
+					else return this.iconSize/2
 				})
 				.transition(t)
 				.attr('x', function(d) {
