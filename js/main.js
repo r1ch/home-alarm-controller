@@ -208,17 +208,17 @@ Vue.component('time-d-three', {
 				.range([0, this.height])
 				.padding(.5)
 
-			let yLeftAxis = d3.axisLeft(yScale)
-			let yLeftRight = d3.axisRight(yScale)
+			let yAxisLeft = d3.axisLeft(yScale)
+			let yAxisRight = d3.axisRight(yScale)
 
 
 			this.svg.select(".y.lefthand")
 				.transition(t)
-				.call(yAxis);
+				.call(yAxisLeft);
 			
 			this.svg.select(".y.righthand")
 				.transition(t)
-				.call(yAxis);
+				.call(yAxisRight);
 
 			this.svg.select(".x")
 				.transition(t)
