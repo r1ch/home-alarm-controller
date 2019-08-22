@@ -122,6 +122,7 @@ Vue.component('alarm-controls',{
 Vue.component('time-d-three', {
 	props: ['strategies', 'movements'],
 	data: function() {
+		let iconSize = 12
 		let margin = {
 			top: 25,
 			right: 25,
@@ -133,6 +134,7 @@ Vue.component('time-d-three', {
 		let width = fullWidth - margin.left - margin.right;
 		let height = fullHeight - margin.top - margin.bottom;
 		return {
+			iconSize : iconSize,
 			margin: margin,
 			width: width,
 			height: height,
@@ -158,12 +160,12 @@ Vue.component('time-d-three', {
 		
 		this.svg.append("g")
 			.attr('font-weight', '900')
-			.attr('font-size', `8px`)
+			.attr('font-size', `${this.iconSize}px`)
 			.attr("class", "y lefthand axis fa")
 		
 		this.svg.append("g")
 			.attr('font-weight', '900')
-			.attr('font-size', `8px`)
+			.attr('font-size', `${this.iconSize}px`)
 			.attr("class", "y righthand axis fa")
 			.attr("transform","translate(" + this.width +  ",0)")
 		
@@ -192,7 +194,6 @@ Vue.component('time-d-three', {
 				Lounge : '\uf4b8',
 				Entry : '\uf52b'
 			}
-			let iconSize = 12;
 			
 			let xScale = d3.scaleTime()
 				.domain(d3.extent(this.strategies, function(d) {
@@ -282,7 +283,7 @@ Vue.component('time-d-three', {
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
-				.attr('font-size', `${iconSize}px`)
+				.attr('font-size', `${this.iconSize}px`)
 				.text(function(d) { return d.width > iconSize ? iconMap[d.detail] : ""})
 				.attr('y', (d)=>{
 					if(d.width > iconSize) return this.height/2 + iconSize/2
@@ -299,7 +300,7 @@ Vue.component('time-d-three', {
 				.attr('class', function(d){return `icon ${d.detail} fa`})
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
-				.attr('font-size', `${iconSize}px`)
+				.attr('font-size', `${this.iconSize}px`)
 				.text(function(d) { return d.width > iconSize ? iconMap[d.detail] : ""})
 				.attr('y', (d)=>{
 					if(d.width > iconSize) return this.height/2 + iconSize/2
