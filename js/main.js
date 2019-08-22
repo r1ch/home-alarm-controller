@@ -462,6 +462,3 @@ var app = new Vue({
 		this.fetchPresence();
 	}
 })
-
-
-//
