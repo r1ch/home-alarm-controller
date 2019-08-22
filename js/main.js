@@ -75,10 +75,6 @@ Vue.component('alarm-controls',{
 		</div>
 	`,
 	computed : {
-		randomIcon(){
-			let iconList = ['user','otter','moon','lemon','kiwi-bird']
-			return iconList[Math.floor(Math.random()*iconList.length)]
-		},
 		icon(){
 			let iconMap = {
 				"blind" : "lock-open",
@@ -90,6 +86,10 @@ Vue.component('alarm-controls',{
 		}
 	},
 	methods: {
+		randomIcon(){
+			let iconList = ['user','otter','moon','lemon','kiwi-bird']
+			return iconList[Math.floor(Math.random()*iconList.length)]
+		},
 		arm(){
 			signHttpRequest("POST", "/alarm/monitor/on")
 				.then(axios)
