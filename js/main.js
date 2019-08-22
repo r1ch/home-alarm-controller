@@ -124,8 +124,8 @@ Vue.component('time-d-three', {
 	data: function() {
 		let margin = {
 			top: 25,
-			right: 50,
-			bottom: 50,
+			right: 25,
+			bottom: 25,
 			left: 25
 		};
 		let fullWidth = 600
@@ -142,7 +142,7 @@ Vue.component('time-d-three', {
 		}
 	},
 	template: `
-		<div class = 'row'>
+		<div class = 'row center-align'>
 			<div id = 'd3'>
 			</div>
 		</div>
