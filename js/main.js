@@ -332,7 +332,8 @@ Vue.component('time-d-three', {
 				.attr('r', `${movementSize/2}`)
 			
 
-
+			d3.selectAll("#d3").node()
+				.scrollLeft = this.fullWidth
 
 			return true;
 		}
