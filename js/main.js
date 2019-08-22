@@ -14,6 +14,7 @@ Vue.component('google-login', {
 	}
 })
 
+
 Vue.component('state-view',{
 	props: ['shadow','ready'],
 	template: `
@@ -461,3 +462,6 @@ var app = new Vue({
 		this.fetchPresence();
 	}
 })
+
+
+//
