@@ -203,7 +203,7 @@ Vue.component('time-d-three', {
 				.range([0, this.width])
 
 			let xAxis = d3.axisBottom(xScale)
-				.ticks(5); // specify the number of ticks
+				.ticks(6);
 
 			let yScale = d3.scalePoint()
 				.domain(this.movements.map(movement => iconMap[movement.detail]))
