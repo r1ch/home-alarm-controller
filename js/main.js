@@ -61,10 +61,10 @@ Vue.component('alarm-controls',{
 							</td>
 							<td v-for = "person in presence">
 								<span class = "fas fa-stack" v-if = "person!='Guest'">
-									<i class = "fas fa-user fa-stack-2x"></i>
+									<i :class = "'fas fa-stack-2x fa'+this.randomIcon"></i>
 									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "presence.indexOf('Guest') > -1 ? presence.length > 2 : presence.length > 1"></i>
 								</span>
-								<i class = "fas fa-user fa-2x" v-if = "person == 'Guest'"></i>
+								<i class = "fas fa-user-secret fa-2x" v-if = "person == 'Guest'"></i>
 								<br>
 								<small>{{person}}</small>
 							</td>
@@ -75,6 +75,10 @@ Vue.component('alarm-controls',{
 		</div>
 	`,
 	computed : {
+		randomIcon(){
+			let iconList = ['user','otter','moon','lemon','kiwi-bird']
+			return iconList[Math.floor(Math.random()*iconList.length)]
+		},
 		icon(){
 			let iconMap = {
 				"blind" : "lock-open",
@@ -130,7 +134,7 @@ Vue.component('time-d-three', {
 			bottom: 25,
 			left: 25
 		};
-		let fullWidth = 1000
+		let fullWidth = 900
 		let fullHeight = 150
 		let width = fullWidth - margin.left - margin.right;
 		let height = fullHeight - margin.top - margin.bottom;
