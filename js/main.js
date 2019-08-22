@@ -165,7 +165,7 @@ Vue.component('time-d-three', {
 			.attr('font-weight', '900')
 			.attr('font-size', `8px`)
 			.attr("class", "y righthand axis fa")
-			.attr("transform","translate(0," + this.width +  ")")
+			.attr("transform","translate(" + this.width +  ",0)")
 		
 		this.svg.append("g")
 			.attr("class", "x axis")
