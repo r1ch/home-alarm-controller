@@ -494,7 +494,7 @@ var app = new Vue({
 
 			strategies.unshift({
 				timestamp: new Date,
-				detail: "unknown"
+				detail: this.shadow.strategy
 			})
 
 			if(strategies.length == 1){
