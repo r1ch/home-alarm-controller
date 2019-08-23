@@ -139,7 +139,7 @@ Vue.component('alarm-controls',{
 				.then(this.$root.pollData())
 		},
 		addVisitor(){
-			this.visitors(here.visitorDays+1)
+			this.visitors(this.here.visitorDays+1)
 		},
 		removeVisitor(){
 			this.visitors(-1)
