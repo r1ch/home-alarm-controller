@@ -60,13 +60,13 @@ Vue.component('alarm-controls',{
 								<small>Nobody</small>
 							</td>
 							<td v-for = "person in presence">
-								<span class = "fas fa-stack" v-if = "person!='Guest'">
+								<span class = "fas fa-stack" v-if = "person.name!='Guest'">
 									<i :class = "'fas fa-stack-2x fa-'+randomIcon()"></i>
 									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "presence.indexOf('Guest') > -1 ? presence.length > 2 : presence.length > 1"></i>
 								</span>
-								<i class = "fas fa-user-secret fa-2x" v-if = "person == 'Guest'"></i>
+								<i class = "fas fa-user-secret fa-2x" v-if = "person.name == 'Guest'"></i>
 								<br>
-								<small>{{person}}</small>
+								<small>{{person.name}} ({{Math.ceil(person.left - Date.now())/24*60*60*1000}})</small>
 							</td>
 						</tr>
 					</tbody>
