@@ -191,7 +191,7 @@ Vue.component('time-d-three', {
 	computed:{
 		reassurance(){
 			let output = {
-				lastTime : (new Date()-this.movements[0].timestamp)/(60*60*1000),
+				lastTime : Math.floor((new Date()-this.movements[0].timestamp)/(60*60*1000)),
 				detail : this.movements[0].detail
 			}
 			if(output.lastTime > 60){
