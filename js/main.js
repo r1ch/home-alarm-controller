@@ -13,7 +13,7 @@ Vue.component('google-login', {
 		})
 	}
 })
-
+//
 
 Vue.component('state-view',{
 	props: ['shadow','ready'],
