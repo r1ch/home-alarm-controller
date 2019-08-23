@@ -191,8 +191,8 @@ Vue.component('time-d-three', {
 	computed:{
 		reassurance(){
 			let output = {
-				lastTime : (new Date()-this.movement[0].timestamp)/(60*60*1000),
-				detail : this.movement[0].detail
+				lastTime : (new Date()-this.movements[0].timestamp)/(60*60*1000),
+				detail : this.movements[0].detail
 			}
 			if(output.lastTime > 60){
 				output.text = "ages"
