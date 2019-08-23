@@ -47,7 +47,8 @@ Vue.component('alarm-controls',{
 			<div class = "col s12 center-align">
 				<button v-on:click = "action().handler()" type="button" class="btn"><i :class = "'fas fa-'+action().icon"></i></button>
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
-				<button v-on:click = "visitors()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
+				<button v-on:click = "addVisitor()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
+				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-minus"></i></button>
 			</div>
 			<div class = "col s12 center-align">
 				<br><br>
@@ -78,6 +79,7 @@ Vue.component('alarm-controls',{
 		here(){
 			let haveVisitors = false;
 			let nonVisitors = 0;
+			let visitorDays = 0;
 			let all = 0;
 			let people = this.presence.map((P)=>{
 				all++;
@@ -88,7 +90,7 @@ Vue.component('alarm-controls',{
 				}
 				if(P.name == "Guest"){
 					haveVisitors = true;
-					person.days = Math.ceil((P.left - Date.now())/(24*60*60*1000))
+					visitorDays = person.days = Math.ceil((P.left - Date.now())/(24*60*60*1000))
 					person.dayText = "day" + (P.days == 1 ? "" : "s")
 					person.icon = "user-secret"
 					P.visitor = true
@@ -102,6 +104,7 @@ Vue.component('alarm-controls',{
 				all: all,
 				haveVisitors : haveVisitors,
 				nonVisitors : nonVisitors,
+				visitorDays : visitorDays,
 				people : people
 			}
 		},
@@ -135,8 +138,14 @@ Vue.component('alarm-controls',{
 				.then(axios)
 				.then(this.$root.pollData())
 		},
-		visitors(){
-			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: 1, device: "Guest"})
+		addVisitor(){
+			this.visitors(here.visitorDays+1)
+		},
+		removeVisitor(){
+			this.visitors(-1)
+		},
+		visitors(days){
+			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: days, device: "Guest"})
 				.then(axios)
 				.then(this.$root.pollPresence())
 		},
