@@ -188,10 +188,24 @@ Vue.component('time-d-three', {
 			svg : false
 		}
 	},
+	computed:{
+		reassurance(){
+			let output = {
+				lastTime : (new Date()-this.movement[0].timestamp)/(60*60*1000),
+				detail : this.movement[0].detail
+			}
+			if(output.lastTime > 60){
+				output.text = "ages"
+			} else {
+				output.text = output.lastTime + "minute" + (output.lastTime == 1 ? " " : "s ") + "ago"
+			}
+			return output
+		}
+	},
 	template: `
 		<div class = 'row center-align'>
 			<div class = "col s12" v-if = "movements.length>2">
-				<h3>Last movement at: {{movements[1].timestamp}} in {{movements[1].detail}}</h3>
+				<h6>Last movement : {{reassurance.detail}} {{reassurance.text}}</h6>
 			</div>
 			<div id = 'd3' class = "col s12">
 			</div>
