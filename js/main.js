@@ -48,7 +48,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "action().handler()" type="button" class="btn"><i :class = "'fas fa-'+action().icon"></i></button>
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "addVisitor()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
-				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-minus"></i></button>
+				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-times"></i></button>
 			</div>
 			<div class = "col s12 center-align">
 				<br><br>
@@ -65,7 +65,7 @@ Vue.component('alarm-controls',{
 									<i :class = "'fas fa-stack-2x fa-'+person.icon"></i>
 									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors>1"></i>
 								</span>
-								<i class = "fas fa-user-secret fa-2x" v-if = "person.visitor"></i>
+								<i class = "fas fa-user fa-2x" v-if = "person.visitor"></i>
 								<br>
 								<small>Guest  ({{person.days}} {{person.dayText}})</small>
 							</td>
