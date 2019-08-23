@@ -82,17 +82,18 @@ Vue.component('alarm-controls',{
 			let people = this.presence.map((P)=>{
 				all++;
 				let iconList = ['user','otter','moon','lemon','kiwi-bird']
-				let icon = parseInt(P.name,36) % iconList.length
+				let icon = iconList[parseInt(P.name,36) % iconList.length]
 				let person =  {
 					name: P.name,
-					icon : icon
 				}
 				if(P.name == "Guest"){
 					haveVisitors = true;
 					person.days = Math.floor((P.left - Date.now())/(24*60*60*1000))
-					person.dayText = "day" + P.days == 1 ? "" : "s"
+					person.dayText = "day" + (P.days == 1 ? "" : "s")
+					person.icon = "user-secret"
 					P.visitor = true
 				} else {
+					person.icon = icon;
 					nonVisitors++;
 				}
 				return person
