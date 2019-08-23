@@ -494,15 +494,19 @@ var app = new Vue({
 
 			strategies.unshift({
 				timestamp: new Date,
-				detail: this.shadow.strategy
+				detail: "unknown"
 			})
 
 			if(strategies.length == 1){
 				strategies.push({
 					timestamp: new Date(Date.now() - 24*60*60*1000),
-					detail: this.shadow.strategy
+					detail: "unknown"
 				})
 			}
+			
+			//can recover from 2 simulataneous changes for this one
+			strategies[1].detail = this.shadow.strategy
+			
 			return strategies
 		},
 		movements() {
