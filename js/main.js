@@ -500,12 +500,13 @@ var app = new Vue({
 			if(strategies.length == 1){
 				strategies.push({
 					timestamp: new Date(Date.now() - 24*60*60*1000),
-					detail: "unknown"
+					detail: this.shadow.strategy
 				})
 			}
 			
 			//can recover from 2 simulataneous changes for this one
-			strategies[1].detail = this.shadow.strategy
+			//No -  we can't! shadow is NOW, they had the previous strategy up to that point
+			//strategies[1].detail = this.shadow.strategy
 			
 			return strategies
 		},
