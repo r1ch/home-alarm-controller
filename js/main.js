@@ -61,9 +61,9 @@ Vue.component('alarm-controls',{
 								<small>Nobody</small>
 							</td>
 							<td v-for = "person in here.people">
-								<span class = "fas fa-stack" v-if = "!person.visitor">
+								<span class = "fas fa-stack">
 									<i :class = "'fas fa-stack-2x fa-'+person.icon"></i>
-									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors>1 && !person.visitor"></i>
+									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors > 1 && !person.visitor"></i>
 								</span>
 								<br>
 								<small v-if = "person.visitor">{{person.name}} (for {{person.days}} {{person.dayText}})</small>
@@ -93,7 +93,7 @@ Vue.component('alarm-controls',{
 					visitorDays = person.days = Math.ceil((P.left - Date.now())/(24*60*60*1000))
 					person.dayText = "day" + (P.days == 1 ? "" : "s")
 					person.icon = "user-secret"
-					P.visitor = true
+					person.visitor = true
 				} else {
 					person.icon = icon;
 					nonVisitors++;
