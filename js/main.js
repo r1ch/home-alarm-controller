@@ -83,7 +83,7 @@ Vue.component('alarm-controls',{
 			let all = 0;
 			let people = this.presence.map((P)=>{
 				all++;
-				let iconList = ['user','otter','moon','lemon','kiwi-bird']
+				let iconList = ['moon','otter','user','lemon','kiwi-bird']
 				let icon = iconList[parseInt(P.name,36) % iconList.length]
 				let person =  {
 					name: P.name,
