@@ -60,18 +60,18 @@ Vue.component('alarm-controls',{
 								<br>
 								<small>Nobody</small>
 							</td>
-							<td v-for = "person in here.people" v-if = "!person.visitor">
+							<td v-for = "person in here.people">
 								<span class = "fas fa-stack" v-if = "!person.visitor">
 									<i :class = "'fas fa-stack-2x fa-'+person.icon"></i>
 									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors>1"></i>
+									<br>
+									<small>{{person.name}}</small>
 								</span>
-								<br>
-								<small>{{person.name}}</small>
-							</td>
-							</td v-if = "person.visitor">
-								<i class = "fas fa-user fa-2x"></i>
-								<br>
-								<small>Guest ({{person.days}} {{person.dayText}})</small>
+								<span  v-if = "person.visitor">
+									<i class = "fas fa-user fa-2x"></i>
+									<br>
+									<small>Guest ({{person.days}} {{person.dayText}})</small>
+								</span>
 							</td>
 						</tr>
 					</tbody>
