@@ -66,7 +66,8 @@ Vue.component('alarm-controls',{
 									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors>1 && !person.visitor"></i>
 								</span>
 								<br>
-								<small>{{person.name}}({{person.days}}{{person.dayText}})</small>
+								<small v-if = "person.visitor">{{person.name}} (for {{person.days}} {{person.dayText}})</small>
+								<small v-if = "!person.visitor">{{person.name}}</small>
 							</td>
 						</tr>
 					</tbody>
