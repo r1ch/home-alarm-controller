@@ -59,7 +59,7 @@ Vue.component('alarm-controls',{
 								<br>
 								<small>Nobody</small>
 							</td>
-							<td v-for = "person in here">
+							<td v-for = "person in here.people">
 								<span class = "fas fa-stack" v-if = "!person.visitor">
 									<i :class = "'fas fa-stack-2x fa-'+person.icon"></i>
 									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors>1"></i>
