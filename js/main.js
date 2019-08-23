@@ -205,7 +205,7 @@ Vue.component('time-d-three', {
 	template: `
 		<div class = 'row center-align'>
 			<div class = "col s12" v-if = "movements.length>2">
-				<h6>Last movement : {{reassurance.detail}} {{reassurance.text}} ago</h6>
+				<h6>Last movement : {{reassurance.detail}}, {{reassurance.text}} ago</h6>
 			</div>
 			<div id = 'd3' class = "col s12">
 			</div>
