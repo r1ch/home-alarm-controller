@@ -92,7 +92,7 @@ Vue.component('alarm-controls',{
 					haveVisitors = true;
 					visitorDays = person.days = Math.ceil((P.left - Date.now())/(24*60*60*1000))
 					person.dayText = "day" + (P.days == 1 ? "" : "s")
-					person.icon = "user-secret"
+					person.icon = "user"
 					person.visitor = true
 				} else {
 					person.icon = icon;
