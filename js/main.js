@@ -190,7 +190,10 @@ Vue.component('time-d-three', {
 	},
 	template: `
 		<div class = 'row center-align'>
-			<div id = 'd3'>
+			<div class = "col s12" v-if = "movements.length>2">
+				<h3>Last movement at: {{movement[1].timestamp}} in {{movement[1].detail}}</h3>
+			</div>
+			<div id = 'd3' class = "col s12">
 			</div>
 		</div>
     	`,
