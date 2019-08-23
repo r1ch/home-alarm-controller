@@ -54,19 +54,19 @@ Vue.component('alarm-controls',{
 				<table class = "centered striped">
 					<tbody>
 						<tr>
-							<td v-if = "presence.length == 0">
+							<td v-if = "here.all == 0">
 								<i class = "fas fa-user-slash fa-2x"></i>
 								<br>
 								<small>Nobody</small>
 							</td>
-							<td v-for = "person in presence">
-								<span class = "fas fa-stack" v-if = "person.name!='Guest'">
-									<i :class = "'fas fa-stack-2x fa-'+randomIcon()"></i>
-									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "presence.indexOf('Guest') > -1 ? presence.length > 2 : presence.length > 1"></i>
+							<td v-for = "person in here">
+								<span class = "fas fa-stack" v-if = "!person.visitor">
+									<i :class = "'fas fa-stack-2x fa-'+person.icon"></i>
+									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors>1"></i>
 								</span>
-								<i class = "fas fa-user-secret fa-2x" v-if = "person.name == 'Guest'"></i>
+								<i class = "fas fa-user-secret fa-2x" v-if = "person.visitor"></i>
 								<br>
-								<small>{{person.name}} ({{Math.ceil(person.left - Date.now())/24*60*60*1000}})</small>
+								<small>Guest  ({{person.days}} {{person.dayText}})</small>
 							</td>
 						</tr>
 					</tbody>
@@ -75,6 +75,35 @@ Vue.component('alarm-controls',{
 		</div>
 	`,
 	computed : {
+		here(){
+			let haveVisitors = false;
+			let nonVisitors = 0;
+			let all = 0;
+			let people = this.presence.map((P)=>{
+				all++;
+				let iconList = ['user','otter','moon','lemon','kiwi-bird']
+				let icon = parseInt(P.name,36) % iconList.length
+				let person =  {
+					name: P.name,
+					icon : icon
+				}
+				if(P.name == "Guest"){
+					haveVisitors = true;
+					person.days = Math.floor((P.left - Date.now())/(24*60*60*1000))
+					person.dayText = "day" + P.days == 1 ? "" : "s"
+					P.visitor = true
+				} else {
+					nonVisitors++;
+				}
+				return person
+			})
+			return {
+				all: all,
+				haveVisitors : haveVisitors,
+				nonVisitors : nonVisitors,
+				people : people
+			}
+		},
 		icon(){
 			let iconMap = {
 				"blind" : "lock-open",
