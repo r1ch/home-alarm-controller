@@ -204,8 +204,9 @@ Vue.component('time-d-three', {
 	},
 	template: `
 		<div class = 'row center-align'>
-			<div class = "col s12" v-if = "movements.length>2">
-				<h6>Last movement : {{reassurance.detail}}, {{reassurance.text}} ago</h6>
+			<div class = "col s12">
+				<h6 v-if = "movements.length>2">Last movement : {{reassurance.detail}}, {{reassurance.text}} ago</h6>
+				<h6 v-if = "movements.length<1">No movement is a long time</h6>
 			</div>
 			<div id = 'd3' class = "col s12">
 			</div>
@@ -245,7 +246,7 @@ Vue.component('time-d-three', {
 	},
 	methods: {
 		draw() {
-			if (this.strategies.length == 0 || this.movements.length == 0) return;
+			if (this.strategies.length == 0) return;
 			
 			let t = d3.transition().duration(750);
 			
