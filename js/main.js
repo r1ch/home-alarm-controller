@@ -246,7 +246,7 @@ Vue.component('time-d-three', {
 	},
 	methods: {
 		draw() {
-			if (this.strategies.length == 0) return;
+			if (this.strategies.length == 0  || !this.ready) return;
 			
 			let t = d3.transition().duration(750);
 			
