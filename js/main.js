@@ -203,8 +203,8 @@ Vue.component('time-d-three', {
 		}
 	},
 	template: `
-		<div class = 'row center-align' v-if = "ready">
-			<div class = "col s12">
+		<div class = 'row center-align'>
+			<div class = "col s12" v-if = "ready">
 				<h6 v-if = "movements.length>2">Last movement : {{reassurance.detail}}, {{reassurance.text}} ago</h6>
 				<h6 v-if = "movements.length<1">No movement in a long time</h6>
 			</div>
@@ -217,7 +217,6 @@ Vue.component('time-d-three', {
 				.append("svg")
 				.attr('width',this.fullWidth)
 				.attr('height',this.fullHeight)
-				//.attr('viewBox',`0 0 ${this.fullWidth} ${this.fullHeight}`)
 				.append("g")
 				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
 		
@@ -246,7 +245,7 @@ Vue.component('time-d-three', {
 	},
 	methods: {
 		draw() {
-			if (this.strategies.length == 0  || !this.ready) return;
+			if (this.strategies.length == 0) return;
 			
 			let t = d3.transition().duration(750);
 			
