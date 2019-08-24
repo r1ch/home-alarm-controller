@@ -206,7 +206,7 @@ Vue.component('time-d-three', {
 		<div class = 'row center-align'>
 			<div class = "col s12">
 				<h6 v-if = "movements.length>2">Last movement : {{reassurance.detail}}, {{reassurance.text}} ago</h6>
-				<h6 v-if = "movements.length<1">No movement is a long time</h6>
+				<h6 v-if = "movements.length<1">No movement in a long time</h6>
 			</div>
 			<div id = 'd3' class = "col s12">
 			</div>
