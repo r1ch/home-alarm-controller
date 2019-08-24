@@ -165,7 +165,7 @@ Vue.component('alarm-controls',{
 })
 
 Vue.component('time-d-three', {
-	props: ['strategies', 'movements'],
+	props: ['strategies', 'movements','ready'],
 	data: function() {
 		let iconSize = 12
 		let margin = {
@@ -203,7 +203,7 @@ Vue.component('time-d-three', {
 		}
 	},
 	template: `
-		<div class = 'row center-align'>
+		<div class = 'row center-align' v-if = "ready">
 			<div class = "col s12">
 				<h6 v-if = "movements.length>2">Last movement : {{reassurance.detail}}, {{reassurance.text}} ago</h6>
 				<h6 v-if = "movements.length<1">No movement in a long time</h6>
