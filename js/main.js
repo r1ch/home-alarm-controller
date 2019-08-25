@@ -332,7 +332,18 @@ Vue.component('time-d-three', {
 					return d.start
 				})
 
-			
+			let lonelyIcon = this.svg.selectAll('.lonelyIcon')
+				.data(strategyBlocks[0])
+                                .enter()
+			        .attr('class', `lonelyIcon ${d.detail} fa`})
+				.attr('text-anchor', 'middle')
+				.attr('font-weight', '900')
+				.attr('font-size', `${this.iconSize}px`)
+				.text((d)=>iconMap[d.detail])
+				.attr('y', (d)=>this.height/2)
+				.transition(t)
+				.attr('x', (d)=>d.end)
+                                
 
 
 			let icons = this.svg.selectAll('.icon')
