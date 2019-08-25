@@ -335,6 +335,7 @@ Vue.component('time-d-three', {
 			let lonelyIcon = this.svg.selectAll('.lonelyIcon')
 				.data(strategyBlocks[0])
 				.enter()
+				.append('text')
 				.attr('class',(d)=>`lonelyIcon ${d.detail} fa`)
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
