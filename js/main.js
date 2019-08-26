@@ -293,6 +293,7 @@ Vue.component('time-d-three', {
 				let output = {
 					end: xScale(this.strategies[i].timestamp),
 					start: xScale(this.strategies[i + 1].timestamp),
+					fromDetail : this.strategies[i].detail,
 					detail: this.strategies[i + 1].detail
 				}
 				output.width = output.end - output.start
@@ -340,7 +341,7 @@ Vue.component('time-d-three', {
 				.attr('text-anchor', 'middle')
 				.attr('font-weight', '900')
 				.attr('font-size', `${this.iconSize}px`)
-				.text((d)=>iconMap[d.detail])
+				.text((d)=>iconMap[d.fromDetail])
 				.attr('y',this.height/2)
 				.transition(t)
 				.attr('x',this.width+this.iconSize)
@@ -504,7 +505,7 @@ var app = new Vue({
 
 			strategies.unshift({
 				timestamp: new Date,
-				detail: "unknown"
+				detail: this.shadow.strategy
 			})
 
 			if(strategies.length == 1){
