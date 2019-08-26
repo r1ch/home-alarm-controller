@@ -354,7 +354,7 @@ Vue.component('time-d-three', {
 				.attr('font-weight', '900')
 				.attr('font-size', `${this.iconSize}px`)
 				.text((d)=>iconMap[d.fromDetail])
-				.attr('y',this.height/2)
+				.attr('y',this.height/2 + this.iconSize/2)
 				.transition(t)
 				.attr('x',this.width+this.iconSize)
 			
