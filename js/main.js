@@ -35,7 +35,7 @@ Vue.component('state-view',{
 			} else if (["bedtime","standard"].includes(this.shadow.strategy)){
 				return "eye"
 			} else {
-				return "eye-slash"
+				return ""
 			}
 		},
 		big(){
