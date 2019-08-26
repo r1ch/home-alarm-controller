@@ -343,7 +343,7 @@ Vue.component('time-d-three', {
 				.text((d)=>iconMap[d.detail])
 				.attr('y',this.height/2)
 				.transition(t)
-				.attr('x',this.width)
+				.attr('x',this.width+this.iconSize)
 			
 			let icons = this.svg.selectAll('.icon')
 				.data(strategyBlocks)
