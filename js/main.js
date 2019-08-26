@@ -332,6 +332,19 @@ Vue.component('time-d-three', {
 					return d.start
 				})
 			
+			let current = this.svg.selectAll('.current')
+				.data([strategyBlocks[0]])
+				.enter()
+				.append('text')
+				.attr('class', 'current fa')
+				.attr('text-anchor', 'middle')
+				.attr('font-weight', '900')
+				.attr('font-size', `${this.iconSize}px`)
+				.text((d)=>iconMap[d.detail])
+				.attr('y',this.height/2)
+				.transition(t)
+				.attr('x',this.width)
+			
 			let icons = this.svg.selectAll('.icon')
 				.data(strategyBlocks)
 			
