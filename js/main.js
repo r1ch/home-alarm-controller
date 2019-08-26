@@ -22,7 +22,7 @@ Vue.component('state-view',{
 			<br><br>
 			<span class = "fa-stack fa-3x">
 				<i :class="'fas fa-'+big+' fa-stack-2x'"></i>
-				<i :class="'fas fa-'+small+' eye-pull fa-stack-1x fa-inverse'"></i>
+				<i :class="'fas fa-'+small+' eye-pull fa-stack-1x'"></i>
 			</span>
 			<br>
 			<small>{{shadow.state}}</small>
