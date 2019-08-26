@@ -20,6 +20,12 @@ html, body, #app {
   left:.5em;
 }
 
+.eye-pull {
+  color:Tomato;
+  position:relative;
+  top:1em;
+}
+
 .strategy.blind {
   fill: rgba(247, 249, 249, 1); 
 }
