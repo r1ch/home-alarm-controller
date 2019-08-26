@@ -23,7 +23,7 @@ html, body, #app {
 .eye-pull {
   color:Tomato;
   position:relative;
-  top:1em;
+  top:.5em;
 }
 
 .strategy.blind {
