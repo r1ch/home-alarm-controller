@@ -20,13 +20,25 @@ Vue.component('state-view',{
 	template: `
 		<div class = "row center-align" v-if = "ready">
 			<br><br>
-			<i :class="'fas fa-'+icon+' fa-5x'"></i>
+			<span class = "fa-stack fa-3x">
+				<i :class="'fas fa-'+big+' fa-stack-2x'"></i>
+				<i :class="'fas fa-'+small+' eye-pull fa-stack-1x fa-inverse'"></i>
+			</span>
 			<br>
 			<small>{{shadow.state}}</small>
 		</div>
 	`,
 	computed : {
-		icon(){
+		small(){
+			if (!this.shadow.strategy || !this.shadow.state){
+				return "eye"
+			} else if (["bedtime","standard"].includes(this.shadow.strategy)){
+				return "eye"
+			} else {
+				return "eye-slash"
+			}
+		},
+		big(){
 			if(!this.shadow.strategy || !this.shadow.state){
 				return "lock"
 			} else if (this.shadow.strategy == "bedtime"){
