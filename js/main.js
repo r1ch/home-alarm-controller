@@ -351,7 +351,7 @@ Vue.component('time-d-three', {
 				.append('text')
 				.attr('class', 'current fa  fa-in')
 				.attr('text-anchor', 'middle')
-				.attr('fill', 'white')
+				.attr('fill', 'rgba(255,255,255,0.5)')
 				.attr('font-weight', '900')
 				.attr('font-size', `${this.iconSize}px`)
 				.text((d)=>iconMap[d.fromDetail])
