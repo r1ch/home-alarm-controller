@@ -28,6 +28,13 @@
             <alarm-controls :shadow = "shadow" :presence = "presence" :ready = "ready"></alarm-controls>
             <version-stamp :cacheVersion = "cacheVersion"></version-stamp>
         </div>
+        <script>
+            {% assign min = 0 %}
+            {% assign max = 10000 %}
+            {% assign diff = max | minus: min %}
+            {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+            let versionNumber = {{randomNumber}};
+        </script>
         <script src="js/main.js"></script>
     </body>
 </html>
