@@ -300,7 +300,8 @@ Vue.component('time-d-three', {
 				.range([0, this.width])
 
 			let xAxis = d3.axisBottom(xScale)
-				.ticks(d3.timeHour.every(2));
+				.ticks(d3.timeHour.every(2))
+				.tickFormat(d3.timeFormat("%H"))
 
 			let yScale = d3.scalePoint()
 				.domain(this.movements.map(movement => iconMap[movement.detail]))
@@ -390,8 +391,8 @@ Vue.component('time-d-three', {
 				.attr('class', 'cTime')
 				.attr('text-anchor', 'middle')
 				.attr('fill', 'black')
-				.attr('font-size', `${this.iconSize}px`)
-				.text((d)=>d3.timeFormat("%H:%M %p")(d.timestamp))
+				.attr('font-size', `${this.iconSize/2}px`)
+				.text((d)=>d3.timeFormat("%H:%M")(d.timestamp))
 				.attr('y',-this.iconSize/2)
 				.transition(t)
 				.attr('x',this.width)
