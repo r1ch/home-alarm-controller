@@ -546,7 +546,7 @@ var app = new Vue({
 			})
 			.filter(movement=>movement.timestamp>earliestDate)	
 		},
-		cacheVersion(){
+		cache(){
 			return this.ready && this.raw.data && this.raw.data.used ? this.raw.data.used : false
 		}
 	},
