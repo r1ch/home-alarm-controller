@@ -13,7 +13,21 @@ Vue.component('google-login', {
 		})
 	}
 })
-//
+
+Vue.component('version-stamp',{
+	props: ['cache'],
+	data: ()=>({
+		version:version
+	}),
+	template: `
+		<div class = 'row center-align'>
+			<small>Build</small>
+			<div class = "chip">
+				{{version}}:{{cache}}
+			</div>
+		</div>
+	`,
+})
 
 Vue.component('state-view',{
 	props: ['shadow','ready'],
@@ -554,20 +568,4 @@ var app = new Vue({
 		this.fetchData();
 		this.fetchPresence();
 	}
-})
-
-
-Vue.component('version-stamp',{
-	props: ['cache'],
-	data: ()=>({
-		version:version
-	}),
-	template: `
-		<div class = 'row center-align'>
-			<small>Build</small>
-			<div class = "chip">
-				{{version}}:{{cache}}
-			</div>
-		</div>
-	`,
 })
