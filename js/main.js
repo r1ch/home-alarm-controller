@@ -227,7 +227,7 @@ Vue.component('time-d-three', {
 			} else if (output.lastTime == 0){
 				output.text = "now!"
 			} else {
-				output.text = output.lastTime + " minute " + (output.lastTime == 1 ? "ago" : "s ago")
+				output.text = output.lastTime + " minute" + (output.lastTime == 1 ? " ago" : "s ago")
 			}
 			return output
 		}
