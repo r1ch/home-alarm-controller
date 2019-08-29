@@ -17,13 +17,14 @@ Vue.component('google-login', {
 Vue.component('version-stamp',{
 	props: ['cache'],
 	data: ()=>({
-		version:version
+		version:version,
+		revision:revision.substring(0,5)
 	}),
 	template: `
 		<div class = 'row center-align'>
-			<small>Build</small>
+			<small></small>
 			<div class = "chip">
-				{{version}}:{{cache}}
+				{{revision}}:{{version}}:{{cache}}
 			</div>
 		</div>
 	`,
