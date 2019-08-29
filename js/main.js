@@ -458,6 +458,7 @@ Vue.component('time-d-three', {
 var app = new Vue({
 	el: '#app',
 	data: {
+		date : new Date(),
 		raw :  {
 			data: false,
 			presence : false
@@ -532,13 +533,13 @@ var app = new Vue({
 			})
 
 			strategies.unshift({
-				timestamp: new Date,
+				timestamp: this.date,
 				detail: this.shadow.strategy
 			})
 
 			if(strategies.length == 1){
 				strategies.push({
-					timestamp: new Date(Date.now() - 24*60*60*1000),
+					timestamp: new Date(this.date.now() - 24*60*60*1000),
 					detail: this.shadow.strategy
 				})
 			}
@@ -566,6 +567,10 @@ var app = new Vue({
 		}
 	},
 	mounted: function() {
+		let self = this;
+		setInterval(()=>{
+			self.date = new Date()
+		},1000)
 		this.fetchData();
 		this.fetchPresence();
 	}
