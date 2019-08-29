@@ -248,11 +248,11 @@ Vue.component('time-d-three', {
 			self.date = new Date();
 		},60*1000);
 		this.svg = d3.select("#d3")
-				.append("svg")
-				.attr('width',this.fullWidth)
-				.attr('height',this.fullHeight)
-				.append("g")
-				.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
+			.append("svg")
+			.attr('width',this.fullWidth)
+			.attr('height',this.fullHeight)
+			.append("g")
+			.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
 		
 		this.svg.append("g")
 			.attr('font-weight', '900')
@@ -296,6 +296,7 @@ Vue.component('time-d-three', {
 					return d.timestamp
 				}))
 				.range([0, this.width])
+				.nice()
 
 			let xAxis = d3.axisBottom(xScale)
 				.ticks(6);
