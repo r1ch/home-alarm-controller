@@ -206,6 +206,7 @@ Vue.component('time-d-three', {
 		let width = fullWidth - margin.left - margin.right;
 		let height = fullHeight - margin.top - margin.bottom;
 		return {
+			date : new Date(),
 			iconSize : iconSize,
 			margin: margin,
 			width: width,
@@ -218,7 +219,7 @@ Vue.component('time-d-three', {
 	computed:{
 		reassurance(){
 			let output = {
-				lastTime : Math.floor((new Date()-this.movements[0].timestamp)/(60*1000)),
+				lastTime : Math.floor((this.date-this.movements[0].timestamp)/(60*1000)),
 				detail : this.movements[0].detail
 			}
 			if(output.lastTime > 60){
