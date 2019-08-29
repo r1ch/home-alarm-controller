@@ -299,7 +299,7 @@ Vue.component('time-d-three', {
 				.nice()
 
 			let xAxis = d3.axisBottom(xScale)
-				.ticks(d3.timeHour);
+				.ticks(d3.timeHour.every(2));
 
 			let yScale = d3.scalePoint()
 				.domain(this.movements.map(movement => iconMap[movement.detail]))
