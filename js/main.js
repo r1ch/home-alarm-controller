@@ -223,9 +223,11 @@ Vue.component('time-d-three', {
 				detail : this.movements[0].detail
 			}
 			if(output.lastTime > 60){
-				output.text = "ages"
+				output.text = "ages ago"
+			} else if (output.lastTime == 0){
+				output.text = "now!"
 			} else {
-				output.text = output.lastTime + " minute" + (output.lastTime == 1 ? "" : "s")
+				output.text = output.lastTime + " minute " + (output.lastTime == 1 ? "ago" : "s ago")
 			}
 			return output
 		}
@@ -233,7 +235,7 @@ Vue.component('time-d-three', {
 	template: `
 		<div class = 'row center-align'>
 			<div class = "col s12" v-if = "ready">
-				<h6 v-if = "movements.length>2">Last movement : {{reassurance.detail}}, {{reassurance.text}} ago</h6>
+				<h6 v-if = "movements.length>2">Last movement : {{reassurance.detail}}, {{reassurance.text}}</h6>
 				<h6 v-if = "movements.length<1">No movement in a long time</h6>
 			</div>
 			<div id = 'd3' class = "col s12">
