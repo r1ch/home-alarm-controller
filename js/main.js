@@ -545,10 +545,25 @@ var app = new Vue({
 				return movement;
 			})
 			.filter(movement=>movement.timestamp>earliestDate)	
+		},
+		cacheVersion(){
+			return this.ready && this.raw.data && this.raw.data.used ? this.raw.data.used : false
 		}
 	},
 	mounted: function() {
 		this.fetchData();
 		this.fetchPresence();
 	}
+})
+
+
+Vue.component('version-stamp',{
+	props: ['cacheVersion']
+	template: `
+		<div class = 'row center-align' v-if = "cacheVersion">
+			<div class = "chip">
+				{{cacheVersion}}
+			</div>
+		</div>
+	`,
 })
