@@ -243,6 +243,10 @@ Vue.component('time-d-three', {
 		</div>
     	`,
 	mounted : function(){
+		let self = this;
+		setInterval(()=>{
+			self.date = new Date();
+		},60*1000);
 		this.svg = d3.select("#d3")
 				.append("svg")
 				.attr('width',this.fullWidth)
