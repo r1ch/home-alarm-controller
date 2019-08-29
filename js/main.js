@@ -244,9 +244,11 @@ Vue.component('time-d-three', {
     	`,
 	mounted : function(){
 		let self = this;
+		
 		setInterval(()=>{
 			self.date = new Date();
-		},60*1000);
+		},60*1000)
+		
 		this.svg = d3.select("#d3")
 			.append("svg")
 			.attr('width',this.fullWidth)
@@ -389,7 +391,7 @@ Vue.component('time-d-three', {
 				.attr('text-anchor', 'middle')
 				.attr('fill', 'black')
 				.attr('font-size', `${this.iconSize}px`)
-				.text((d)=>iconMap[d.timestamp])
+				.text((d)=>d3.time.format("%H:%M %p")(d.timestamp))
 				.attr('y',this.iconSize/2)
 				.transition(t)
 				.attr('x',this.width)
@@ -563,10 +565,6 @@ var app = new Vue({
 					detail: this.shadow.strategy
 				})
 			}
-			
-			//can recover from 2 simulataneous changes for this one
-			//No -  we can't! shadow is NOW, they had the previous strategy up to that point
-			//strategies[1].detail = this.shadow.strategy
 			
 			return strategies
 		},
