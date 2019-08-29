@@ -559,7 +559,7 @@ var app = new Vue({
 
 Vue.component('version-stamp',{
 	props: ['cache'],
-	data: {
+	data: ()=>{
 		version:version
 	},
 	template: `
