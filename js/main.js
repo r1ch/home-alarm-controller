@@ -272,6 +272,9 @@ Vue.component('time-d-three', {
 			.attr("transform", "translate(0," + this.height + ")")
 	},
 	watch : {
+		date(){
+			this.draw()
+		},
 		strategies(){
 			this.draw()
 		},
@@ -373,7 +376,7 @@ Vue.component('time-d-three', {
 				.data([this.shadow])
 				.enter()
 				.append('text')
-				.attr('class', 'cStrategy fa  fa-in')
+				.attr('class', 'cStrategy fa fa-in')
 				.attr('text-anchor', 'middle')
 				.attr('fill', 'rgba(30,126,200,0.5)')
 				.attr('font-weight', '900')
