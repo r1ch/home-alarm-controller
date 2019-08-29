@@ -192,7 +192,7 @@ Vue.component('alarm-controls',{
 })
 
 Vue.component('time-d-three', {
-	props: ['strategies', 'movements','ready'],
+	props: ['strategies', 'movements', 'shadow','ready'],
 	data: function() {
 		let iconSize = 12
 		let margin = {
@@ -330,7 +330,6 @@ Vue.component('time-d-three', {
 				let output = {
 					end: xScale(this.strategies[i].timestamp),
 					start: xScale(this.strategies[i + 1].timestamp),
-					fromDetail : this.strategies[i].detail,
 					detail: this.strategies[i + 1].detail
 				}
 				output.width = output.end - output.start
@@ -371,18 +370,18 @@ Vue.component('time-d-three', {
 				})
 			
 			let currentStrategy = this.svg.selectAll('.cStrategy')
-				.data([strategyBlocks[0]])
+				.data([this.shadow])
 				.enter()
 				.append('text')
 				.attr('class', 'cStrategy fa  fa-in')
 				.attr('text-anchor', 'middle')
 				.attr('fill', 'rgba(30,126,200,0.5)')
 				.attr('font-weight', '900')
-				.attr('font-size', `${this.iconSize}px`)
-				.text((d)=>iconMap[d.fromDetail])
-				.attr('y',this.height/2 + this.iconSize/2)
+				.attr('font-size', `${this.iconSize/2}px`)
+				.text((d)=>iconMap[d.strategy])
+				.attr('y',this.iconSize/4)
 				.transition(t)
-				.attr('x',this.width - this.iconSize)
+				.attr('x',this.width)
 			
 			let currentTime = this.svg.selectAll('.cTime')
 				.data([this.strategies[0]])
