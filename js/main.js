@@ -374,6 +374,11 @@ Vue.component('time-d-three', {
 			
 			let currentStrategy = this.svg.selectAll('.cStrategy')
 				.data([this.shadow])
+			
+			currentStrategy
+				.text((d)=>iconMap[d.strategy])
+			
+			currentStrategy
 				.enter()
 				.append('text')
 				.attr('class', 'cStrategy fa fa-in')
@@ -386,8 +391,15 @@ Vue.component('time-d-three', {
 				.transition(t)
 				.attr('x',this.width)
 			
+			
+			
 			let currentTime = this.svg.selectAll('.cTime')
 				.data([this.date])
+			
+			currentTime 
+				.text((d)=>d3.timeFormat("%H:%M")(d))
+			
+			currentStrategy
 				.enter()
 				.append('text')
 				.attr('class', 'cTime')
@@ -403,7 +415,6 @@ Vue.component('time-d-three', {
 				.data(strategyBlocks)
 			
 			icons.exit().remove()
-			
 			
 			icons
 				.attr('class', function(d){return `icon ${d.detail} fa`})
