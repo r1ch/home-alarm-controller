@@ -296,7 +296,6 @@ Vue.component('time-d-three', {
 					return d.timestamp
 				}))
 				.range([0, this.width])
-				.nice()
 
 			let xAxis = d3.axisBottom(xScale)
 				.ticks(d3.timeHour.every(2));
