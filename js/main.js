@@ -570,8 +570,13 @@ var app = new Vue({
 	mounted: function() {
 		let self = this;
 		setInterval(()=>{
-			self.date = new Date()
-		},1000)
+			self.date = new Date();
+		},60*1000)
+		setInterval(()=>{
+			self.date = new Date();
+			self.fetchData();
+			self.fetchPresence();
+		},5*60*1000)
 		this.fetchData();
 		this.fetchPresence();
 	}
