@@ -547,7 +547,7 @@ var app = new Vue({
 			.filter(movement=>movement.timestamp>earliestDate)	
 		},
 		cache(){
-			return this.ready && this.raw.data && this.raw.data.used ? this.raw.data.used : false
+			return this.ready && this.raw.data && this.raw.data.metrics ? this.raw.data.metrics.used : 0
 		}
 	},
 	mounted: function() {
@@ -565,7 +565,7 @@ Vue.component('version-stamp',{
 	template: `
 		<div class = 'row center-align' v-if = "version">
 			<div class = "chip">
-				{{cache}}:{{version}}
+				{{version}}:{{cache}}
 			</div>
 		</div>
 	`,
