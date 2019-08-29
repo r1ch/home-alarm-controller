@@ -558,11 +558,11 @@ var app = new Vue({
 
 
 Vue.component('version-stamp',{
-	props: ['cacheVersion'],
+	props: ['cache','version'],
 	template: `
 		<div class = 'row center-align' v-if = "cacheVersion">
 			<div class = "chip">
-				{{cacheVersion}}
+				{{cache}}:{{version}}
 			</div>
 		</div>
 	`,
