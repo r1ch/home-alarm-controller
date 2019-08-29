@@ -563,7 +563,8 @@ Vue.component('version-stamp',{
 		version:version
 	}),
 	template: `
-		<div class = 'row center-align' v-if = "version">
+		<div class = 'row center-align'>
+			<small>Build</small>
 			<div class = "chip">
 				{{version}}:{{cache}}
 			</div>
