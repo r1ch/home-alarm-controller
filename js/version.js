@@ -1,4 +1,3 @@
----
 {% assign min = 0 %}
 {% assign max = 10000 %}
 {% assign diff = max | minus: min %}
