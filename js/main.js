@@ -559,9 +559,9 @@ var app = new Vue({
 
 Vue.component('version-stamp',{
 	props: ['cache'],
-	data: ()=>{
+	data: ()=>({
 		version:version
-	},
+	}),
 	template: `
 		<div class = 'row center-align' v-if = "cacheVersion">
 			<div class = "chip">
