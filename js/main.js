@@ -393,7 +393,7 @@ Vue.component('time-d-three', {
 				.attr('fill', 'black')
 				.attr('font-size', `${this.iconSize/2}px`)
 				.text((d)=>d3.timeFormat("%H:%M")(d.timestamp))
-				.attr('y',-this.iconSize/2)
+				.attr('y',-this.iconSize/4)
 				.transition(t)
 				.attr('x',this.width)
 			
