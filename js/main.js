@@ -384,7 +384,7 @@ Vue.component('time-d-three', {
 				.attr('x',this.width - this.iconSize)
 			
 			let currentTime = this.svg.selectAll('.cTime')
-				.data([strategyBlocks[0]])
+				.data([this.strategies[0]])
 				.enter()
 				.append('text')
 				.attr('class', 'cTime')
