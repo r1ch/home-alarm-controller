@@ -1,2 +1,2 @@
 include:
-  - version.js
+  - /js/version.js
