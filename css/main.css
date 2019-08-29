@@ -10,7 +10,7 @@ html, body, #app {
 }
 
 .abcRioButtonBlue {
-  margin-top: 20vh auto;
+  margin: 20vh auto 0 auto;
 }
 
 .heart-pull {
