@@ -76,6 +76,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "addVisitor()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-times"></i></button>
+				<button v-on:click = "boost()"type="button" class="btn"><i class = "fas fa-temperature-high"></i></button>
 			</div>
 			<div class = "col s12 center-align">
 				<br><br>
@@ -165,6 +166,10 @@ Vue.component('alarm-controls',{
 			signHttpRequest("POST", "/alarm/monitor/bedtime")
 				.then(axios)
 				.then(this.$root.pollData())
+		},
+		boost(){
+			signHttpRequest("GET", "/heating/monitor/boost")
+				.then(axios)
 		},
 		addVisitor(){
 			this.visitors(this.here.visitorDays+1)
