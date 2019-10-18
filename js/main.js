@@ -170,6 +170,7 @@ Vue.component('alarm-controls',{
 		boost(){
 			signHttpRequest("GET", "/heating/monitor/boost")
 				.then(axios)
+				.then(this.$root.pollBoost())
 		},
 		addVisitor(){
 			this.visitors(this.here.visitorDays+1)
@@ -540,7 +541,7 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
-					this.raw.boost = data;
+					this.raw.boosted = data;
 				})
 		},
 		fetchData(){
@@ -572,9 +573,9 @@ var app = new Vue({
 			) return false
 			return true
 		},
-		boost(){
-			if(!this.raw.boost) return false
-			return this.raw.boost
+		boosted(){
+			if(!this.raw.boosted) return false
+			return this.raw.boosted
 		},
 		presence(){
 			if(!this.ready) return []
