@@ -503,13 +503,14 @@ var app = new Vue({
 		date : new Date(),
 		raw :  {
 			data: false,
-			presence : false
+			presence : false,
+			boosted : false
 		},
 		pollers : {
 			data: false,
-			presence : false
-		},
-		boost : false
+			presence : false,
+			boost : false
+		}
 	},
 	methods : {
 		pollBoost(){
