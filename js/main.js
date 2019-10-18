@@ -68,7 +68,7 @@ Vue.component('state-view',{
 })
 	
 Vue.component('alarm-controls',{
-	props: ['shadow','presence','ready','boosted'],
+	props: ['shadow','presence','ready','boost'],
 	template: `
 		<div v-if = "ready" class = "row center-align">
 			<div class = "col s12 center-align">
@@ -76,7 +76,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "addVisitor()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-times"></i></button>
-				<button v-on:click = "boost()" type="button" :class = "{orange : boosted, 'darken-1' : boosted}" class="btn"><i class = "fas fa-temperature-high"></i></button>
+				<button v-on:click = "boost()" type="button" :class = "{orange : boost.boosted, 'darken-1' : boosted}" class="btn"><i class = "fas fa-temperature-high"></i>{{boost.target}}</button>
 			</div>
 			<div class = "col s12 center-align">
 				<br><br>
@@ -542,7 +542,7 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
-					this.raw.boosted = data.boosted;
+					this.raw.boost = data;
 				})
 		},
 		fetchData(){
@@ -574,9 +574,9 @@ var app = new Vue({
 			) return false
 			return true
 		},
-		boosted(){
-			if(!this.raw.boosted) return false
-			return this.raw.boosted
+		boost(){
+			if(!this.raw.boost) return {boosted: false}
+			return this.raw.boost
 		},
 		presence(){
 			if(!this.ready) return []
