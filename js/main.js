@@ -542,7 +542,7 @@ var app = new Vue({
 				.then(({
 					data
 				}) => {
-					this.raw.boosted = data;
+					this.raw.boosted = data.boosted;
 				})
 		},
 		fetchData(){
