@@ -76,7 +76,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "addVisitor()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-times"></i></button>
-				<button v-on:click = "boost()" type="button" :class = "{orange : boost.boosted, 'darken-1' : boosted}" class="btn"><i class = "fas fa-temperature-high"></i>{{boost.target}}</button>
+				<button v-on:click = "doBoost()" type="button" :class = "{orange : boost.boosted, 'darken-1' : boosted}" class="btn"><i class = "fas fa-temperature-high"></i>{{boost.target}}</button>
 			</div>
 			<div class = "col s12 center-align">
 				<br><br>
@@ -167,7 +167,7 @@ Vue.component('alarm-controls',{
 				.then(axios)
 				.then(this.$root.pollData())
 		},
-		boost(){
+		doBoost(){
 			signHttpRequest("POST", "/heating/monitor/boost")
 				.then(axios)
 				.then(this.$root.pollBoost())
