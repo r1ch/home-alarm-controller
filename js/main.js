@@ -76,7 +76,7 @@ Vue.component('alarm-controls',{
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
 				<button v-on:click = "addVisitor()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
 				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-times"></i></button>
-				<button v-on:click = "boost()" type="button" :class = "boosted ? 'orange darken-1' : ''" class="btn"><i class = "fas fa-temperature-high"></i></button>
+				<button v-on:click = "boost()" type="button" :class = "{orange : boosted, 'darken-1' : boosted}" class="btn"><i class = "fas fa-temperature-high"></i></button>
 			</div>
 			<div class = "col s12 center-align">
 				<br><br>
