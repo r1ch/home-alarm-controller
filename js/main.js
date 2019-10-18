@@ -168,7 +168,7 @@ Vue.component('alarm-controls',{
 				.then(this.$root.pollData())
 		},
 		boost(){
-			signHttpRequest("GET", "/heating/monitor/boost")
+			signHttpRequest("POST", "/heating/monitor/boost")
 				.then(axios)
 				.then(this.$root.pollBoost())
 		},
