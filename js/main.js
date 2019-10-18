@@ -504,7 +504,7 @@ var app = new Vue({
 		raw :  {
 			data: false,
 			presence : false,
-			boosted : false
+			boost : false
 		},
 		pollers : {
 			data: false,
