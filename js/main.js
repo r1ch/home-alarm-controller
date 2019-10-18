@@ -68,7 +68,7 @@ Vue.component('state-view',{
 })
 	
 Vue.component('alarm-controls',{
-	props: ['shadow','presence','ready'],
+	props: ['shadow','presence','ready','boost'],
 	template: `
 		<div v-if = "ready" class = "row center-align">
 			<div class = "col s12 center-align">
