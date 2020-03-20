@@ -230,7 +230,7 @@ Vue.component('time-d-three', {
 			}
 			if(output.lastTime > 60){
 				output.text = "ages ago"
-			} else if (output.lastTime == 0){
+			} else if (output.lastTime <= 0){
 				output.text = "now!"
 			} else {
 				output.text = output.lastTime + " minute" + (output.lastTime == 1 ? " ago" : "s ago")
