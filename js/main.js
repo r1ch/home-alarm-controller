@@ -632,7 +632,7 @@ var app = new Vue({
 			self.fetchData();
 			self.fetchPresence();
 			self.fetchBoost();
-		},5*60*1000)
+		},60*1000)
 		this.fetchData();
 		this.fetchPresence();
 		this.fetchBoost();
