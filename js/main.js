@@ -29,7 +29,7 @@ Vue.component('version-stamp',{
 	`,
 })
 
-/*Vue.component('state-view',{
+Vue.component('state-view',{
 	props: ['shadow','ready'],
 	template: `
 		<div class = "row center-align" v-if = "ready">
@@ -418,8 +418,6 @@ Vue.component('time-d-three', {
 		}
 	}
 })
-
-*/
 
 var app = new Vue({
 	el: '#app',
