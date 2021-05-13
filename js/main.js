@@ -15,6 +15,7 @@ Vue.component('google-login', {
 })
 
 Vue.component('version-stamp',{
+	props: ['cache'],
 	data: ()=>({
 		version:version,
 		revision:revision.substring(0,5)
@@ -23,7 +24,7 @@ Vue.component('version-stamp',{
 		<div class = 'row center-align'>
 			<small></small>
 			<div class = "chip">
-				{{revision}}:{{version}}
+				{{revision}}:{{version}}:{{cache}}
 			</div>
 		</div>
 	`,
@@ -67,16 +68,75 @@ Vue.component('state-view',{
 })
 	
 Vue.component('alarm-controls',{
-	props: ['shadow','ready'],
+	props: ['shadow','presence','ready','boost'],
 	template: `
 		<div v-if = "ready" class = "row center-align">
 			<div class = "col s12 center-align">
 				<button v-on:click = "action().handler()" type="button" class="btn"><i :class = "'fas fa-'+action().icon"></i></button>
 				<button v-on:click = "bedtime()" type="button" class="btn"><i class = "fas fa-bed"></i></button>
+				<button v-on:click = "addVisitor()" type="button" class="btn"><i class = "fas fa-user-plus"></i></button>
+				<button v-on:click = "removeVisitor()" v-if = "here.haveVisitors" type="button" class="btn"><i class = "fas fa-user-times"></i></button>
+				<button v-on:click = "doBoost()" type="button" :class = "{orange : boost.boosted, 'darken-1' : boost.boosted}" class="btn"><i class = "fas fa-temperature-high"></i>{{boost.target}}</button>
+			</div>
+			<div class = "col s12 center-align">
+				<br><br>
+				<table class = "centered striped">
+					<tbody>
+						<tr>
+							<td v-if = "here.all == 0">
+								<i class = "fas fa-user-slash fa-2x"></i>
+								<br>
+								<small>Nobody</small>
+							</td>
+							<td v-for = "person in here.people">
+								<span class = "fas fa-stack">
+									<i :class = "'fas fa-stack-2x fa-'+person.icon"></i>
+									<i class = "fas fa-heart fa-stack-1x heart-pull" v-if = "here.nonVisitors > 1 && !person.visitor"></i>
+								</span>
+								<br>
+								<small v-if = "person.visitor">{{person.name}} (for {{person.days}} {{person.dayText}})</small>
+								<small v-if = "!person.visitor">{{person.name}}</small>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	`,
 	computed : {
+		here(){
+			let haveVisitors = false;
+			let nonVisitors = 0;
+			let visitorDays = 0;
+			let all = 0;
+			let people = this.presence.map((P)=>{
+				all++;
+				let iconList = ['moon','otter','user','lemon','kiwi-bird']
+				let icon = iconList[parseInt(P.name,36) % iconList.length]
+				let person =  {
+					name: P.name,
+				}
+				if(P.name == "Guest"){
+					haveVisitors = true;
+					visitorDays = person.days = Math.ceil((P.left - Date.now())/(24*60*60*1000))
+					person.dayText = "day" + (person.days == 1 ? "" : "s")
+					person.icon = "user"
+					person.visitor = true
+				} else {
+					person.visitor = false
+					person.icon = icon;
+					nonVisitors++;
+				}
+				return person
+			})
+			return {
+				all: all,
+				haveVisitors : haveVisitors,
+				nonVisitors : nonVisitors,
+				visitorDays : visitorDays,
+				people : people
+			}
+		},
 		icon(){
 			let iconMap = {
 				"blind" : "lock-open",
@@ -106,6 +166,22 @@ Vue.component('alarm-controls',{
 			signHttpRequest("POST", "/alarm/monitor/bedtime")
 				.then(axios)
 				.then(this.$root.pollData())
+		},
+		doBoost(){
+			signHttpRequest("POST", "/heating/monitor/boost")
+				.then(axios)
+				.then(this.$root.pollBoost())
+		},
+		addVisitor(){
+			this.visitors(this.here.visitorDays+1)
+		},
+		removeVisitor(){
+			this.visitors(-1)
+		},
+		visitors(days){
+			signHttpRequest("PATCH", "/alarm/monitor/visitors" , {days: days, device: "Guest"})
+				.then(axios)
+				.then(this.$root.pollPresence())
 		},
 		action() {
 			let actionMap = {
@@ -419,21 +495,35 @@ Vue.component('time-d-three', {
 	}
 })
 
+
+
 var app = new Vue({
 	el: '#app',
 	data: {
 		date : new Date(),
 		raw :  {
-			data: false
+			data: false,
+			presence : false,
+			boost : false
 		},
 		pollers : {
-			data: false
+			data: false,
+			presence : false,
+			boost : false
 		}
 	},
 	methods : {
+		pollBoost(){
+			if(this.pollers.boost) clearInterval(this.pollers.boost)
+			this.pollers.boost = this.poll(this.fetchBoost,this.pollers.boost)
+		},
 		pollData(){
 			if(this.pollers.data) clearInterval(this.pollers.data)
 			this.pollers.data = this.poll(this.fetchData,this.pollers.data)
+		},
+		pollPresence(){
+			if(this.pollers.presence) clearInterval(this.pollers.presence)
+			this.pollers.presence = this.poll(this.fetchPresence,this.pollers.presence)
 		},
 		poll(fn,poller){
 			let [count, maxCount, interval] = [0,4,500];
@@ -446,24 +536,51 @@ var app = new Vue({
 				}
 			},interval)
 		},
+		fetchBoost(){
+			signHttpRequest("GET", "/heating/monitor/boost")
+				.then(axios)
+				.then(({
+					data
+				}) => {
+					this.raw.boost = data;
+				})
+		},
 		fetchData(){
 			signHttpRequest("GET", "/alarm/monitor")
-			.then(axios)
-			.then(({
-				data
-			}) => {
-				this.raw.data = data;
-			})
+				.then(axios)
+				.then(({
+					data
+				}) => {
+					this.raw.data = data;
+				})
+		},
+		fetchPresence(){
+			signHttpRequest("GET", "/alarm/monitor/visitors")
+				.then(axios)
+				.then(({
+					data
+				}) => {
+					this.raw.presence = data;
+				})
 		}
 	},
 	computed: {
 		ready(){
 			if(
+				!this.raw.presence || 
 				!this.raw.data ||
 				!this.raw.data.shadow ||
 				!this.raw.data.metrics
 			) return false
 			return true
+		},
+		boost(){
+			if(!this.raw.boost) return {boosted: false}
+			return this.raw.boost
+		},
+		presence(){
+			if(!this.ready) return []
+			return this.raw.presence.people
 		},
 		shadow(){
 			if(!this.ready) return {}
@@ -502,6 +619,9 @@ var app = new Vue({
 			})
 			.filter(movement=>movement.timestamp>earliestDate)	
 		},
+		cache(){
+			return this.ready && this.raw.data && this.raw.data.metrics ? this.raw.data.metrics.used : 0
+		}
 	},
 	mounted: function() {
 		let self = this;
@@ -510,7 +630,11 @@ var app = new Vue({
 		},60*1000)
 		setInterval(()=>{
 			self.fetchData();
+			self.fetchPresence();
+			self.fetchBoost();
 		},60*1000)
 		this.fetchData();
+		this.fetchPresence();
+		this.fetchBoost();
 	}
 })
