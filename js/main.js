@@ -108,11 +108,6 @@ Vue.component('alarm-controls',{
 				.then(axios)
 				.then(this.$root.pollData())
 		},
-		doBoost(){
-			signHttpRequest("POST", "/heating/monitor/boost")
-				.then(axios)
-				.then(this.$root.pollBoost())
-		},
 		action() {
 			let actionMap = {
 				"quiet" : {icon:"lock","handler":this.arm},
