@@ -516,8 +516,6 @@ var app = new Vue({
 		},60*1000)
 		setInterval(()=>{
 			self.fetchData();
-			self.fetchPresence();
-			self.fetchBoost();
 		},60*1000)
 		this.fetchData();
 	}
