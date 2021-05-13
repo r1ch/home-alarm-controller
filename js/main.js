@@ -432,7 +432,7 @@ var app = new Vue({
 		pollers : {
 			data: false
 		}
-	}//,
+	},
 	/*methods : {
 		pollData(){
 			if(this.pollers.data) clearInterval(this.pollers.data)
@@ -458,9 +458,9 @@ var app = new Vue({
 					this.raw.data = data;
 				})
 		}
-	},
+	},*/
 	computed: {
-		ready(){
+		/*ready(){
 			if(
 				!this.raw.data ||
 				!this.raw.data.shadow ||
@@ -504,12 +504,12 @@ var app = new Vue({
 				return movement;
 			})
 			.filter(movement=>movement.timestamp>earliestDate)	
-		},
+		},*/
 		cache(){
 			return this.ready && this.raw.data && this.raw.data.metrics ? this.raw.data.metrics.used : 0
 		}
-	},
-	mounted: function() {
+	}//,
+	/*mounted: function() {
 		let self = this;
 		setInterval(()=>{
 			self.date = new Date();
