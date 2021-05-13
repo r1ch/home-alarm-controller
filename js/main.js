@@ -431,8 +431,8 @@ var app = new Vue({
 		pollers : {
 			data: false
 		}
-	}//,
-	/*methods : {
+	},
+	methods : {
 		pollData(){
 			if(this.pollers.data) clearInterval(this.pollers.data)
 			this.pollers.data = this.poll(this.fetchData,this.pollers.data)
@@ -450,16 +450,16 @@ var app = new Vue({
 		},
 		fetchData(){
 			signHttpRequest("GET", "/alarm/monitor")
-				.then(axios)
-				.then(({
-					data
-				}) => {
-					this.raw.data = data;
-				})
+			.then(axios)
+			.then(({
+				data
+			}) => {
+				this.raw.data = data;
+			})
 		}
-	},*/
-	/*computed: {
-		/*ready(){
+	},
+	computed: {
+		ready(){
 			if(
 				!this.raw.data ||
 				!this.raw.data.shadow ||
@@ -504,8 +504,8 @@ var app = new Vue({
 			})
 			.filter(movement=>movement.timestamp>earliestDate)	
 		},
-	},*/
-	/*mounted: function() {
+	},
+	mounted: function() {
 		let self = this;
 		setInterval(()=>{
 			self.date = new Date();
@@ -514,5 +514,5 @@ var app = new Vue({
 			self.fetchData();
 		},60*1000)
 		this.fetchData();
-	}*/
+	}
 })
