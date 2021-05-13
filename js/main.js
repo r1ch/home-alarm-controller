@@ -433,7 +433,7 @@ var app = new Vue({
 			data: false
 		}
 	},
-	methods : {
+	/*methods : {
 		pollData(){
 			if(this.pollers.data) clearInterval(this.pollers.data)
 			this.pollers.data = this.poll(this.fetchData,this.pollers.data)
@@ -518,5 +518,5 @@ var app = new Vue({
 			self.fetchData();
 		},60*1000)
 		this.fetchData();
-	}
+	}*/
 })
