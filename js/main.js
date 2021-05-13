@@ -1,4 +1,4 @@
-/*Vue.component('google-login', {
+Vue.component('google-login', {
 	data: () => ({
 		authenticated: false
 	}),
@@ -13,7 +13,7 @@
 		})
 	}
 })
-
+/*
 Vue.component('version-stamp',{
 	props: ['cache'],
 	data: ()=>({
