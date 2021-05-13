@@ -13,7 +13,7 @@ Vue.component('google-login', {
 		})
 	}
 })
-/*
+
 Vue.component('version-stamp',{
 	props: ['cache'],
 	data: ()=>({
@@ -28,7 +28,7 @@ Vue.component('version-stamp',{
 			</div>
 		</div>
 	`,
-})*/
+})
 
 /*Vue.component('state-view',{
 	props: ['shadow','ready'],
