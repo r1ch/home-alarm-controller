@@ -1,4 +1,4 @@
-Vue.component('google-login', {
+/*Vue.component('google-login', {
 	data: () => ({
 		authenticated: false
 	}),
@@ -28,7 +28,7 @@ Vue.component('version-stamp',{
 			</div>
 		</div>
 	`,
-})
+})*/
 
 /*Vue.component('state-view',{
 	props: ['shadow','ready'],
@@ -432,7 +432,7 @@ var app = new Vue({
 		pollers : {
 			data: false
 		}
-	},
+	}//,
 	/*methods : {
 		pollData(){
 			if(this.pollers.data) clearInterval(this.pollers.data)
