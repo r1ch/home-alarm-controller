@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div :class = "shadow.state" id = "app">
+<div id = "app">
 <!--<div :class = "shadow.state" id = "app">-->
     <!--<state-view :shadow = "shadow" :ready = "ready"></state-view>-->
     <!--<google-login></google-login>-->
