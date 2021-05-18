@@ -2,7 +2,9 @@
 layout: default
 ---
 
-<div :class = "shadow.state" id = "app">
+<div id = "app"></div>
+
+<div :class = "shadow.state" id = "2">
     <state-view :shadow = "shadow" :ready = "ready"></state-view>
     <google-login></google-login>
     <time-d-three :movements = "movements" :strategies = "strategies" :shadow = "shadow" :ready = "ready"></time-d-three>
